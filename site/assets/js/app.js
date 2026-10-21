@@ -685,72 +685,9 @@ function initReveal() {
   items.forEach((item) => io.observe(item));
 }
 
-/* ------------------------------------------------------------ hero band -- */
-/* ارتفاع شريط الخلفية العلوي = ارتفاع العنوان الكبير + فراغ، فيتّسع النص
-   دائمًا ولا يُقطع. القيم تُقرأ من CSS لتبقى المصادر واحدة. */
-function cssLength(name) {
-  const probe = document.createElement("span");
-  probe.style.cssText = `position:absolute;visibility:hidden;pointer-events:none;inline-size:var(${name});block-size:0`;
-  document.body.appendChild(probe);
-  const px = probe.getBoundingClientRect().width;
-  probe.remove();
-  return px;
-}
-
-function initHeroBand() {
-  const lead = el("#intro .lead");
-  const band = el(".hero-band");
-  if (!lead || !band) return;
-
-  const root = document.documentElement;
-  let frame = 0;
-
-  const card = el(".id-card");
-  const rail = el(".rail");
-
-  const measure = () => {
-    frame = 0;
-
-    if (!window.matchMedia("(min-width: 1100px)").matches) {
-      root.style.removeProperty("--hero-h");
-      if (rail) rail.classList.remove("rail--flow");
-      return;
-    }
-
-    // ارتفاع الشريط = نهاية العنوان الكبير + فراغ، محسوبًا من أعلى الصفحة
-    const gap = cssLength("--hero-gap") || 40;
-    const leadBottom = lead.getBoundingClientRect().bottom + window.scrollY;
-    root.style.setProperty("--hero-h", `${Math.round(leadBottom + gap)}px`);
-
-    // بطاقة أطول من الشاشة لا تُثبَّت، حتى يبقى أسفلها في المتناول
-    if (rail && card) {
-      const stickOffset = cssLength("--hero-top") || 24;
-      const tooTall = card.getBoundingClientRect().height + stickOffset * 2 > window.innerHeight;
-      rail.classList.toggle("rail--flow", tooTall);
-    }
-  };
-
-  const schedule = () => {
-    if (frame) return;
-    frame = requestAnimationFrame(measure);
-  };
-
-  measure();
-  window.addEventListener("resize", schedule, { passive: true });
-
-  if ("ResizeObserver" in window) {
-    const ro = new ResizeObserver(schedule);
-    ro.observe(lead);
-  }
-
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(schedule).catch(() => {});
-  }
-}
-
 function initHeader() {
   const header = el(".site-header");
-  const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+  const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 24);
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -780,34 +717,51 @@ function initHeader() {
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth >= 1100 && !panel.hidden) {
+      if (window.innerWidth >= 860 && !panel.hidden) {
         toggle.setAttribute("aria-expanded", "false");
         panel.hidden = true;
       }
     });
   }
 
-  // تمييز القسم الحالي في الشريط الجانبي وقائمة الهاتف معًا
+  // تمييز القسم الحالي بدقة في الشريط العلوي وقائمة الهاتف (بما يشمل آخر الصفحة)
   const links = els(".nav a, .mobile-nav a");
   const sectionIds = [...new Set(links.map((a) => a.getAttribute("href").slice(1)))];
   const sections = sectionIds.map((id) => byId(id)).filter(Boolean);
 
-  if ("IntersectionObserver" in window && sections.length) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          links.forEach((a) => {
-            const active = a.getAttribute("href") === `#${entry.target.id}`;
-            a.classList.toggle("is-active", active);
-            if (active) a.setAttribute("aria-current", "location");
-            else a.removeAttribute("aria-current");
-          });
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-    sections.forEach((s) => io.observe(s));
+  if (sections.length) {
+    let spyFrame = 0;
+    const updateActiveNav = () => {
+      spyFrame = 0;
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 48;
+      let currentId = sections[0].id;
+
+      if (atBottom) {
+        currentId = sections[sections.length - 1].id;
+      } else {
+        const probe = window.scrollY + Math.min(220, window.innerHeight * 0.32);
+        for (const s of sections) {
+          const top = s.getBoundingClientRect().top + window.scrollY;
+          if (top <= probe) currentId = s.id;
+        }
+      }
+
+      links.forEach((a) => {
+        const active = a.getAttribute("href") === `#${currentId}`;
+        a.classList.toggle("is-active", active);
+        if (active) a.setAttribute("aria-current", "location");
+        else a.removeAttribute("aria-current");
+      });
+    };
+
+    const scheduleSpy = () => {
+      if (!spyFrame) spyFrame = requestAnimationFrame(updateActiveNav);
+    };
+
+    updateActiveNav();
+    window.addEventListener("scroll", scheduleSpy, { passive: true });
+    window.addEventListener("resize", scheduleSpy, { passive: true });
   }
 }
 
@@ -839,7 +793,6 @@ async function boot() {
 
     initReveal();
     initSheet();
-    initHeroBand();
   } catch (error) {
     console.error("[content] failed to load:", error);
     const grid = byId("feed-grid");

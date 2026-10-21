@@ -1,8 +1,138 @@
 /* ==========================================================================
    Design tokens — مستمدة من دليل الهوية البصرية (agent_visual_identity_instructions_ar)
    الأزرق الملكي #0A5CC8 · الأزرق الفاتح #2A8DF0 · الكحلي #004C99
-   خطّان فقط: Cairo (عناوين) + Tajawal (نصوص)
+   خطّان فقط: Cairo (عناوين) + Tajawal (نصوص) — مستضافة محليًا لأداء فوري بلا انقطاع
    ========================================================================== */
+
+/* Cairo — Arabic + Latin (400 / 600 / 700 / 800) -------------------------- */
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../fonts/cairo-arabic-400-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF,
+    U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../fonts/cairo-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url("../fonts/cairo-arabic-600-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF,
+    U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url("../fonts/cairo-latin-600-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url("../fonts/cairo-arabic-700-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF,
+    U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url("../fonts/cairo-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 800;
+  src: url("../fonts/cairo-arabic-800-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF,
+    U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "Cairo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 800;
+  src: url("../fonts/cairo-latin-800-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Tajawal — Arabic + Latin (400 / 500 / 700) ------------------------------ */
+@font-face {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../fonts/tajawal-arabic-400-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF,
+    U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../fonts/tajawal-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url("../fonts/tajawal-arabic-500-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF,
+    U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url("../fonts/tajawal-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url("../fonts/tajawal-arabic-700-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF,
+    U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url("../fonts/tajawal-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 :root {
   /* Colour ------------------------------------------------------------- */
@@ -51,11 +181,8 @@
   --s-8: 4rem;
   --s-9: 6rem;
 
-  --wrap: 1220px;
-  --gutter: clamp(1.15rem, 0.6rem + 2.4vw, 3rem);
-  --sidebar-compact: 84px;
-  --sidebar-wide: clamp(252px, 19vw, 286px);
-  --sidebar-size: 0px;
+  --wrap: 1500px;
+  --gutter: clamp(1.15rem, 0.85rem + 2.4vw, 3.25rem);
 
   --r-sm: 10px;
   --r-md: 16px;
@@ -65,7 +192,7 @@
 
   /* الظلال خفيفة جدًا — الدليل يمنع الظلال الثقيلة والتوهج */
   --shadow-1: 0 1px 2px rgba(6, 43, 82, 0.05);
-  --shadow-2: 0 10px 30px -18px rgba(6, 43, 82, 0.22);
+  --shadow-2: 0 12px 32px -18px rgba(6, 43, 82, 0.2);
   --shadow-3: 0 26px 70px -34px rgba(6, 43, 82, 0.35);
 
   /* Motion ------------------------------------------------------------- */
