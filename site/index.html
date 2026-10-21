@@ -31,9 +31,8 @@
 
 <body>
   <a class="skip-link" href="#main">تجاوز إلى المحتوى</a>
-  <div class="topline" aria-hidden="true"></div>
 
-  <!-- خلفية الصورة: شريط يملأ أعلى الشاشة بعرضها (سطح المكتب) -->
+  <!-- غلاف الصفحة ممتد بعرض الشاشة، مستقل عن البطاقة -->
   <div class="hero-band" aria-hidden="true"></div>
 
   <header class="site-header" id="top">
@@ -41,8 +40,8 @@
       <a class="brand" href="#top" aria-label="عبد القادر عماري — أعلى الصفحة">
         <span class="brand-avatar" aria-hidden="true" data-bind="monogramShort">ع</span>
         <span class="brand-text">
-          <strong data-bind="name">عبد القادر عماري</strong>
-          <span data-bind="brandSub">معلّم · كاتب</span>
+          <strong>مساحة شخصية</strong>
+          <span>التعليم والمشاريع والكتابة</span>
         </span>
       </a>
 
@@ -123,26 +122,25 @@
   </header>
 
   <main id="main" tabindex="-1" class="wrap profile-layout">
-    <!-- بطاقة التعريف — تُلازم الصفحة يمينًا -->
-    <aside class="rail" aria-label="بطاقة التعريف">
+    <!-- بطاقة التعريف بعرض المحتوى، بلا ارتفاع ثابت -->
+    <section class="rail" aria-labelledby="profile-name">
       <div class="id-card">
         <div class="id-avatar" data-photo-slot>
-          <span class="id-monogram" data-bind="monogram">ع . ع</span>
-          <span class="id-ring" aria-hidden="true"></span>
+          <span class="id-monogram" data-bind="monogram" aria-hidden="true">ع</span>
         </div>
 
-        <h1 class="id-name" data-bind="name">عبد القادر عماري</h1>
+        <h1 id="profile-name" class="id-name" data-bind="name">عبد القادر عماري</h1>
         <p class="id-roles" data-bind="rolesLine"></p>
 
-        <dl class="id-meta" id="id-meta"></dl>
-
         <p class="id-bio" data-bind="shortBio"></p>
+
+        <dl class="id-meta" id="id-meta"></dl>
 
         <ul class="id-links" id="profile-links" aria-label="روابط"></ul>
 
         <p class="id-note" data-bind="note"></p>
       </div>
-    </aside>
+    </section>
 
     <div class="stream">
       <!-- نبذة -->

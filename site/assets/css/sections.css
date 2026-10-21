@@ -5,39 +5,13 @@
 
 /* Layout: rail + stream --------------------------------------------------- */
 .profile-layout {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(255px, 320px) minmax(0, 1fr);
-  gap: clamp(1.8rem, 3.2vw, 4.5rem);
-  align-items: start;
-  padding-block: clamp(1.6rem, 1rem + 2.4vw, 3rem) clamp(2.4rem, 2rem + 4vw, 5rem);
+  gap: clamp(2rem, 4vw, 3rem);
+  padding-block: 112px clamp(2.4rem, 6vw, 5rem);
 }
-
-.rail {
-  position: sticky;
-  inset-block-start: 92px;
-  align-self: start;
-}
-
-/* إن طالت البطاقة عن الشاشة، تصبح قابلة للتمرير داخل العمود بدل أن تُقطع */
-@media (min-width: 901px) {
-  .rail {
-    /* نسمح للخلفية بالخروج من البطاقة دون قص */
-    overflow: visible;
-    padding-block-start: 16px;
-    margin-block-start: -16px;
-  }
-}
-
-/* لا يوجد شريط علوي على سطح المكتب: البطاقة تصطف مع بداية المساحة */
-@media (min-width: 1100px) {
-  .rail {
-    inset-block-start: clamp(1.5rem, 3.5vh, 2.5rem);
-  }
-}
-
-.stream {
-  min-inline-size: 0;
-}
+.rail { min-inline-size: 0; }
+.stream { min-inline-size: 0; }
 
 /* Stream sections --------------------------------------------------------- */
 .stream-section {
@@ -196,201 +170,44 @@
   transition-delay: var(--d, 0ms);
 }
 
-/* Responsive -------------------------------------------------------------- */
-@media (max-width: 1024px) {
-  .profile-layout {
-    grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-  }
-
-  .rail {
-    inset-block-start: 84px;
-  }
-}
-
-@media (max-width: 900px) {
-  .profile-layout {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  /* بطاقة التعريف تتصدّر الصفحة على الهاتف، بلا تثبيت */
-  .rail {
-    position: static;
-    inset-block-start: auto;
-  }
-
-  .stream-section:first-child {
-    padding-block-start: 0;
-  }
-
-  .lead {
-    max-width: 34ch;
-  }
-
-  .now-item {
-    grid-template-columns: 1fr;
-    gap: 0.1rem;
-  }
-
-  .pillars-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 420px) {
-  .feed-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .project-media .cover {
-    aspect-ratio: 4 / 3;
-  }
-}
-
-
-/* ==========================================================================
-   سطح المكتب: خلفية الصورة تملأ أعلى الشاشة بعرضها
-   - شريط أزرق مسطّح يمتد من حافة الشريط الجانبي إلى حافة الشاشة اليسرى،
-     من أعلى الصفحة حتى نهاية العنوان الكبير + فراغ. ارتفاعه يُقاس من
-     العنوان نفسه في app.js، فلا يُقطع النص على أي عرض.
-   - العنوان الكبير يجلس فوق الأزرق، وبطاقة التعريف تبدأ من حدّ الشريط
-     وصورتها تتداخل معه (نصف في الأزرق ونصف في البطاقة).
-   ========================================================================== */
+/* The cover reaches both edges on every viewport. Its bottom sits 28px
+   below the card's top; the avatar crosses this boundary without JS measuring. */
+body { position: relative; }
 .hero-band {
-  display: none;
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 226px;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--blue-700);
 }
-
-@media (min-width: 1100px) {
-  :root {
-    --topline-h: 3px; /* سمك الخط اللوني أعلى الصفحة */
-    --hero-top: clamp(1.9rem, 5vh, 3.1rem); /* بادئ المحتوى تحت أعلى الشاشة */
-    --hero-gap: 2.6rem; /* فراغ أزرق بعد العنوان الكبير */
-    --hero-h: 300px; /* يُضبط بالقياس — قيمة احتياطية */
-    --hero-min: 250px;
-    --avatar-size: 116px;
-  }
-
-  body {
-    position: relative;
-  }
-
-  /* الخط اللوني يبقى فوق الشريط كتوقيع الهوية */
-  .topline {
-    position: relative;
-    z-index: 2;
-  }
-
-  /* الشريط نفسه: بعرض المساحة كلها، من أعلى الصفحة إلى نهاية العنوان ------ */
-  .hero-band {
-    display: block;
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-start: var(--sidebar-size);
-    inset-inline-end: 0;
-    block-size: max(var(--hero-h), var(--hero-min));
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-    background:
-      radial-gradient(72% 130% at 90% 6%, rgba(42, 141, 240, 0.4), transparent 62%),
-      linear-gradient(158deg, var(--blue-800) 0%, var(--blue-700) 52%, var(--blue-600) 100%);
-  }
-
-  .hero-band::before,
-  .hero-band::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-  }
-
-  /* ضوء هادئ أسفل يسار الشريط، بعيدًا عن نص العنوان والبطاقة */
-  .hero-band::before {
-    inset-block-end: -15rem;
-    inset-inline-end: -11rem;
-    inline-size: 26rem;
-    block-size: 26rem;
-    background: radial-gradient(circle, rgba(42, 141, 240, 0.42), transparent 66%);
-  }
-
-  /* خيط دائري رقيق ملتصق بالحافة اليسرى أعلى الشريط */
-  .hero-band::after {
-    inset-block-start: -8rem;
-    inset-inline-end: -7rem;
-    inline-size: 16rem;
-    block-size: 16rem;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-  }
-
-  .profile-layout {
-    position: relative;
-    z-index: 1;
-    padding-block-start: var(--hero-top);
-  }
-
-  /* البطاقة تبدأ من حدّ الشريط تمامًا، وصورتها تتداخل مع الحدّ ---------- */
-  .rail {
-    --rail-offset: calc(
-      max(var(--hero-h), var(--hero-min)) - var(--hero-top) - var(--topline-h)
-    );
-    padding-block-start: 0;
-    margin-block-start: var(--rail-offset);
-    /* يثبّت البطاقة عند التمرير بحيث يبقى نصف الصورة فوقها ظاهرًا */
-    inset-block-start: calc(
-      var(--hero-top) + (var(--avatar-size) / 2) - var(--rail-offset)
-    );
-  }
-
-  /* إن كانت البطاقة أطول من الشاشة، تتحرك مع الصفحة بدل أن تُقطع */
-  .rail--flow {
-    position: static;
-  }
-
-  .id-card {
-    margin-block-start: 0;
-    padding-block-start: 0;
-  }
-
-  /* لم نعد بحاجة إلى شريط البطاقة الداخلي ولا دائرته الزخرفية */
-  .id-card::before,
-  .id-card::after {
-    display: none;
-  }
-
-  /* الصورة تتداخل مع حدّ الشريط: نصفها في الأزرق ونصفها في البطاقة */
-  .id-avatar {
-    inline-size: var(--avatar-size);
-    block-size: var(--avatar-size);
-    margin-block-start: calc(var(--avatar-size) / -2);
-    margin-block-end: 1.15rem;
-    border-width: 6px;
-  }
-
-  .id-monogram {
-    font-size: 1.34rem;
-  }
-
-  /* العنوان الكبير فوق الأزرق --------------------------------------- */
-  #intro .stream-head h2 {
-    color: #fff;
-  }
-
-  #intro .stream-head h2::before {
-    background: rgba(255, 255, 255, 0.85);
-  }
-
-  #intro .lead {
-    max-width: 32ch;
-    color: #fff;
-  }
-
-  #intro .lead::after {
-    background: var(--blue-400);
-  }
-
-  /* النبذة تبدأ تحت الشريط على الأبيض، مع حدّ جسم البطاقة */
-  #intro .lead-bio {
-    margin-block-start: calc(var(--hero-gap) + 1.35rem);
-  }
+.hero-band::before, .hero-band::after {
+  content: "";
+  position: absolute;
+  inline-size: 320px;
+  block-size: 320px;
+  border: 1px solid #ffffff14;
+  border-radius: 50%;
+  inset-block-start: -170px;
+  inset-inline-end: -60px;
+}
+.hero-band::after { inline-size: 430px; block-size: 430px; inset-block-start: -225px; inset-inline-end: -115px; }
+@media (max-width: 620px) {
+  .header-inner { padding-block: 1rem; }
+  .profile-layout { padding-block-start: 80px; gap: 2rem; }
+  .hero-band { block-size: 178px; }
+  .id-card { --avatar-size: 84px; border-radius: 22px; padding-block-end: 1.1rem; }
+  .id-avatar { margin-block-end: .7rem; }
+  .id-monogram { font-size: 2rem; }
+  .id-roles { font-size: .9rem; }
+  .id-bio { font-size: .95rem; margin-block-start: .65rem; }
+  .id-meta { grid-template-columns: 1fr; gap: .45rem; padding: .8rem; margin-block-start: 1rem; }
+  .id-meta > div { display: flex; justify-content: center; align-items: baseline; flex-wrap: wrap; gap: .5rem; }
+  .now-item, .pillars-grid { grid-template-columns: 1fr; }
+  .now-item { gap: .1rem; }
+}
+@media (max-width: 420px) {
+  .feed-grid { grid-template-columns: 1fr; }
+  .project-media .cover { aspect-ratio: 4 / 3; }
 }
