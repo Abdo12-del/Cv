@@ -1,0 +1,863 @@
+{
+  "metadata": {
+    "title": "Profile Layer — Instagram profile research index",
+    "title_ar": "الطبقة الثانية: فهرس مراجع البروفايل",
+    "date": "2026-10-21",
+    "scope": "Instagram profile-level visual research for a personal educational account (parents audience)",
+    "design_produced": false,
+    "account_modified": false,
+    "companion_layer": "research/VISUAL_RESEARCH_REPORT_AR.md (56 project refs)",
+    "files": [
+      "README_PROFILE_LAYER_AR.md",
+      "01_PROFILE_ANATOMY_AR.md",
+      "02_LIVE_ACCOUNTS_22_AR.md",
+      "03_GRID_SYSTEMS_AND_CONSISTENCY_AR.md",
+      "04_TOP10_DIRECTIONS_IDEAS_PRIORITIES_AR.md",
+      "PROFILE_REFERENCE_INDEX.json"
+    ]
+  },
+  "counts": {
+    "live_accounts": 22,
+    "metadata_verified": 22,
+    "profile_visually_inspected": 0,
+    "documented_reels_cover_systems": 1,
+    "grid_systems": 8,
+    "phase1_project_refs": 56,
+    "total_unique_references": 78
+  },
+  "evidence_levels": {
+    "verified_search_index": "display name, bio, reported follower count captured from search-engine indexed profile metadata",
+    "not_verified": "profile grid, highlights, reels covers, hover/scroll, engagement — not inspected",
+    "documented_in_published_article": "a published article describes the system; not independently inspected",
+    "computed": "derived arithmetically from published dimensions"
+  },
+  "hard_limits": [
+    "instagram.com returned HTTP 403 for every direct fetch attempt",
+    "no rendering engine: visual states and mobile breakpoints not tested",
+    "follower counts are context only and never used as quality evidence",
+    "no engagement, reach or performance data is claimed"
+  ],
+  "platform_specs": {
+    "profile_photo_upload": "320x320",
+    "profile_photo_display_mobile_px": 110,
+    "bio_chars": 150,
+    "links_max": 5,
+    "name_field_chars_reported": 30,
+    "username_chars_reported": 30,
+    "pinned_posts_max": 3,
+    "grid_columns": 3,
+    "grid_tile_ratio_since_2025": "3:4 (sources also report 4:5; use inscribed safe zone)",
+    "post_upload_max_ratio": "4:5 (1080x1350)",
+    "reels_cover_upload": "1080x1920",
+    "highlight_cover_upload": "1080x1920",
+    "highlight_visible_circle_px_estimate": "600-720 center",
+    "computed_safe_zone_in_1080x1350": "1012x1350",
+    "computed_grid_scale": "1080 -> ~126px, about 1:8.6",
+    "sources": [
+      "https://petapixel.com/2025/01/23/instagram-swaps-square-profile-grids-for-rectangles/",
+      "https://howsociable.com/blog/instagram-bio-ideas",
+      "https://www.pixelimpeccable.com/blog/instagram-image-sizes/",
+      "https://slidycreator.com/blog/reels-cover-photo-guide/",
+      "https://planable.io/blog/instagram-grid/",
+      "https://dmdaddy.com/blog/instagram-highlight-covers",
+      "https://www.outfy.com/blog/instagram-character-limit/"
+    ]
+  },
+  "live_accounts": [
+    {
+      "id": "ACC-01",
+      "handle": "theschooloflifelondon",
+      "url": "https://www.instagram.com/theschooloflifelondon/",
+      "display_name": "The School of Life",
+      "language": "EN",
+      "type_ids": [
+        1,
+        3,
+        6,
+        10
+      ],
+      "followers_reported": "206.6K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "not_available_in_search_index",
+      "cta": "none_visible",
+      "learn": [
+        "serious ideas in a warm, non-academic tone",
+        "name-only identity when the brand is strong"
+      ],
+      "avoid": [
+        "relying on brand fame",
+        "illustrated-essay style without a drawing system"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-02",
+      "handle": "raising_yourself",
+      "url": "https://www.instagram.com/raising_yourself/",
+      "display_name": "CONSCIOUS PARENTING EDUCATOR - Shelly Robinson",
+      "language": "EN",
+      "type_ids": [
+        3,
+        4,
+        8
+      ],
+      "followers_reported": "443K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "benefit_first + credential + tool_link",
+      "cta": "link_arrow",
+      "learn": [
+        "one sentence naming audience + transformation",
+        "role inside display name"
+      ],
+      "avoid": [
+        "heavy emoji bullets",
+        "stacked credentials"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-03",
+      "handle": "positiveparentingsolutions",
+      "url": "https://www.instagram.com/positiveparentingsolutions/",
+      "display_name": "Amy McCready | Parenting Coach",
+      "language": "EN",
+      "type_ids": [
+        3,
+        4
+      ],
+      "followers_reported": "232K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "social_proof_claim + numeric_proof + dm_keyword",
+      "cta": "dm_keyword",
+      "learn": [
+        "clear single next step",
+        "credential in display name"
+      ],
+      "avoid": [
+        "unverifiable 'worldwide leader' claim",
+        "DM-gated lead magnet"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-04",
+      "handle": "child.spot",
+      "url": "https://www.instagram.com/child.spot/",
+      "display_name": "Marina Morkos Parenting educator",
+      "language": "EN",
+      "type_ids": [
+        1,
+        3,
+        8
+      ],
+      "followers_reported": "35K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "specialism + human_detail + dm_invite",
+      "cta": "dm_invite",
+      "learn": [
+        "small account can be clearer than a big one",
+        "credential plus 'mother of 2'"
+      ],
+      "avoid": [
+        "building the bio around DMs",
+        "informal spelling in bio"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-05",
+      "handle": "parentingstyleblog",
+      "url": "https://www.instagram.com/parentingstyleblog/",
+      "display_name": "Janice Chou",
+      "language": "EN",
+      "type_ids": [
+        3,
+        8
+      ],
+      "followers_reported": "43K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "benefit_first + method + certification",
+      "cta": "none_visible",
+      "learn": [
+        "outcome-first sentence",
+        "method named after the audience pain"
+      ],
+      "avoid": [
+        "no visible next step"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-06",
+      "handle": "simplyonpurpose",
+      "url": "https://www.instagram.com/simplyonpurpose/",
+      "display_name": "Ralphie• Positive Parenting",
+      "language": "EN",
+      "type_ids": [
+        3,
+        4
+      ],
+      "followers_reported": "670K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "tone_sentence + product_link",
+      "cta": "link_arrow",
+      "learn": [
+        "emotional tone before credentials",
+        "descriptor in display name"
+      ],
+      "avoid": [
+        "product-first framing"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-07",
+      "handle": "wholeparent",
+      "url": "https://www.instagram.com/wholeparent/",
+      "display_name": "Jon Fogel | Author",
+      "language": "EN",
+      "type_ids": [
+        3,
+        10
+      ],
+      "followers_reported": "820K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "positioning_line + audience_qualifier",
+      "cta": "none_visible",
+      "learn": [
+        "'brain-based parenting for real life' = one-line positioning",
+        "naming the overwhelmed parent explicitly"
+      ],
+      "avoid": [
+        "no path to deeper content"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-08",
+      "handle": "drchelsey_parenting",
+      "url": "https://www.instagram.com/drchelsey_parenting/",
+      "display_name": "Dr. Chelsey ❤️ PhD Parent Coach",
+      "language": "EN",
+      "type_ids": [
+        3
+      ],
+      "followers_reported": "420K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "benefit + sub-specialism",
+      "cta": "none_visible",
+      "learn": [
+        "sub-specialism (neurodivergent children) narrows the promise",
+        "credential in display name"
+      ],
+      "avoid": [
+        "emoji in the display name competes with the role keyword at small sizes"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-09",
+      "handle": "responsive_parenting",
+      "url": "https://www.instagram.com/responsive_parenting/",
+      "display_name": "Jessica Milburn",
+      "language": "EN",
+      "type_ids": [
+        3
+      ],
+      "followers_reported": "449K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "compact_cv (mother + degree + author + advocate)",
+      "cta": "none_visible",
+      "learn": [
+        "human detail next to academic credential"
+      ],
+      "avoid": [
+        "bio reads as CV",
+        "advocacy list longer than the promise"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-10",
+      "handle": "_parentingonpurpose",
+      "url": "https://www.instagram.com/_parentingonpurpose/",
+      "display_name": "Nisreen Elsaidi | Parenting Educator",
+      "language": "EN",
+      "type_ids": [
+        3,
+        8
+      ],
+      "followers_reported": "27K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "benefit_first + three_credentials + booking_link",
+      "cta": "link_arrow",
+      "learn": [
+        "cleanest benefit-first sentence in the sample",
+        "role keyword inside the display name",
+        "small account with explicit positioning"
+      ],
+      "avoid": [
+        "five emoji tokens in one bio"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-11",
+      "handle": "hamsayounis",
+      "url": "https://www.instagram.com/hamsayounis/",
+      "display_name": "همسة أحمد يونس-ابنة حيفا",
+      "language": "AR",
+      "type_ids": [
+        3,
+        9
+      ],
+      "followers_reported": "100K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "credential_stack + institution + books",
+      "cta": "none_visible",
+      "learn": [
+        "place identity as a differentiator",
+        "books as tangible proof"
+      ],
+      "avoid": [
+        "four titles in one line",
+        "no promise to the parent"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-12",
+      "handle": "noor.rihan_",
+      "url": "https://www.instagram.com/noor.rihan_/",
+      "display_name": "Noor Rihan || نور ريحان",
+      "language": "AR",
+      "type_ids": [
+        3,
+        9
+      ],
+      "followers_reported": "319K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "verse + credentials + institution + dm_closed",
+      "cta": "dm_closed",
+      "learn": [
+        "leading with a value sentence",
+        "bilingual display name"
+      ],
+      "avoid": [
+        "stacked priorities",
+        "closing DMs without an alternative path"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-13",
+      "handle": "fatima.fneiche",
+      "url": "https://www.instagram.com/fatima.fneiche/",
+      "display_name": "Fatima Fneiche | فاطمة فنيش",
+      "language": "AR",
+      "type_ids": [
+        3,
+        9
+      ],
+      "followers_reported": "51K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "institution + authorship + expertise + years",
+      "cta": "none_visible",
+      "learn": [
+        "bilingual name field",
+        "years of experience as a single proof point"
+      ],
+      "avoid": [
+        "credential overload",
+        "no audience qualifier"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-14",
+      "handle": "rahma_mohamed_coach",
+      "url": "https://www.instagram.com/rahma_mohamed_coach/",
+      "display_name": "Rahma Mohamed",
+      "language": "AR",
+      "type_ids": [
+        3
+      ],
+      "followers_reported": "8.8K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "metaphorical_promise + four_titles + emoji",
+      "cta": "none_visible",
+      "learn": [
+        "a memorable metaphor ('engineering a good human')"
+      ],
+      "avoid": [
+        "metaphor without a concrete outcome",
+        "emoji-heavy credential list"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-15",
+      "handle": "ichrafmohamed",
+      "url": "https://www.instagram.com/ichrafmohamed/",
+      "display_name": "إشراف محمد بن مراد",
+      "language": "AR",
+      "type_ids": [
+        1,
+        3,
+        9
+      ],
+      "followers_reported": "2.5K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "titles + reading_advocacy",
+      "cta": "none_visible",
+      "learn": [
+        "naming one specific interest (reading encouragement)"
+      ],
+      "avoid": [
+        "no promise",
+        "titles before audience"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-16",
+      "handle": "falkandari05",
+      "url": "https://www.instagram.com/falkandari05/",
+      "display_name": "فجر الكندري تعليم",
+      "language": "AR",
+      "type_ids": [
+        1,
+        9
+      ],
+      "followers_reported": "1.7K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "persona_line + titles + first_book",
+      "cta": "none_visible",
+      "learn": [
+        "role keyword in display name",
+        "first book as proof"
+      ],
+      "avoid": [
+        "poetic persona overshadows clarity",
+        "seven emoji tokens"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-17",
+      "handle": "assia.om.laya",
+      "url": "https://www.instagram.com/assia.om.laya/",
+      "display_name": "أسية أم ليا",
+      "language": "AR",
+      "type_ids": [
+        1,
+        3
+      ],
+      "followers_reported": "1K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "institution + title + specialism",
+      "cta": "none_visible",
+      "learn": [
+        "sub-specialism (autism care)",
+        "'mother of Lia' human anchor"
+      ],
+      "avoid": [
+        "institution first",
+        "no promise"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-18",
+      "handle": "thmanyah",
+      "url": "https://www.instagram.com/thmanyah/",
+      "display_name": "ثمانية | Thmanyah",
+      "language": "AR",
+      "type_ids": [
+        5,
+        6,
+        9,
+        10
+      ],
+      "followers_reported": "799K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "mission_sentence + place, no titles, no CTA",
+      "cta": "none_visible",
+      "learn": [
+        "a verb instead of a title",
+        "ruthless deletion"
+      ],
+      "avoid": [
+        "media-brand severity",
+        "institutional scale (4,730 posts)"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-19",
+      "handle": "atrissi",
+      "url": "https://www.instagram.com/atrissi/",
+      "display_name": "Tarek Atrissi",
+      "language": "EN/AR",
+      "type_ids": [
+        2,
+        6,
+        9
+      ],
+      "followers_reported": "24K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "founder + studio + three disciplines",
+      "cta": "none_visible",
+      "learn": [
+        "naming the disciplines precisely",
+        "Arabic/Latin duality as signature"
+      ],
+      "avoid": [
+        "bio as a business card",
+        "professional distance"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-20",
+      "handle": "khattfoundation",
+      "url": "https://www.instagram.com/khattfoundation/",
+      "display_name": "Khatt Foundation",
+      "language": "EN/AR",
+      "type_ids": [
+        2,
+        6,
+        9
+      ],
+      "followers_reported": "4.1K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "single_line_internal_referrals",
+      "cta": "none_visible",
+      "learn": [
+        "the archive-first instinct"
+      ],
+      "avoid": [
+        "bio that only points elsewhere"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-21",
+      "handle": "jessicahische",
+      "url": "https://www.instagram.com/jessicahische/",
+      "display_name": "Jessica Hische",
+      "language": "EN",
+      "type_ids": [
+        2,
+        6
+      ],
+      "followers_reported": "202K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "craft + achievement + founder + sub-accounts",
+      "cta": "none_visible",
+      "learn": [
+        "craft as the brand",
+        "listing sub-accounts as an index"
+      ],
+      "avoid": [
+        "assuming fame carries the feed"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      }
+    },
+    {
+      "id": "ACC-22",
+      "handle": "drinkpoppi",
+      "url": "https://www.instagram.com/drinkpoppi/",
+      "display_name": "poppi",
+      "language": "EN",
+      "type_ids": [
+        4,
+        5
+      ],
+      "followers_reported": "677K",
+      "followers_role": "context_only_not_quality_evidence",
+      "bio_structure": "empty_bio",
+      "cta": "none_visible",
+      "learn": [
+        "color-family reels covers per flavor",
+        "visual identity can outsource the bio"
+      ],
+      "avoid": [
+        "empty bio works only for established product brands",
+        "nothing tonal applies to education"
+      ],
+      "verification": {
+        "metadata": "verified_search_index",
+        "visual": "not_verified",
+        "reason": "instagram_http_403"
+      },
+      "documented_visual_system": {
+        "what": "Reels covers color-matched to each new flavor",
+        "source": "https://blog.hootsuite.com/instagram-reels-cover/",
+        "status": "documented_in_published_article_not_visually_inspected"
+      }
+    }
+  ],
+  "grid_systems": [
+    {
+      "id": "GRID-01",
+      "name_ar": "الصفوف الموضوعية",
+      "logic": "every 3 posts form one idea",
+      "clarity": 4,
+      "consistency": 4,
+      "humanity": 3,
+      "ease": 2,
+      "fragility": 5,
+      "verdict": "series only"
+    },
+    {
+      "id": "GRID-02",
+      "name_ar": "العمود المرتكز",
+      "logic": "every Nth post is one fixed archetype",
+      "clarity": 5,
+      "consistency": 5,
+      "humanity": 2,
+      "ease": 4,
+      "fragility": 1,
+      "verdict": "strong rhythm layer"
+    },
+    {
+      "id": "GRID-03",
+      "name_ar": "رقعة الشطرنج",
+      "logic": "alternate designed / real",
+      "clarity": 4,
+      "consistency": 4,
+      "humanity": 3,
+      "ease": 3,
+      "fragility": 3,
+      "verdict": "inside a row only"
+    },
+    {
+      "id": "GRID-04",
+      "name_ar": "الحظر اللوني",
+      "logic": "3-6 posts per tonal block",
+      "clarity": 3,
+      "consistency": 3,
+      "humanity": 3,
+      "ease": 4,
+      "fragility": 2,
+      "verdict": "within one palette family"
+    },
+    {
+      "id": "GRID-05",
+      "name_ar": "العمود الفقري التحريري",
+      "logic": "fixed margins/type, free composition",
+      "clarity": 4,
+      "consistency": 5,
+      "humanity": 4,
+      "ease": 3,
+      "fragility": 1,
+      "verdict": "primary system"
+    },
+    {
+      "id": "GRID-06",
+      "name_ar": "الصورة البطلة",
+      "logic": "one strong photo every 6 posts",
+      "clarity": 3,
+      "consistency": 3,
+      "humanity": 4,
+      "ease": 3,
+      "fragility": 3,
+      "verdict": "needs a photo archive"
+    },
+    {
+      "id": "GRID-07",
+      "name_ar": "الفهرس المُنمَّط",
+      "logic": "fixed top band with category/number",
+      "clarity": 5,
+      "consistency": 5,
+      "humanity": 2,
+      "ease": 4,
+      "fragility": 1,
+      "verdict": "take the band, not the mood"
+    },
+    {
+      "id": "GRID-08",
+      "name_ar": "النسيج الحرّ",
+      "logic": "no positional logic; palette+type only",
+      "clarity": 2,
+      "consistency": 2,
+      "humanity": 5,
+      "ease": 5,
+      "fragility": 1,
+      "verdict": "stories and reels"
+    }
+  ],
+  "consistency_model": {
+    "constants": [
+      {
+        "id": "C1",
+        "name_ar": "اللوحة والنسب",
+        "value": "60/30/10"
+      },
+      {
+        "id": "C2",
+        "name_ar": "الثنائية الخطية",
+        "value": "display + text, 3 sizes max"
+      },
+      {
+        "id": "C3",
+        "name_ar": "الهوامش والشبكة",
+        "value": "10-12% margin, 4-column inner grid"
+      },
+      {
+        "id": "C4",
+        "name_ar": "توقيع واحد",
+        "value": "one recurring mark"
+      }
+    ],
+    "variables": [
+      {
+        "id": "V1",
+        "name_ar": "النمط",
+        "options": 5
+      },
+      {
+        "id": "V2",
+        "name_ar": "الحقل اللوني",
+        "options": 2
+      },
+      {
+        "id": "V3",
+        "name_ar": "الكثافة",
+        "options": 3
+      },
+      {
+        "id": "V4",
+        "name_ar": "معالجة الصورة",
+        "options": 3
+      },
+      {
+        "id": "V5",
+        "name_ar": "أداة التأطير",
+        "options": 4
+      }
+    ],
+    "base_combinations": 30,
+    "cadence_cycle": 6
+  },
+  "ideas": {
+    "reels_cover_rules": [
+      "design 1080x1920 with all critical content inside the central 3:4",
+      "title in the middle third; avoid top 320px and bottom 420px",
+      "max 6 words, headline >= 120px at 1080 canvas",
+      "only two contrast modes",
+      "one focal element",
+      "do not design a cover for every disposable reel",
+      "3-5 reels per color family, then shift"
+    ],
+    "reels_cover_formats": [
+      "index_card",
+      "notebook_page",
+      "real_frame"
+    ],
+    "highlight_categories": [
+      "ابدأ من هنا",
+      "فهم الطفل",
+      "الثقة بالنفس",
+      "الحوار والتواصل",
+      "تجارب واقعية",
+      "أسئلة الأولياء"
+    ],
+    "highlight_cover_systems": [
+      "line_icons",
+      "arabic_monogram",
+      "numbered_index"
+    ],
+    "carousel_slides": 8
+  },
+  "pending": [
+    "current visual identity file (not attached; not found in repo or Google Drive)",
+    "choice of direction: editorial notebook / conversation room / quiet index / quiet weave",
+    "explicit approval before any design work"
+  ]
+}
