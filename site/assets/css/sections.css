@@ -1,210 +1,241 @@
 /* ==========================================================================
-   Sections — hero, highlights, feed, projects, philosophy, writing, about
+   Sections — تخطيط البروفايل: بطاقة تعريف ثابتة + تيار أقسام شخصي
+   (لا هيرو تسويقي، لا أشرطة CTA، لا أقسام مرقّمة — صفحة شخص واحد)
    ========================================================================== */
 
-/* Hero / profile ---------------------------------------------------------- */
-.hero {
-  padding-block: clamp(2.2rem, 1.2rem + 4vw, 4.4rem) clamp(1.2rem, 2vw, 2rem);
-}
-
-.hero-grid {
+/* Layout: rail + stream --------------------------------------------------- */
+.profile-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.82fr);
-  gap: clamp(1.6rem, 4vw, 3.8rem);
+  grid-template-columns: minmax(255px, 320px) minmax(0, 1fr);
+  gap: clamp(1.8rem, 3.2vw, 4.5rem);
   align-items: start;
+  padding-block: clamp(1.6rem, 1rem + 2.4vw, 3rem) clamp(2.4rem, 2rem + 4vw, 5rem);
 }
 
-.eyebrow {
+.rail {
+  position: sticky;
+  inset-block-start: 92px;
+  align-self: start;
+}
+
+/* إن طالت البطاقة عن الشاشة، تصبح قابلة للتمرير داخل العمود بدل أن تُقطع */
+@media (min-width: 901px) {
+  .rail {
+    max-block-size: calc(100vh - 116px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+}
+
+.stream {
+  min-inline-size: 0;
+}
+
+/* Stream sections --------------------------------------------------------- */
+.stream-section {
+  padding-block: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
+  border-block-start: 1px solid var(--line);
+}
+
+.stream-section:first-child {
+  border-block-start: 0;
+  padding-block-start: 0;
+}
+
+.stream-head {
+  margin-block-end: clamp(1.1rem, 2.4vw, 1.7rem);
+}
+
+.stream-head h2 {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.34rem 0.8rem;
-  border: 1px solid var(--line);
-  border-radius: var(--r-full);
-  background: var(--surface-2);
-  color: var(--blue-600);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  gap: 0.6rem;
+  font-size: clamp(1.28rem, 1.05rem + 0.9vw, 1.7rem);
 }
 
-.eyebrow-dot {
-  inline-size: 6px;
-  block-size: 6px;
-  border-radius: 50%;
-  background: var(--blue-400);
-}
-
-.hero-title {
-  font-size: var(--fs-h1);
-  line-height: 1.3;
-  max-width: 19ch;
-  margin-block: 1.2rem 0;
-  letter-spacing: 0;
-}
-
-.hero-title::after {
+/* شرطة قصيرة بدل الترقيم المؤسّسي (01 / 02 / 03) */
+.stream-head h2::before {
   content: "";
-  display: block;
-  inline-size: 76px;
-  block-size: 3px;
-  margin-block-start: 1.3rem;
+  inline-size: 26px;
+  block-size: 2px;
   border-radius: 2px;
   background: var(--blue-600);
 }
 
-.hero-bio {
-  margin-block-start: 1.1rem;
-  max-width: 56ch;
+.stream-intro {
+  margin-block-start: 0.6rem;
+  max-width: 58ch;
   color: var(--text-soft);
-  font-size: var(--fs-md);
-  line-height: 1.85;
+  font-size: var(--fs-sm);
+  line-height: 1.9;
 }
 
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-block-start: 1.7rem;
-}
-
-.hero-facts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  margin-block-start: clamp(1.8rem, 3vw, 2.6rem);
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-}
-
-.hero-facts > div {
-  background: var(--surface);
-  padding: 0.95rem 1.05rem;
-}
-
-.hero-facts dt {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 0.88rem;
-  color: var(--blue-700);
-  margin-block-end: 0.2rem;
-}
-
-.hero-facts dd {
-  margin: 0;
-  font-size: 0.79rem;
-  line-height: 1.6;
-  color: var(--text-soft);
-}
-
-/* Highlights -------------------------------------------------------------- */
-.highlights {
-  padding-block: 0.4rem 1.4rem;
-  border-block-start: 1px solid var(--line);
-}
-
-/* Feed -------------------------------------------------------------------- */
-.feed {
-  padding-block-start: clamp(1.6rem, 3vw, 2.6rem);
-}
-
-/* Projects ---------------------------------------------------------------- */
-.projects {
-  background: var(--surface-2);
-  border-block: 1px solid var(--line);
-}
-
-/* Philosophy -------------------------------------------------------------- */
-.philosophy .section-head {
-  align-items: end;
-}
-
-.principles-wrap {
-  max-width: 78ch;
-}
-
-/* Writing ----------------------------------------------------------------- */
-.writing {
-  border-block-start: 1px solid var(--line);
-}
-
-/* About ------------------------------------------------------------------- */
-.about {
-  border-block-start: 1px solid var(--line);
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
-  gap: clamp(1.6rem, 4vw, 4rem);
-  align-items: start;
-}
-
-.about-head h2 {
-  font-size: var(--fs-h2);
-}
-
-.about-lead {
-  margin-block-start: 1rem;
-  color: var(--text-soft);
-  font-size: var(--fs-md);
-  line-height: 1.85;
-  max-width: 48ch;
-}
-
-.about-note {
-  margin-block-start: 1.3rem;
+.stream-note {
+  margin-block-start: clamp(1.6rem, 3vw, 2.4rem);
   padding-inline-start: 0.9rem;
   border-inline-start: 2px solid var(--line-strong);
   font-size: 0.82rem;
-  line-height: 1.8;
+  line-height: 1.85;
   color: var(--text-faint);
-  max-width: 52ch;
+  max-width: 56ch;
 }
 
-.about-note strong {
+.stream-note strong {
   color: var(--blue-700);
+}
+
+/* Intro ------------------------------------------------------------------- */
+.lead {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.45rem, 1.05rem + 2vw, 2.35rem);
+  line-height: 1.5;
+  max-width: 28ch;
+}
+
+.lead::after {
+  content: "";
+  display: block;
+  inline-size: 64px;
+  block-size: 3px;
+  margin-block-start: 1.1rem;
+  border-radius: 2px;
+  background: var(--blue-600);
+}
+
+.lead-bio {
+  margin-block-start: 1.2rem;
+  max-width: 62ch;
+  color: var(--text-soft);
+  font-size: var(--fs-md);
+  line-height: 1.95;
+}
+
+/* الآن -------------------------------------------------------------------- */
+.now-list {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.now-item {
+  display: grid;
+  grid-template-columns: minmax(84px, auto) minmax(0, 1fr);
+  gap: 0.15rem 1.1rem;
+  align-items: baseline;
+  padding-inline-start: 1rem;
+  border-inline-start: 2px solid var(--line-strong);
+}
+
+.now-label {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.94rem;
+  color: var(--blue-700);
+}
+
+.now-item p {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  line-height: 1.85;
+}
+
+/* Feed -------------------------------------------------------------------- */
+.hl-row {
+  margin-block-end: 1.3rem;
+}
+
+.feed-grid {
+  grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
+}
+
+/* Projects ---------------------------------------------------------------- */
+.project {
+  grid-template-columns: 1fr;
+}
+
+.project-media {
+  border-inline-end: 0;
+  border-block-end: 1px solid var(--line);
+}
+
+.project-media .cover {
+  min-block-size: 168px;
+  block-size: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.project-body {
+  gap: 0.55rem;
+}
+
+/* Pillars ----------------------------------------------------------------- */
+.pillars-grid {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+/* Contact — bloc هادئ داخل التيار، لا شريط دعائي -------------------------- */
+.contact {
+  background: transparent;
+  padding-block: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
 }
 
 /* Motion stagger ---------------------------------------------------------- */
 .card.reveal,
 .project.reveal,
 .writing-item.reveal,
-.timeline-item.reveal {
+.timeline-item.reveal,
+.now-item.reveal {
   transition-delay: var(--d, 0ms);
 }
 
 /* Responsive -------------------------------------------------------------- */
-@media (max-width: 980px) {
-  .hero-grid,
-  .about-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 1024px) {
+  .profile-layout {
+    grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
   }
 
-  .hero-title {
-    max-width: 24ch;
+  .rail {
+    inset-block-start: 84px;
   }
 }
 
-@media (max-width: 620px) {
-  .hero-facts {
+@media (max-width: 900px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* بطاقة التعريف تتصدّر الصفحة على الهاتف، بلا تثبيت */
+  .rail {
+    position: static;
+    inset-block-start: auto;
+  }
+
+  .stream-section:first-child {
+    padding-block-start: 0;
+  }
+
+  .lead {
+    max-width: 34ch;
+  }
+
+  .now-item {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .feed-grid {
     grid-template-columns: 1fr;
   }
 
-  .hero-facts > div {
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-  }
-
-  .hero-facts dt {
-    margin-block-end: 0;
-  }
-
-  .hero-title::after {
-    margin-block-start: 1rem;
+  .project-media .cover {
+    aspect-ratio: 4 / 3;
   }
 }
