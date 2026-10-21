@@ -27,10 +27,10 @@
         "href": "https://www.facebook.com/share/1M8CgKmdP3/"
       },
       {
+        "platform": "tiktok",
         "label": "تيك توك",
-        "handle": "@",
-        "href": "",
-        "placeholder": true
+        "handle": "@abdelkader_500",
+        "href": "https://www.tiktok.com/@abdelkader_500"
       },
       {
         "label": "يوتيوب",
