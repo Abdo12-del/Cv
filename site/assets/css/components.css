@@ -56,34 +56,37 @@
   --id-card-pad: clamp(1.2rem, 2.2vw, 1.7rem);
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow: visible;
   padding: var(--id-card-pad);
   padding-block-start: clamp(4.7rem, 6vw, 5.8rem);
   border: 1px solid var(--line);
   border-radius: var(--r-xl);
   background: var(--surface);
   box-shadow: var(--shadow-1);
+  margin-block-start: 14px;
 }
 
-/* غلاف هادئ خلف الصورة: يبدأ أعلى البطاقة وتظهر الصورة متداخلة معه */
+/* الخلفية تكبر وتخرج من البطاقة: أوسع وأعلى من حدود البطاقة */
 .id-card::before {
   content: "";
   position: absolute;
-  inset-block-start: 0;
-  inset-inline: 0;
+  inset-block-start: -14px;
+  inset-inline: -12px;
   z-index: 0;
-  block-size: clamp(7.4rem, 14vw, 8.8rem);
+  block-size: clamp(8.4rem, 16vw, 10rem);
   background: var(--blue-700);
+  border-radius: calc(var(--r-xl) + 10px);
+  box-shadow: 0 14px 30px -18px rgba(0, 59, 120, 0.5);
 }
 
 .id-card::after {
   content: "";
   position: absolute;
-  inset-block-start: -4.2rem;
-  inset-inline-end: -3.4rem;
+  inset-block-start: -4.8rem;
+  inset-inline-end: -3.2rem;
   z-index: 0;
-  inline-size: 10.5rem;
-  block-size: 10.5rem;
+  inline-size: 11rem;
+  block-size: 11rem;
   border: 1px solid rgba(255, 255, 255, 0.32);
   border-radius: 50%;
   box-shadow: 0 0 0 1.1rem rgba(255, 255, 255, 0.07);
@@ -1342,6 +1345,26 @@ body.is-locked {
   }
 
 
+}
+
+@media (max-width: 900px) {
+  .id-card {
+    margin-block-start: 10px;
+  }
+
+  .id-card::before {
+    inset-inline: -6px;
+    inset-block-start: -10px;
+    block-size: clamp(8rem, 28vw, 9.2rem);
+    border-radius: var(--r-xl);
+  }
+
+  .id-card::after {
+    inset-block-start: -3.4rem;
+    inset-inline-end: -2rem;
+    inline-size: 8rem;
+    block-size: 8rem;
+  }
 }
 
 @media (max-width: 620px) {

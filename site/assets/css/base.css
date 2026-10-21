@@ -359,10 +359,6 @@ dl {
     padding-inline-start: var(--sidebar-size);
   }
 
-  .topline {
-    display: none;
-  }
-
   .skip-link {
     inset-inline-start: calc(var(--sidebar-size) + 1rem);
   }
