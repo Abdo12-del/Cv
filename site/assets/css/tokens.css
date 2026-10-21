@@ -1,0 +1,77 @@
+/* ==========================================================================
+   Design tokens — مستمدة من دليل الهوية البصرية (agent_visual_identity_instructions_ar)
+   الأزرق الملكي #0A5CC8 · الأزرق الفاتح #2A8DF0 · الكحلي #004C99
+   خطّان فقط: Cairo (عناوين) + Tajawal (نصوص)
+   ========================================================================== */
+
+:root {
+  /* Colour ------------------------------------------------------------- */
+  --blue-600: #0a5cc8; /* الأزرق الملكي — لون التركيز */
+  --blue-400: #2a8df0; /* الأزرق الفاتح — للتدرّج والتفاصيل */
+  --blue-700: #004c99; /* الكحلي — للنصوص المهمّة والتباين */
+  --blue-800: #003b78; /* درجة أعمق للكحلي (خلفيات) */
+
+  --surface: #ffffff; /* المساحة الأكبر */
+  --surface-2: #f4f8fe; /* تظليل خفيف جدًا مشتق من #2A8DF0 */
+  --surface-3: #e8f1fd;
+
+  --text: #0b2a4a; /* نص أساسي: أزرق داكن بدل الأسود */
+  --text-soft: #4c5f75;
+  --text-faint: #5d7085;
+  --line: #dee7f2;
+  --line-strong: #c9ddf6;
+
+  --focus: rgba(10, 92, 200, 0.45);
+
+  /* Typography --------------------------------------------------------- */
+  --font-display: "Cairo", "Segoe UI", "Noto Kufi Arabic", system-ui, sans-serif;
+  --font-text: "Tajawal", "Cairo", "Segoe UI", "Noto Naskh Arabic", system-ui, sans-serif;
+
+  --fs-xs: 0.78rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1.0625rem;
+  --fs-md: clamp(1.05rem, 0.98rem + 0.4vw, 1.2rem);
+  --fs-lg: clamp(1.3rem, 1.1rem + 1vw, 1.75rem);
+  --fs-h3: clamp(1.3rem, 1.1rem + 1.2vw, 1.9rem);
+  --fs-h2: clamp(1.75rem, 1.25rem + 2.2vw, 2.9rem);
+  --fs-h1: clamp(2.1rem, 1.15rem + 4.4vw, 4.35rem);
+
+  --lh-tight: 1.14;
+  --lh-title: 1.24;
+  --lh-body: 1.85;
+
+  /* Space & shape ------------------------------------------------------ */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+
+  --wrap: 1220px;
+  --gutter: clamp(1.15rem, 0.6rem + 2.4vw, 3rem);
+
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 28px;
+  --r-full: 999px;
+
+  /* الظلال خفيفة جدًا — الدليل يمنع الظلال الثقيلة والتوهج */
+  --shadow-1: 0 1px 2px rgba(6, 43, 82, 0.05);
+  --shadow-2: 0 10px 30px -18px rgba(6, 43, 82, 0.22);
+  --shadow-3: 0 26px 70px -34px rgba(6, 43, 82, 0.35);
+
+  /* Motion ------------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --t-fast: 120ms;
+  --t-base: 200ms;
+  --t-slow: 420ms;
+
+  --z-header: 40;
+  --z-dialog: 100;
+}

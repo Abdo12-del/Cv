@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "project": "Web UI / Portfolio Visual Research",
+    "owner_session": "arena/d1688041-cv",
+    "date": "2026-10-21",
+    "method": "Live page text retrieval + GitHub source verification + 12 visually inspected plates + award/jury pages",
+    "verification_legend": {
+      "verified": "Directly inspected page structure/text/source code or plate image",
+      "partial": "Structure read, visual/motion/mobile not confirmed",
+      "unverified": "Could not be reached or not inspected; excluded from claims"
+    },
+    "global_limits": [
+      "No rendering engine: hover, scroll-linked motion, mobile breakpoints and performance were NOT tested",
+      "No numeric performance or usability scores were invented",
+      "Three sites could not be opened and are disclosed (micheledu.com, cosmos.so, activetheory.net)"
+    ],
+    "usage_notice": "All referenced sites, screenshots and assets belong to their original owners/designers/studios. Reference only; do not copy layouts or reuse assets as original work."
+  },
+  "categories": {
+    "A": "Minimal & Editorial",
+    "B": "Creative Developer Portfolios",
+    "C": "Motion-Driven Websites",
+    "D": "3D & WebGL Experiences",
+    "E": "Typography-Driven Design",
+    "F": "Immersive Storytelling",
+    "G": "Experimental Layouts",
+    "H": "Premium Studio Websites",
+    "I": "Personal Brand Websites",
+    "J": "Functional Product Interfaces",
+    "K": "Arabic / RTL Context",
+    "L": "Discovery Layer (not counted as designed sites)"
+  },
+  "sites": [
+    {"id":"A01","name":"Rauno Freiberg","url":"https://rauno.me/","categories":["A","I"],"type":"personal / interaction designer","style":"minimal, single-thought hero","verification":"verified","also_checked":["https://rauno.me/craft","https://rauno.me/projects"],"verification_notes":"Read homepage, craft archive (60+ dated experiments) and projects index","patterns":["P01","P09","P18"],"key_lesson":"The index of decisions is the portfolio; a six-line philosophy replaces a slogan"},
+    {"id":"A02","name":"Paco Coursey","url":"https://paco.me/","categories":["A","B"],"type":"design engineer","style":"minimal, text-first","verification":"verified","also_checked":["https://paco.me/craft"],"tech":"Next.js + cmdk + next-themes + use-delayed-render (GitHub: pacocoursey/paco)","patterns":["P09","P19"],"key_lesson":"Every link must lead to an action, not a section"},
+    {"id":"A03","name":"Frank Chimero","url":"https://frankchimero.com/","categories":["A","I"],"type":"designer / writer","style":"editorial personal","verification":"verified","patterns":["P01"],"key_lesson":"Five items are enough for a lifetime site"},
+    {"id":"A04","name":"Manuel Moreale","url":"https://manuelmoreale.com/","categories":["A","F"],"type":"writer / designer","style":"long-form editorial","verification":"verified","patterns":["P20"],"key_lesson":"Images inside prose set the reading rhythm"},
+    {"id":"A05","name":"Brian Lovin","url":"https://brianlovin.com/","categories":["A","J"],"type":"product designer","style":"minimal app-like index","verification":"verified","tech":"Next 16 + React 19 + motion + Base UI + cmdk + Tailwind (GitHub: brianlovin/briOS)","patterns":["P09","P19"],"key_lesson":"A functional index can replace an image gallery"},
+    {"id":"A06","name":"Karri Saarinen","url":"https://karrisaarinen.com/","categories":["A","I"],"type":"founder / designer","style":"editorial blog","verification":"verified","patterns":["P09"],"key_lesson":"A 16-year chronological archive is itself authority"},
+    {"id":"A07","name":"Lee Robinson","url":"https://leerob.com/","categories":["A","I"],"type":"engineer / writer","style":"minimal personal","verification":"verified","patterns":["P01"],"key_lesson":"Let the reader choose the depth of the bio (Default / Long)"},
+    {"id":"A08","name":"Andy Bell","url":"https://bell.bz/","categories":["A","I"],"type":"designer / developer / educator","style":"minimal personal","verification":"verified","patterns":["P18"],"key_lesson":"Disclosing that the site is a work in progress builds trust"},
+    {"id":"A09","name":"Dan Hemerlein","url":"https://dan.moi/","categories":["A","F"],"type":"writer / developer","style":"journal index","verification":"verified","patterns":["P09","P20"],"key_lesson":"A dated index scales when content is dense"},
+    {"id":"A10","name":"Stripe Press","url":"https://press.stripe.com/","categories":["A","J"],"type":"publisher","style":"editorial commerce","verification":"verified","patterns":["P06","P13"],"key_lesson":"A strict repeating unit reads as premium"},
+    {"id":"A11","name":"Charlotte Dann","url":"https://charlottedann.com/","categories":["A","B"],"type":"creative technologist","style":"minimal craft","verification":"verified","patterns":["P06"],"key_lesson":"Three strong works beat twelve weak ones"},
+
+    {"id":"B01","name":"Patrick Heng","url":"https://patrickheng.com/","categories":["B","C"],"type":"creative developer","style":"dark motion portfolio","verification":"verified","patterns":["P09","P12","P15"],"key_lesson":"State your role in each project, not just the client"},
+    {"id":"B02","name":"Clément Grellier","url":"https://clementgrellier.fr/","categories":["B","C"],"type":"front-end developer","style":"minimal editorial","verification":"verified","also_checked":["https://clementgrellier.fr/overview"],"award":{"platform":"Awwwards","award":"SOTD","date":"2025-05-24","overall":7.36,"design":7.33,"usability":7.19,"creativity":7.63,"content":7.48,"dev_award":7.69,"wpo":8.00},"patterns":["P03","P22","P21"],"key_lesson":"Split depth and speed into two pages (work + quick overview)"},
+    {"id":"B03","name":"Henry Desroches (Henry From Online)","url":"https://henry.codes/","categories":["B","F"],"type":"creative developer","style":"editorial punk personal","verification":"verified","tech":"Eleventy + GSAP + Taxi page transitions + simplex-noise + SCSS (GitHub: xdesro/true-terrors)","patterns":["P05","P21"],"key_lesson":"Personality is unforgettable without a single portrait"},
+    {"id":"B04","name":"Anthony Fu","url":"https://antfu.me/","categories":["B"],"type":"open-source engineer","style":"utility minimal","verification":"verified","tech":"Vue + UnoCSS + Shiki + PixiJS + matter-js + d3 (GitHub: antfu/antfu.me)","patterns":["P09"],"key_lesson":"Links themselves can be the portfolio"},
+    {"id":"B05","name":"Jhey Tompkins","url":"https://www.jhey.dev/","categories":["B","G"],"type":"design engineer","style":"playful experimental","verification":"verified","patterns":["P18"],"key_lesson":"Calculated mystery attracts; total mystery repels"},
+    {"id":"B06","name":"Brittany Chiang","url":"https://brittanychiang.com/","categories":["B","J"],"type":"frontend engineer","style":"dark minimal resume-portfolio","verification":"verified","tech":"Previous v4: Gatsby + styled-components + anime.js (GitHub: bchiang7/v4)","patterns":["P07","P12"],"key_lesson":"The most copied portfolio stops being distinctive"},
+    {"id":"B07","name":"Yuta Abe","url":"https://yutaabe.com/","categories":["B","C"],"type":"creative developer","style":"interactive playful","verification":"verified","award":{"platform":"CSS Design Awards","award":"Website of the Day","date":"2026-06-11","ui":8.04,"ux":8.18,"innovation":8.15,"overall":8.12},"patterns":["P01"],"key_lesson":"Make the first three seconds an experience"},
+    {"id":"B08","name":"Matteo Courquin","url":"https://matteocourquin.com/","categories":["B","G"],"type":"interactive designer","style":"terminal / OS metaphores","verification":"verified","tech":"Site-declared stack: Next.js, AWS, Sanity, Vercel, GSAP, Three.js, Lenis, Tailwind","award":{"platform":"CSS Design Awards","award":"Nominated","date":"2026-09-19","ui":8.20,"ux":8.01,"innovation":8.39},"patterns":["P09","P19","P23"],"key_lesson":"Never remove scrolling unless exploration itself is the product"},
+    {"id":"B09","name":"Rubens Cantuni","url":"https://rubens.design/","categories":["B","G"],"type":"product designer","style":"desktop OS metaphor across computing eras","verification":"verified","award":{"platform":"CSS Design Awards","award":"Special Kudos","date":"2026-07-08","ui":7.22,"ux":7.30,"innovation":7.27},"patterns":["P23","P19"],"key_lesson":"Meta-UI works only when every file maps to real meaning"},
+
+    {"id":"C01","name":"Emil Kowalski","url":"https://emilkowal.ski/","categories":["C","J"],"type":"design engineer / motion","style":"minimal editorial","verification":"verified","also_checked":["https://emilkowal.ski/ui/7-practical-animation-tips","https://animations.dev/"],"patterns":["P24","P26","P33"],"key_lesson":"Good motion is describable in numbers: <300ms, ease-out, scale 0.97, origin-aware"},
+    {"id":"C02","name":"Jitter","url":"https://jitter.video/","categories":["C","J"],"type":"motion design tool","style":"product marketing, template gallery","verification":"partial","patterns":["P29"],"key_lesson":"Show the output of the tool, not only its UI"},
+    {"id":"C03","name":"Clément Grellier — Overview","url":"https://clementgrellier.fr/overview","categories":["C"],"type":"fast project index","style":"speed-first overview","verification":"verified","patterns":["P09"],"key_lesson":"An overview page balances luxury and impatience"},
+    {"id":"C04","name":"Maria Vasilyeva","url":"https://www.mariavasilyeva.com/","categories":["C","I"],"type":"interactive designer","style":"sound-inspired dark editorial","verification":"partial","award":{"platform":"Awwwards","award":"SOTD","date":"2026-10-09","overall":7.28,"design":7.31,"usability":7.02,"creativity":7.56,"content":7.33},"elements":["Pre-loader","Page transition","About scroll animation","Navigation","Projects page interaction","Notes interaction","Annotations","Hover effects (x2)"],"patterns":["P21","P22","P27"],"key_lesson":"Do not add more than three rare interactions"},
+    {"id":"C05","name":"Unseen Studio","url":"https://unseen.co/","categories":["C","H"],"type":"brand / digital / motion studio","style":"bold motion studio","verification":"verified","patterns":["P17"],"key_lesson":"Audio choice must be an option, not a gate"},
+
+    {"id":"D01","name":"Bruno Simon","url":"https://bruno-simon.com/","categories":["D"],"type":"3D creative developer","style":"drivable 3D world","verification":"verified","tech":"2019: three + cannon + gsap + howler + vite | 2025: three + rapier3d + gsap + tweakpane (GitHub: brunosimon/folio-2019, brunosimon/folio-2025)","patterns":["P10"],"key_lesson":"Use 3D when exploration is the content, not the decoration"},
+    {"id":"D02","name":"Lusion","url":"https://lusion.co/","categories":["D","H"],"type":"3D and interactive studio","style":"cinematic WebGL studio","verification":"verified","patterns":["P29"],"key_lesson":"A studio site can be an experience rather than a catalogue"},
+    {"id":"D03","name":"Overworld Audio","url":"https://overworldaudio.com/","categories":["D","F"],"type":"sonic branding studio","style":"explorable map","verification":"verified","tech":"Awwwards-declared: Three.js, Nuxt.js, Sanity","award":{"platform":"Awwwards","award":"SOTD","date":"2026-10-15","overall":7.38,"design":7.44,"usability":7.00,"creativity":7.83,"content":7.44},"palette":["#13151f","#e9ecee"],"patterns":["P10"],"key_lesson":"Borrow the metaphor from the discipline itself"},
+    {"id":"D04","name":"Studio K95","url":"https://k95.it/en","categories":["D","E"],"type":"brand and digital studio","style":"dark editorial, radial gallery","verification":"partial","award":{"platform":"CSS Design Awards","award":"Website of the Day","date":"2026-07-08","ui":8.73,"ux":8.75,"innovation":8.82},"patterns":["P10","P08"],"key_lesson":"Always provide a grid fallback for radial galleries"},
+    {"id":"D05","name":"History of Software Design","url":"https://historyofsoftware.org/","categories":["D","F"],"type":"interactive exhibit","style":"restoration / museum","verification":"verified","tech":"Next.js image pipeline confirmed in markup","patterns":["P28"],"key_lesson":"Document each artefact with a figure number and credit"},
+
+    {"id":"E01","name":"Klim Type Foundry","url":"https://klim.co.nz/","categories":["E"],"type":"type foundry","style":"editorial foundry","verification":"verified","patterns":["P08"],"key_lesson":"Prove a typeface by its applications, not its specs"},
+    {"id":"E02","name":"Pangram Pangram","url":"https://pangrampangram.com/","categories":["E"],"type":"type foundry","style":"catalogue commerce","verification":"verified","patterns":["P08","P13"],"key_lesson":"Editable specimen text sells the font"},
+    {"id":"E03","name":"Thmanyah Font","url":"https://font.thmanyah.com/","categories":["E","K"],"type":"Arabic typeface system","style":"Arabic editorial narrative","verification":"verified","patterns":["P01","P04","P06"],"key_lesson":"Tell why the tool was made before listing its weights; 45 typefaces studied, 1200+ hours, 80+ versions"},
+    {"id":"E04","name":"Signal-A Studio","url":"https://signal-a.studio/","categories":["E","H"],"type":"interface and experience studio","style":"black and white interaction-led","verification":"verified","tech":"Awwwards-declared: Webflow, Figma","award":{"platform":"Awwwards","award":"SOTD","date":"2026-10-18","overall":7.22,"design":7.44,"usability":7.00,"creativity":7.06,"content":7.31},"palette":["#000000","#FFFFFF"],"elements":["Case studies cursor replacement","Archive overlay slider","Minimal grid accordion","Case studies hover scramble"],"patterns":["P27","P17","P12"],"key_lesson":"Interaction can be the whole identity, but hover-only discovery fails on touch"},
+    {"id":"E05","name":"Gil Huybrecht","url":"https://gilhuybrecht.com/","categories":["E","I"],"type":"freelance designer and art director","style":"black gallery typographic","verification":"verified","tech":"Awwwards-declared: Next.js, DatoCMS, WebGL","award":{"platform":"Awwwards","award":"SOTD","date":"2026-09-21","overall":7.66,"design":7.93,"usability":7.33,"creativity":7.46,"content":7.92},"palette":["#0D0D0F","#FFFFFF"],"patterns":["P07","P08"],"key_lesson":"Use #0D0D0F rather than pure black so images float"},
+    {"id":"E06","name":"Depo Studio","url":"https://depo.studio/","categories":["E","G"],"type":"architecture / design studio","style":"Mondrian bento","verification":"partial","verification_notes":"Inspected through PLATE-05 only; live site not opened","patterns":["P02"],"key_lesson":"An empty cell is a design decision"},
+
+    {"id":"F01","name":"The Pudding","url":"https://pudding.cool/","categories":["F","A"],"type":"visual essay publication","style":"editorial data storytelling","verification":"verified","patterns":["P09","P06"],"key_lesson":"Classify content by function (updating, your input, video) not only by topic; sequence numbers build an archive"},
+    {"id":"F02","name":"Aresluna (Marcin Wichary)","url":"https://aresluna.org/","categories":["F","I","E"],"type":"designer / writer / typographer","style":"structural index of essays","verification":"verified","also_checked":["https://aresluna.org/frame-of-preference"],"patterns":["P09","P20"],"key_lesson":"Every link needs one selling line"},
+    {"id":"F03","name":"Frame of Preference","url":"https://aresluna.org/frame-of-preference","categories":["F"],"type":"interactive history essay","style":"chronological narrative","verification":"verified","patterns":["P20"],"key_lesson":"Sequential narrative needs a time anchor"},
+    {"id":"F04","name":"Poolsuite","url":"https://poolsuite.net/","categories":["F","G"],"type":"lifestyle brand","style":"retro boot screen","verification":"partial","patterns":["P05"],"key_lesson":"Do not stretch the boot screen"},
+    {"id":"F05","name":"Overworld Audio","url":"https://overworldaudio.com/","categories":["F","D"],"type":"studio","style":"sound-led map","verification":"verified","patterns":["P10"],"key_lesson":"Never autoplay audio"},
+
+    {"id":"G01","name":"Obys Agency","url":"https://obys.agency/","categories":["G","H"],"type":"design agency","style":"immersive editorial grid","verification":"verified","patterns":["P09","P12"],"key_lesson":"Attach discipline and scope to every project"},
+    {"id":"G02","name":"Basement Studio","url":"https://basement.studio/","categories":["G","H","D"],"type":"digital studio","style":"dark maximal motion","verification":"verified","also_checked":["https://basement.studio/showcase/daylight-simplicity-in-motion"],"tech":"Next 16 + React 19 + R3F 9 + drei + rapier + uikit + motion 12 + three 0.180 + Sanity + Mux + Zustand (GitHub: basementstudio/website-2k25)","patterns":["P11","P12","P03"],"key_lesson":"Tie the design to a measurable business outcome (Daylight sold out inventory)"},
+    {"id":"G03","name":"Mouthwash Studio","url":"https://mouthwash.studio/","categories":["G","H"],"type":"design studio","style":"editorial maximal","verification":"verified","patterns":["P05","P12"],"key_lesson":"Tag each project with its capabilities instead of describing them"},
+    {"id":"G04","name":"Maggie Appleton","url":"https://maggieappleton.com/","categories":["G","F","I"],"type":"designer / anthropologist","style":"digital garden","verification":"verified","tech":"Astro + motion + three + d3 + satori + lexical (GitHub: MaggieAppleton/maggieappleton.com-V3)","patterns":["P06","P09"],"key_lesson":"Explain how your site should be read, and declare maturity per content type"},
+    {"id":"G05","name":"Vercel Design","url":"https://vercel.com/design","categories":["G","J"],"type":"design org page","style":"corporate creative","verification":"verified","patterns":["P34"],"key_lesson":"Numbers plus faces create instant credibility"},
+
+    {"id":"H01","name":"MetaLab","url":"https://www.metalab.com/","categories":["H"],"type":"product design agency","style":"motion typographic","verification":"verified","patterns":["P05"],"key_lesson":"Repetition of one sentence as rhythm replaces illustration"},
+    {"id":"H02","name":"Instrument","url":"https://www.instrument.com/","categories":["H"],"type":"brand, product and marketing agency","style":"reel-led corporate","verification":"verified","patterns":["P29","P08"],"key_lesson":"Three categories (brand / marketing / product) cover everything"},
+    {"id":"H03","name":"Koto","url":"https://koto.com/","categories":["H"],"type":"creative company","style":"editorial studio","verification":"verified","patterns":["P06"],"key_lesson":"Give each project a single sentence of meaning"},
+    {"id":"H04","name":"Bakken & Bæck","url":"https://bakkenbaeck.com/","categories":["H"],"type":"design and technology studio","style":"proof-first system","verification":"verified","patterns":["P34","P12","P09"],"key_lesson":"Proof, then work, then detail, then one testimonial, then one CTA"},
+    {"id":"H05","name":"Darkroom Engineering","url":"https://darkroom.engineering/","categories":["H","B"],"type":"design engineering studio","style":"dictionary hero + activity log","verification":"verified","tech":"Next 16 + R3F + drei + Lenis + Tempus + anime.js + Theatre + postprocessing (GitHub: darkroomengineering/satus)","patterns":["P34","P11"],"key_lesson":"A dated activity log builds rare trust"},
+    {"id":"H06","name":"Set Studio","url":"https://set.studio/","categories":["H"],"type":"design studio","style":"outcome-first editorial","verification":"verified","patterns":["P11"],"key_lesson":"A number beats an adjective"},
+    {"id":"H07","name":"Locomotive","url":"https://locomotive.ca/en","categories":["H","G"],"type":"digital-first agency","style":"progressive sentence hero","verification":"verified","patterns":["P05","P22"],"key_lesson":"Build the sentence instead of stating it"},
+
+    {"id":"I01","name":"Ahmad Shadeed","url":"https://ishadeed.com/","categories":["I","K"],"type":"UX designer and front-end engineer","style":"authority editorial","verification":"verified","patterns":["P01","P09"],"key_lesson":"Make your articles the proof of your service"},
+    {"id":"I02","name":"Tuhoon case study","url":"https://ishadeed.com/work/tuhoon/","categories":["I","K"],"type":"Arabic mental-health product case study","style":"process documentation","verification":"verified","patterns":["P12","P28"],"key_lesson":"Show four design directions, the review loop and the credits; publishing real family/child imagery requires explicit consent"},
+    {"id":"I03","name":"Léo Parpeix","url":"https://leoparpeix.com/","categories":["I","C"],"type":"art director and interactive designer","style":"motion editorial","verification":"verified","award":{"platform":"Awwwards","award":"SOTD","date":"2026-09-14","overall":7.69,"design":7.79,"usability":7.34,"creativity":8.04,"content":7.63},"patterns":["P06","P12","P29"],"key_lesson":"Declare team size and exact role per project"},
+    {"id":"I04","name":"Julian Shapiro","url":"https://www.julian.com/","categories":["I","F"],"type":"writer / investor","style":"library of guides","verification":"verified","patterns":["P06"],"key_lesson":"If the content is books, design a library"},
+    {"id":"I05","name":"Charlotte Dann","url":"https://charlottedann.com/","categories":["I"],"type":"creative technologist","style":"minimal craft","verification":"verified","patterns":["P06"],"key_lesson":"Small, deliberate portfolio"},
+
+    {"id":"J01","name":"Linear","url":"https://linear.app/","categories":["J"],"type":"product development tool","style":"product-as-hero dark","verification":"verified","patterns":["P03","P13","P34"],"key_lesson":"Real labels and identifiers replace mock copy"},
+    {"id":"J02","name":"Raycast","url":"https://www.raycast.com/","categories":["J"],"type":"productivity launcher","style":"interactive simulation","verification":"verified","patterns":["P03","P19"],"key_lesson":"Teach usage through simulation, not video"},
+    {"id":"J03","name":"Vercel Design (team page)","url":"https://vercel.com/design","categories":["J","G"],"type":"design org","style":"corporate creative","verification":"verified","patterns":["P34"],"key_lesson":"The team is the product"},
+    {"id":"J04","name":"Web Interface Guidelines","url":"https://vercel.com/design/guidelines","categories":["J"],"type":"guideline reference","style":"documentation","verification":"verified","patterns":["P26","P31","P33"],"key_lesson":"The single most actionable source in this research: turn taste into written rules"},
+    {"id":"J05","name":"Stripe","url":"https://stripe.com/","categories":["J"],"type":"financial infrastructure","style":"optimistic enterprise","verification":"verified","patterns":["P02","P30","P34"],"key_lesson":"Bake the brand into the photograph instead of overlaying a logo"},
+    {"id":"J06","name":"Resend","url":"https://resend.com/","categories":["J"],"type":"developer email platform","style":"code-as-design","verification":"verified","patterns":["P03"],"key_lesson":"Show real code when the audience is technical"},
+    {"id":"J07","name":"Cal.com","url":"https://cal.com/","categories":["J"],"type":"scheduling platform","style":"functional product tour","verification":"verified","patterns":["P03"],"key_lesson":"Let visitors try before signing up"},
+    {"id":"J08","name":"Daylight Computer","url":"https://daylightcomputer.com/","categories":["J","F"],"type":"hardware product","style":"calm paper-like product story","verification":"verified","patterns":["P05","P29"],"key_lesson":"Video must explain, not decorate"},
+
+    {"id":"K01","name":"Thmanyah Font","url":"https://font.thmanyah.com/","categories":["K","E"],"type":"Arabic typeface system","style":"Arabic editorial narrative","verification":"verified","patterns":["P01","P04"],"key_lesson":"Arabic display + text + sans, free for commercial use, short kashida in headlines only"},
+    {"id":"K02","name":"Tuhoon","url":"https://ishadeed.com/work/tuhoon/","categories":["K","I"],"type":"Arabic product case study","style":"documented process","verification":"verified","patterns":["P12","P28"],"key_lesson":"Regional Arabic product design documented end to end"},
+
+    {"id":"N01","name":"Michelle Du","url":"https://micheledu.com/","categories":["J"],"type":"product designer","style":"dashboard-style portfolio","verification":"unverified","verification_notes":"Password-protected Framer site; could not be inspected","award":{"platform":"CSS Design Awards","award":"Website of the Day","date":"2025-11-22","ui":7.87,"ux":7.87,"innovation":8.20}},
+    {"id":"N02","name":"Cosmos","url":"https://www.cosmos.so/","categories":["L"],"type":"visual curation platform","style":"moodboard platform","verification":"unverified","verification_notes":"HTTP 403 in this environment"},
+    {"id":"N03","name":"Active Theory","url":"https://activetheory.net/","categories":["D"],"type":"creative studio","style":"WebGL experiential","verification":"unverified","verification_notes":"HTTP 500 in this environment; excluded from claims"}
+  ],
+  "discovery_layer": [
+    {"name":"Awwwards","url":"https://www.awwwards.com/","value":"Element taxonomy, published palettes, declared technologies, jury scoring model (Design 40 / Usability 30 / Creativity 20 / Content 10)"},
+    {"name":"CSS Design Awards","url":"https://www.cssdesignawards.com/","value":"UI / UX / Innovation triple score plus judge comments"},
+    {"name":"Siteinspire","url":"https://www.siteinspire.com/","value":"Style taxonomy with counts (Typographic 2105, Portfolio 1444, Web & Interactive 910, Minimal 847, Unusual Layout 671)"},
+    {"name":"Godly","url":"https://godly.website/","value":"Type / Style / Font / Framework / Library metadata per site"},
+    {"name":"Recent","url":"https://recent.design/","value":"Fresh interface and motion items with author attribution"},
+    {"name":"Mobbin","url":"https://mobbin.com/","value":"621,500 shipped screens; flows and patterns search"},
+    {"name":"PersonalSit.es","url":"https://personalsit.es/","value":"Tag-filtered personal sites (developer 813, designer 321, educator 30, parenting 12)"},
+    {"name":"Killer Portfolio","url":"https://www.killerportfolio.com/","value":"Curated portfolio showcase"}
+  ],
+  "pattern_ids": {
+    "P01":"Single-Thought Hero","P02":"Asymmetric Bento Hero","P03":"Product-as-Hero","P04":"Split Display Wordmark","P05":"Media-First Hero",
+    "P06":"Three-Weight Editorial Grid","P07":"Fixed Rail Grid","P08":"Mixed-Media Grid","P09":"Indexed Text Roster","P10":"Radial or Spiral Gallery",
+    "P11":"Outcome-First Card","P12":"Role-Scoped Card","P13":"Live Micro-Preview Card","P14":"Transformation Card","P15":"Typographic Case Card",
+    "P16":"Floating Pill Nav","P17":"Full-Screen Overlay Menu","P18":"Inline In-Text Nav","P19":"Command Palette","P20":"Reading Progress Rail",
+    "P21":"Curtain Page Transition","P22":"Staggered Text Reveal","P23":"Grid-to-Image FLIP","P24":"Blur Reveal","P25":"Scroll-Linked Transformation","P26":"Origin-Aware Popover","P27":"Contextual Custom Cursor",
+    "P28":"Flat Device Frame","P29":"Lazy Video Card","P30":"Brand-Bearing Image",
+    "P31":"Delayed Skeleton","P32":"Live Status Badge","P33":"Toast with Undo","P34":"Number Flow"
+  },
+  "motion_spec": {
+    "button_press_ms":[80,120],
+    "tooltip_ms":[120,150],
+    "popover_ms":[150,200],
+    "modal_ms":[200,250],
+    "page_transition_ms":[300,450],
+    "max_ui_animation_ms":300,
+    "enter_easing":"ease-out (custom cubic-bezier(.2,.9,.2,1))",
+    "exit_easing":"ease-in, shorter than enter",
+    "enter_scale":[0.93,0.97],
+    "press_scale":0.97,
+    "allowed_properties":["transform","opacity","filter","clip-path"],
+    "forbidden_properties":["width","height","top","left","margin","box-shadow"],
+    "mandatory":["prefers-reduced-motion","transform-origin from trigger","keyboard alternative for every gesture"]
+  }
+}
