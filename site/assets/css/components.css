@@ -1353,10 +1353,11 @@ body.is-locked {
   }
 
   .id-card::before {
-    inset-inline: -6px;
+    /* خلفية الصورة تمتد من حافة الشاشة إلى حافتها، لا تبقى محصورة داخل البطاقة */
+    inset-inline: calc(50% - 50vw);
     inset-block-start: -10px;
     block-size: clamp(8rem, 28vw, 9.2rem);
-    border-radius: var(--r-xl);
+    border-radius: 0;
   }
 
   .id-card::after {
