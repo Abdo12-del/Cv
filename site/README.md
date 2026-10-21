@@ -35,7 +35,7 @@ site/data/content.json
   - هذه القيم تنتج أغلفة طباعية داخلية، فلا حاجة إلى صور.
 - **تصنيف جديد:** أضف عنصرًا إلى `categories`، ثم استخدم نفس المعرّف في `post.category`.
 - **روابط التواصل:** املأ `profile.links[].href`؛ الروابط الفارغة تُعرض كعناصر «قريبًا» بلا رابط.
-- **الصورة الشخصية:** استبدل عنصر `[data-photo-slot]` في `index.html` بصورة حقيقية داخل إطار دائري (لا يوجد حاليًا سوى حرفين بديلين).
+- **الصورة الشخصية:** الصورة الحالية هي `assets/img/profile.jpg` داخل عنصر `[data-photo-slot]` في `index.html`. لاستبدالها، ضع الصورة الجديدة في نفس المسار أو حدّث قيمة `src`.
 - **صفوف بطاقة التعريف:** `profile.meta` — مصفوفة `{ label, value }` تظهر تحت الاسم (المجال، الحالة، …). المكان يُقرأ من `profile.location`.
 - **قائمة «الآن»:** `ui.now` — مصفوفة `{ label, text }` (حتى ثلاثة أنصبة قصيرة عمّا تشتغل عليه اليوم).
 - **عناوين الأقسام:** كلها في `ui` (`introTitle`, `nowTitle`, `pathTitle`, `pathIntro`, `projectsTitle`, `projectsIntro`, `feedTitle`, `feedIntro`, `writingTitle`, `philosophyTitle`, `contactTitle`, `contactLead`) — لا نصوص مطبوعة في القوالب.
