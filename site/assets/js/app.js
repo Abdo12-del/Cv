@@ -59,6 +59,7 @@ function bindText(data) {
   const map = {
     name: data.profile.name,
     monogram: data.profile.monogram,
+    monogramShort: data.profile.monogram.trim().split(/\s+/)[0],
     headline: data.profile.headline,
     bio: data.profile.bio,
     shortBio: data.profile.shortBio,
@@ -72,6 +73,10 @@ function bindText(data) {
       if (roles.length <= 2) return roles.join(" · ");
       return `${roles[0]} · ${roles[roles.length - 1]}`;
     })(),
+    introTitle: data.ui.introTitle,
+    nowTitle: data.ui.nowTitle,
+    pathTitle: data.ui.pathTitle,
+    pathIntro: data.ui.pathIntro,
     feedTitle: data.ui.feedTitle,
     feedIntro: data.ui.feedIntro,
     projectsTitle: data.ui.projectsTitle,
@@ -79,7 +84,8 @@ function bindText(data) {
     philosophyTitle: data.ui.philosophyTitle,
     philosophyIntro: data.philosophy.intro,
     writingTitle: data.ui.writingTitle,
-    aboutTitle: data.ui.aboutTitle,
+    contactTitle: data.ui.contactTitle,
+    contactLead: data.ui.contactLead,
     emptyState: data.ui.emptyState,
   };
 
@@ -88,7 +94,36 @@ function bindText(data) {
     if (key in map && map[key]) node.textContent = map[key];
   });
 
-  document.title = `${data.profile.name} — معلّم، مؤسّس، وكاتب`;
+  const firstRole = data.profile.rolesLine.split("·")[0].trim();
+  document.title = `${data.profile.name} — ${firstRole}`;
+}
+
+function renderIdentity(data) {
+  const wrap = byId("id-meta");
+  if (!wrap) return;
+
+  const rows = [{ label: "المكان", value: data.profile.location }, ...(data.profile.meta || [])].filter(
+    (row) => row && row.value
+  );
+
+  wrap.innerHTML = rows
+    .map((row) => `<div><dt>${esc(row.label)}</dt><dd>${esc(row.value)}</dd></div>`)
+    .join("");
+}
+
+function renderNow(data) {
+  const wrap = byId("now-list");
+  if (!wrap) return;
+
+  wrap.innerHTML = (data.ui.now || [])
+    .map(
+      (item, i) => `
+      <li class="now-item reveal" style="--d:${i * 60}ms">
+        <span class="now-label">${esc(item.label)}</span>
+        <p>${esc(item.text)}</p>
+      </li>`
+    )
+    .join("");
 }
 
 function renderProfileLinks(data) {
@@ -723,6 +758,8 @@ async function boot() {
     state.data = data;
 
     bindText(data);
+    renderIdentity(data);
+    renderNow(data);
     renderProfileLinks(data);
     renderFilters(data);
     renderFeed(data);
