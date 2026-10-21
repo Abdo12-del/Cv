@@ -1,396 +1,603 @@
 /* ==========================================================================
-   Sections — تخطيط البروفايل: بطاقة تعريف ثابتة + تيار أقسام شخصي
-   (لا هيرو تسويقي، لا أشرطة CTA، لا أقسام مرقّمة — صفحة شخص واحد)
+   Sections — responsive RTL profile layout and editorial content sections
    ========================================================================== */
 
-/* Layout: rail + stream --------------------------------------------------- */
+/* Main layout ------------------------------------------------------------- */
 .profile-layout {
   display: grid;
-  grid-template-columns: minmax(255px, 320px) minmax(0, 1fr);
-  gap: clamp(1.8rem, 3.2vw, 4.5rem);
+  grid-template-columns: minmax(250px, 0.78fr) minmax(0, 1.7fr);
   align-items: start;
-  padding-block: clamp(1.6rem, 1rem + 2.4vw, 3rem) clamp(2.4rem, 2rem + 4vw, 5rem);
+  gap: clamp(2rem, 4vw, 4.2rem);
+  padding-block: clamp(1.35rem, 2.6vw, 2.25rem) clamp(3rem, 5vw, 5.25rem);
 }
 
-.rail {
-  position: sticky;
-  inset-block-start: 92px;
-  align-self: start;
-}
-
-/* إن طالت البطاقة عن الشاشة، تصبح قابلة للتمرير داخل العمود بدل أن تُقطع */
-@media (min-width: 901px) {
-  .rail {
-    /* نسمح للخلفية بالخروج من البطاقة دون قص */
-    overflow: visible;
-    padding-block-start: 16px;
-    margin-block-start: -16px;
-  }
-}
-
-/* لا يوجد شريط علوي على سطح المكتب: البطاقة تصطف مع بداية المساحة */
-@media (min-width: 1100px) {
-  .rail {
-    inset-block-start: clamp(1.5rem, 3.5vh, 2.5rem);
-  }
-}
-
+.rail,
 .stream {
   min-inline-size: 0;
 }
 
-/* Stream sections --------------------------------------------------------- */
+.rail {
+  margin-block-start: -4.25rem;
+}
+
 .stream-section {
-  padding-block: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
+  min-inline-size: 0;
+  padding-block: clamp(2.1rem, 2.4vw, 3.1rem);
   border-block-start: 1px solid var(--line);
 }
 
 .stream-section:first-child {
-  border-block-start: 0;
   padding-block-start: 0;
+  border-block-start: 0;
 }
 
 .stream-head {
-  margin-block-end: clamp(1.1rem, 2.4vw, 1.7rem);
+  margin-block-end: clamp(1rem, 2vw, 1.55rem);
 }
 
 .stream-head h2 {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  font-size: clamp(1.28rem, 1.05rem + 0.9vw, 1.7rem);
+  gap: 0.65rem;
+  font-size: clamp(1.45rem, 1.18rem + 0.9vw, 1.85rem);
 }
 
-/* شرطة قصيرة بدل الترقيم المؤسّسي (01 / 02 / 03) */
 .stream-head h2::before {
   content: "";
-  inline-size: 26px;
+  inline-size: 1.6rem;
   block-size: 2px;
-  border-radius: 2px;
+  flex: none;
+  border-radius: var(--r-full);
   background: var(--blue-600);
 }
 
 .stream-intro {
+  max-inline-size: 62ch;
   margin-block-start: 0.6rem;
-  max-width: 58ch;
   color: var(--text-soft);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   line-height: 1.9;
 }
 
-.stream-note {
-  margin-block-start: clamp(1.6rem, 3vw, 2.4rem);
-  padding-inline-start: 0.9rem;
-  border-inline-start: 2px solid var(--line-strong);
-  font-size: 0.82rem;
-  line-height: 1.85;
-  color: var(--text-faint);
-  max-width: 56ch;
-}
-
-.stream-note strong {
-  color: var(--blue-700);
-}
-
-/* Intro ------------------------------------------------------------------- */
-.lead {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.45rem, 1.05rem + 2vw, 2.35rem);
-  line-height: 1.5;
-  max-width: 28ch;
-}
-
-.lead::after {
-  content: "";
-  display: block;
-  inline-size: 64px;
-  block-size: 3px;
-  margin-block-start: 1.1rem;
-  border-radius: 2px;
-  background: var(--blue-600);
-}
-
 .lead-bio {
-  margin-block-start: 1.2rem;
-  max-width: 62ch;
+  max-inline-size: 66ch;
   color: var(--text-soft);
   font-size: var(--fs-md);
   line-height: 1.95;
 }
 
-/* الآن -------------------------------------------------------------------- */
+/* Compact profile card — the avatar bridges the blue hero and white page --- */
+.id-card {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  padding: 0 1.25rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+}
+
+.id-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.id-avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  inline-size: clamp(88px, 9vw, 104px);
+  aspect-ratio: 1;
+  margin-block-start: -3rem;
+  margin-block-end: 0.9rem;
+  border: 4px solid var(--surface);
+  border-radius: 50%;
+  background: var(--surface-3);
+  box-shadow: 0 8px 22px -16px rgba(0, 59, 120, 0.62);
+}
+
+.id-avatar > img {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.id-monogram {
+  position: relative;
+  z-index: 1;
+  color: var(--blue-700);
+  font-family: var(--font-display);
+  font-size: 1.28rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.id-bio {
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.id-meta {
+  display: grid;
+  gap: 0.55rem;
+  margin-block-start: 1rem;
+  padding-block-start: 0.9rem;
+  border-block-start: 1px solid var(--line);
+}
+
+.id-meta > div {
+  display: grid;
+  grid-template-columns: 4.6rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.id-meta dt {
+  color: var(--text-faint);
+  font-size: 0.86rem;
+}
+
+.id-meta dd {
+  min-inline-size: 0;
+  margin: 0;
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+/* The three roles: parallel and quick to scan on wider screens ------------- */
 .now-list {
   display: grid;
-  gap: 0.95rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.8rem, 1.8vw, 1.35rem);
 }
 
 .now-item {
   display: grid;
-  grid-template-columns: minmax(84px, auto) minmax(0, 1fr);
-  gap: 0.15rem 1.1rem;
-  align-items: baseline;
-  padding-inline-start: 1rem;
-  border-inline-start: 2px solid var(--line-strong);
+  align-content: start;
+  gap: 0.4rem;
+  min-inline-size: 0;
+  padding-block-start: 0.8rem;
+  border-block-start: 2px solid var(--line-strong);
 }
 
 .now-label {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 0.94rem;
   color: var(--blue-700);
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 800;
 }
 
 .now-item p {
   color: var(--text-soft);
-  font-size: 0.95rem;
-  line-height: 1.85;
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
-/* Feed -------------------------------------------------------------------- */
-.hl-row {
-  margin-block-end: 1.3rem;
+/* Timeline ---------------------------------------------------------------- */
+.timeline {
+  position: relative;
+  display: grid;
+  gap: clamp(1.55rem, 2.8vw, 2.15rem);
+  padding-inline-start: 1.75rem;
 }
 
-.feed-grid {
-  grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
+.timeline::before {
+  content: "";
+  position: absolute;
+  inset-block: 0.45rem 0.5rem;
+  inset-inline-start: 0.32rem;
+  inline-size: 1px;
+  background: var(--line-strong);
 }
 
-/* Projects ---------------------------------------------------------------- */
+.timeline-item {
+  position: relative;
+  min-inline-size: 0;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: -1.72rem;
+  inset-block-start: 0.48rem;
+  inline-size: 11px;
+  block-size: 11px;
+  border: 2px solid var(--blue-400);
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.timeline-phase {
+  color: var(--blue-600);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.timeline-item h3 {
+  margin-block: 0.2rem 0.35rem;
+  font-size: 1.2rem;
+}
+
+.timeline-item p:last-child {
+  max-inline-size: 66ch;
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+/* Projects — no generated mock covers; show actual media only when supplied - */
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+  align-items: stretch;
+  gap: 1rem;
+}
+
 .project {
-  grid-template-columns: 1fr;
+  display: flex;
+  min-inline-size: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  transition: border-color var(--t-base) var(--ease-out), box-shadow var(--t-base) var(--ease-out),
+    transform var(--t-base) var(--ease-out);
+}
+
+.project:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-1);
 }
 
 .project-media {
-  border-inline-end: 0;
-  border-block-end: 1px solid var(--line);
+  overflow: hidden;
+  margin: 0;
+  aspect-ratio: 16 / 8;
+  background: var(--surface-2);
 }
 
-.project-media .cover {
-  min-block-size: 168px;
-  block-size: auto;
-  aspect-ratio: 16 / 9;
+.sheet-body > .project-media {
+  margin-block-end: 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+
+.project-media img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
 }
 
 .project-body {
-  gap: 0.55rem;
+  display: flex;
+  min-inline-size: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: clamp(1.15rem, 2.4vw, 1.65rem);
 }
 
-/* Pillars ----------------------------------------------------------------- */
+.project-role {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.8rem;
+  color: var(--blue-700);
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+.project-role .tag {
+  font-size: 0.85rem;
+}
+
+.project h3 {
+  font-size: clamp(1.3rem, 1.15rem + 0.7vw, 1.65rem);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.project-summary {
+  max-inline-size: 64ch;
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.project-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: 0.75rem 1rem;
+  margin-block-start: 0.2rem;
+  padding-block-start: 0.9rem;
+  border-block-start: 1px solid var(--line);
+}
+
+.project-meta > div {
+  display: grid;
+  align-content: start;
+  gap: 0.15rem;
+  min-inline-size: 0;
+}
+
+.project-meta dt {
+  color: var(--text-faint);
+  font-size: 0.84rem;
+}
+
+.project-meta dd {
+  min-inline-size: 0;
+  margin: 0;
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.project-foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  margin-block-start: auto;
+  padding-block-start: 0.8rem;
+}
+
+.link-btn,
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-block-size: 44px;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--blue-700);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out);
+}
+
+.link-btn:hover,
+.project-link:hover {
+  border-color: var(--blue-400);
+  background: var(--surface-2);
+  color: var(--blue-700);
+}
+
+.link-btn svg,
+.project-link svg {
+  inline-size: 18px;
+  block-size: 18px;
+  flex: none;
+}
+
+/* Feed and writing -------------------------------------------------------- */
+.hl-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.85rem 1.25rem;
+  overflow: visible;
+  margin-block-end: 1rem;
+  padding-block: 0.35rem 0.6rem;
+  scroll-snap-type: none;
+}
+
+.hl-label {
+  font-size: 0.9rem;
+}
+
+.feed-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 212px), 1fr));
+  gap: clamp(0.85rem, 2vw, 1.35rem);
+}
+
+.writing-item {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.35fr);
+  grid-template-areas:
+    "title excerpt"
+    "type excerpt";
+  gap: 0.45rem clamp(1.2rem, 3vw, 2.4rem);
+}
+
+.writing-excerpt {
+  font-size: 1rem;
+}
+
+/* Philosophy -------------------------------------------------------------- */
+.principle {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.principle p {
+  font-size: 1rem;
+}
+
 .pillars-grid {
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
 }
 
-/* Contact — bloc هادئ داخل التيار، لا شريط دعائي -------------------------- */
+/* Contact links: grouped and touch-friendly rather than a long inline row --- */
+.contact .stream-head {
+  margin-block-end: 0.9rem;
+}
+
 .contact {
   background: transparent;
-  padding-block: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
 }
 
-/* Motion stagger ---------------------------------------------------------- */
-.card.reveal,
-.project.reveal,
-.writing-item.reveal,
-.timeline-item.reveal,
-.now-item.reveal {
-  transition-delay: var(--d, 0ms);
+.contact-lead {
+  max-inline-size: 58ch;
+  color: var(--text-soft);
+  font-size: var(--fs-base);
+  line-height: 1.9;
+}
+
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 185px), 1fr));
+  gap: 0.65rem;
+  margin-block-start: 1.15rem;
+}
+
+.contact-links a,
+.contact-links span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  min-inline-size: 0;
+  min-block-size: 50px;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--surface);
+  color: var(--blue-700);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: background var(--t-fast) var(--ease-out), border-color var(--t-fast) var(--ease-out);
+}
+
+.contact-links a:hover {
+  border-color: var(--blue-400);
+  background: var(--surface-2);
+}
+
+.contact-links svg {
+  inline-size: 19px;
+  block-size: 19px;
+  flex: none;
+}
+
+.contact-empty {
+  grid-column: 1 / -1;
+  color: var(--text-faint) !important;
+  font-size: var(--fs-sm) !important;
+  font-weight: 500 !important;
 }
 
 /* Responsive -------------------------------------------------------------- */
-@media (max-width: 1024px) {
+@media (max-width: 960px) {
   .profile-layout {
-    grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
-    gap: clamp(1.5rem, 3vw, 2.5rem);
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(1.7rem, 4vw, 2.5rem);
   }
 
   .rail {
-    inset-block-start: 84px;
+    inline-size: min(100%, 450px);
+    margin-block-start: -4.25rem;
+  }
+
+  .now-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 620px) {
   .profile-layout {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    padding-block-start: 1.2rem;
   }
 
-  /* بطاقة التعريف تتصدّر الصفحة على الهاتف، بلا تثبيت */
   .rail {
-    position: static;
-    inset-block-start: auto;
-  }
-
-  .stream-section:first-child {
-    padding-block-start: 0;
-  }
-
-  .lead {
-    max-width: 34ch;
-  }
-
-  .now-item {
-    grid-template-columns: 1fr;
-    gap: 0.1rem;
-  }
-
-  .pillars-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 420px) {
-  .feed-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .project-media .cover {
-    aspect-ratio: 4 / 3;
-  }
-}
-
-
-/* ==========================================================================
-   سطح المكتب: خلفية الصورة تملأ أعلى الشاشة بعرضها
-   - شريط أزرق مسطّح يمتد من حافة الشريط الجانبي إلى حافة الشاشة اليسرى،
-     من أعلى الصفحة حتى نهاية العنوان الكبير + فراغ. ارتفاعه يُقاس من
-     العنوان نفسه في app.js، فلا يُقطع النص على أي عرض.
-   - العنوان الكبير يجلس فوق الأزرق، وبطاقة التعريف تبدأ من حدّ الشريط
-     وصورتها تتداخل معه (نصف في الأزرق ونصف في البطاقة).
-   ========================================================================== */
-.hero-band {
-  display: none;
-}
-
-@media (min-width: 1100px) {
-  :root {
-    --topline-h: 3px; /* سمك الخط اللوني أعلى الصفحة */
-    --hero-top: clamp(1.9rem, 5vh, 3.1rem); /* بادئ المحتوى تحت أعلى الشاشة */
-    --hero-gap: 2.6rem; /* فراغ أزرق بعد العنوان الكبير */
-    --hero-h: 300px; /* يُضبط بالقياس — قيمة احتياطية */
-    --hero-min: 250px;
-    --avatar-size: 116px;
-  }
-
-  body {
-    position: relative;
-  }
-
-  /* الخط اللوني يبقى فوق الشريط كتوقيع الهوية */
-  .topline {
-    position: relative;
-    z-index: 2;
-  }
-
-  /* الشريط نفسه: بعرض المساحة كلها، من أعلى الصفحة إلى نهاية العنوان ------ */
-  .hero-band {
-    display: block;
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-start: var(--sidebar-size);
-    inset-inline-end: 0;
-    block-size: max(var(--hero-h), var(--hero-min));
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-    background:
-      radial-gradient(72% 130% at 90% 6%, rgba(42, 141, 240, 0.4), transparent 62%),
-      linear-gradient(158deg, var(--blue-800) 0%, var(--blue-700) 52%, var(--blue-600) 100%);
-  }
-
-  .hero-band::before,
-  .hero-band::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-  }
-
-  /* ضوء هادئ أسفل يسار الشريط، بعيدًا عن نص العنوان والبطاقة */
-  .hero-band::before {
-    inset-block-end: -15rem;
-    inset-inline-end: -11rem;
-    inline-size: 26rem;
-    block-size: 26rem;
-    background: radial-gradient(circle, rgba(42, 141, 240, 0.42), transparent 66%);
-  }
-
-  /* خيط دائري رقيق ملتصق بالحافة اليسرى أعلى الشريط */
-  .hero-band::after {
-    inset-block-start: -8rem;
-    inset-inline-end: -7rem;
-    inline-size: 16rem;
-    block-size: 16rem;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-  }
-
-  .profile-layout {
-    position: relative;
-    z-index: 1;
-    padding-block-start: var(--hero-top);
-  }
-
-  /* البطاقة تبدأ من حدّ الشريط تمامًا، وصورتها تتداخل مع الحدّ ---------- */
-  .rail {
-    --rail-offset: calc(
-      max(var(--hero-h), var(--hero-min)) - var(--hero-top) - var(--topline-h)
-    );
-    padding-block-start: 0;
-    margin-block-start: var(--rail-offset);
-    /* يثبّت البطاقة عند التمرير بحيث يبقى نصف الصورة فوقها ظاهرًا */
-    inset-block-start: calc(
-      var(--hero-top) + (var(--avatar-size) / 2) - var(--rail-offset)
-    );
-  }
-
-  /* إن كانت البطاقة أطول من الشاشة، تتحرك مع الصفحة بدل أن تُقطع */
-  .rail--flow {
-    position: static;
+    inline-size: 100%;
+    margin-block-start: -3.75rem;
   }
 
   .id-card {
-    margin-block-start: 0;
-    padding-block-start: 0;
+    padding-inline: 1rem;
   }
 
-  /* لم نعد بحاجة إلى شريط البطاقة الداخلي ولا دائرته الزخرفية */
-  .id-card::before,
-  .id-card::after {
-    display: none;
+  .now-list {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
   }
 
-  /* الصورة تتداخل مع حدّ الشريط: نصفها في الأزرق ونصفها في البطاقة */
-  .id-avatar {
-    inline-size: var(--avatar-size);
-    block-size: var(--avatar-size);
-    margin-block-start: calc(var(--avatar-size) / -2);
-    margin-block-end: 1.15rem;
-    border-width: 6px;
+  .now-item {
+    padding-block-start: 0.7rem;
   }
 
-  .id-monogram {
-    font-size: 1.34rem;
+  .timeline {
+    gap: 1.5rem;
   }
 
-  /* العنوان الكبير فوق الأزرق --------------------------------------- */
-  #intro .stream-head h2 {
-    color: #fff;
+  .project-list {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  #intro .stream-head h2::before {
-    background: rgba(255, 255, 255, 0.85);
+  .project-foot {
+    align-items: stretch;
   }
 
-  #intro .lead {
-    max-width: 32ch;
-    color: #fff;
+  .project-foot .link-btn,
+  .project-foot .project-link {
+    justify-content: center;
   }
 
-  #intro .lead::after {
-    background: var(--blue-400);
+  .writing-item {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "title"
+      "type"
+      "excerpt";
+    gap: 0.55rem;
   }
 
-  /* النبذة تبدأ تحت الشريط على الأبيض، مع حدّ جسم البطاقة */
-  #intro .lead-bio {
-    margin-block-start: calc(var(--hero-gap) + 1.35rem);
+  .principle {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  .principle-n {
+    font-size: 1.25rem;
+  }
+
+  .contact-links {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .feed-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tag,
+  .card-meta,
+  .writing-type,
+  .sheet-crumb,
+  .sheet-meta dt {
+    font-size: 0.82rem;
+  }
+
+  .cover-label,
+  .cover-index {
+    font-size: 0.82rem;
+  }
+}
+
+@media (min-width: 961px) and (max-width: 1180px) {
+  .profile-layout {
+    grid-template-columns: minmax(240px, 0.74fr) minmax(0, 1.7fr);
+    gap: 2rem;
+  }
+
+  .now-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

@@ -51,159 +51,6 @@
   }
 }
 
-/* Identity card — بطاقة التعريف الشخصية ----------------------------------- */
-.id-card {
-  --id-card-pad: clamp(1.2rem, 2.2vw, 1.7rem);
-  position: relative;
-  isolation: isolate;
-  overflow: visible;
-  padding: var(--id-card-pad);
-  padding-block-start: clamp(4.7rem, 6vw, 5.8rem);
-  border: 1px solid var(--line);
-  border-radius: var(--r-xl);
-  background: var(--surface);
-  box-shadow: var(--shadow-1);
-  margin-block-start: 14px;
-}
-
-/* الخلفية تكبر وتخرج من البطاقة: أوسع وأعلى من حدود البطاقة */
-.id-card::before {
-  content: "";
-  position: absolute;
-  inset-block-start: -14px;
-  inset-inline: -12px;
-  z-index: 0;
-  block-size: clamp(8.4rem, 16vw, 10rem);
-  background: var(--blue-700);
-  border-radius: calc(var(--r-xl) + 10px);
-  box-shadow: 0 14px 30px -18px rgba(0, 59, 120, 0.5);
-}
-
-.id-card::after {
-  content: "";
-  position: absolute;
-  inset-block-start: -4.8rem;
-  inset-inline-end: -3.2rem;
-  z-index: 0;
-  inline-size: 11rem;
-  block-size: 11rem;
-  border: 1px solid rgba(255, 255, 255, 0.32);
-  border-radius: 50%;
-  box-shadow: 0 0 0 1.1rem rgba(255, 255, 255, 0.07);
-  pointer-events: none;
-}
-
-.id-card > * {
-  position: relative;
-  z-index: 1;
-}
-
-.id-avatar {
-  position: relative;
-  inline-size: 116px;
-  block-size: 116px;
-  display: grid;
-  place-items: center;
-  margin-block-end: 1rem;
-  border: 4px solid var(--surface);
-  border-radius: 50%;
-  background: var(--surface-3);
-  box-shadow: 0 14px 28px -20px rgba(0, 59, 120, 0.75);
-}
-
-/* عند وضع صورة حقيقية في data-photo-slot تبقى داخل الإطار الدائري نفسه */
-.id-avatar > img {
-  position: absolute;
-  inset: 0;
-  inline-size: 100%;
-  block-size: 100%;
-  border-radius: inherit;
-  object-fit: cover;
-}
-
-.id-monogram {
-  position: relative;
-  z-index: 1;
-  color: var(--blue-700);
-  font-family: var(--font-display);
-  font-size: 1.22rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-}
-
-.id-ring {
-  position: absolute;
-  inset: -8px;
-  z-index: 2;
-  border: 1px solid var(--blue-400);
-  border-radius: 50%;
-  opacity: 0.55;
-  pointer-events: none;
-}
-
-.id-name {
-  font-size: clamp(1.32rem, 1.1rem + 0.7vw, 1.62rem);
-  line-height: 1.32;
-}
-
-.id-roles {
-  margin-block-start: 0.3rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--blue-600);
-  line-height: 1.7;
-}
-
-.id-meta {
-  display: grid;
-  gap: 0.4rem;
-  margin-block: 1rem 0.9rem;
-  padding-block: 0.85rem 0.9rem;
-  border-block: 1px solid var(--line);
-}
-
-.id-meta > div {
-  display: flex;
-  align-items: baseline;
-  gap: 0.55rem;
-}
-
-.id-meta dt {
-  color: var(--text-faint);
-  min-inline-size: 4.1rem;
-  flex: none;
-  font-size: 0.78rem;
-}
-
-.id-meta dd {
-  margin: 0;
-  color: var(--text);
-  font-weight: 600;
-  font-size: 0.85rem;
-}
-
-.id-bio {
-  font-size: 0.9rem;
-  line-height: 1.85;
-  color: var(--text-soft);
-}
-
-.id-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-block: 1rem 0.9rem;
-}
-
-.id-note {
-  font-size: 0.72rem;
-  line-height: 1.7;
-  color: var(--text-faint);
-  border-block-start: 1px solid var(--line);
-  padding-block-start: 0.8rem;
-}
-
 /* Highlights (filters) ---------------------------------------------------- */
 .hl-row {
   display: flex;
@@ -268,27 +115,6 @@
 .hl[aria-pressed="true"] .hl-label {
   color: var(--blue-700);
   font-weight: 700;
-}
-
-.sample-note {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.78rem;
-  color: var(--text-faint);
-  background: var(--surface-2);
-  border: 1px solid var(--line);
-  padding: 0.42rem 0.8rem;
-  border-radius: var(--r-full);
-  margin-block-end: 1.5rem;
-}
-
-.sample-dot {
-  inline-size: 6px;
-  block-size: 6px;
-  border-radius: 50%;
-  background: var(--blue-400);
-  flex: none;
 }
 
 .empty-state {
@@ -666,17 +492,6 @@ body.is-locked {
   padding: 6cqw;
 }
 
-/* أغلفة المشاريع: عنوان قصير فقط */
-.project-media .cover-note {
-  max-width: 26ch;
-  font-size: 0.86rem;
-  line-height: 2;
-}
-
-.project-media .cover-label {
-  font-size: 0.78rem;
-}
-
 /* غلاف نافذة التفاصيل: شريط أفقي بلا عنوان مكرّر */
 .sheet-cover .cover-inner {
   padding: 4.4cqw 5cqw;
@@ -717,125 +532,6 @@ body.is-locked {
   .cover--corner .cover-index {
     font-size: 26cqw;
   }
-}
-
-/* Projects ---------------------------------------------------------------- */
-.project-list {
-  display: grid;
-  gap: clamp(1rem, 2vw, 1.6rem);
-}
-
-.project {
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
-  border: 1px solid var(--line);
-  border-radius: var(--r-xl);
-  overflow: hidden;
-  background: var(--surface);
-  transition: border-color var(--t-base), box-shadow var(--t-base);
-}
-
-.project:hover {
-  border-color: var(--line-strong);
-  box-shadow: var(--shadow-2);
-}
-
-.project-media {
-  position: relative;
-  border-inline-end: 1px solid var(--line);
-  min-block-size: 100%;
-}
-
-.project-media .cover {
-  block-size: 100%;
-  min-block-size: 340px;
-  aspect-ratio: auto;
-}
-
-.project-body {
-  padding: clamp(1.3rem, 3vw, 2.4rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-}
-
-.project-index {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.76rem;
-  letter-spacing: 0.18em;
-  color: var(--blue-400);
-}
-
-.project h3 {
-  font-size: var(--fs-h3);
-}
-
-.project-summary {
-  color: var(--text-soft);
-  font-size: 0.95rem;
-  line-height: 1.8;
-}
-
-.project-meta {
-  display: grid;
-  gap: 0.3rem;
-  font-size: 0.8rem;
-  margin-block: 0.3rem;
-}
-
-.project-meta > div {
-  display: flex;
-  gap: 0.5rem;
-  align-items: baseline;
-}
-
-.project-meta dt {
-  color: var(--text-faint);
-  min-inline-size: 4.6rem;
-  flex: none;
-}
-
-.project-meta dd {
-  margin: 0;
-  color: var(--text);
-  font-weight: 600;
-}
-
-.project-foot {
-  margin-block-start: auto;
-  padding-block-start: 1rem;
-  border-block-start: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.link-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  min-block-size: 32px;
-  background: none;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  color: var(--blue-600);
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-.link-btn:hover {
-  color: var(--blue-700);
-}
-
-.link-btn svg {
-  transition: transform var(--t-fast) var(--ease-out);
-}
-
-.link-btn:hover svg {
-  transform: translateX(-3px);
 }
 
 /* Philosophy -------------------------------------------------------------- */
@@ -1029,56 +725,6 @@ body.is-locked {
   font-size: 0.9rem;
   color: var(--text-soft);
   line-height: 1.8;
-}
-
-/* Contact — bloc هادئ داخل تيار البروفايل --------------------------------- */
-.contact .stream-head {
-  margin-block-end: 0.9rem;
-}
-
-.contact-lead {
-  color: var(--text-soft);
-  font-size: var(--fs-sm);
-  line-height: 1.9;
-  max-width: 54ch;
-}
-
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-block-start: 1.2rem;
-}
-
-.contact-links a,
-.contact-links span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  min-block-size: 44px;
-  padding: 0.5rem 0.95rem;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r-full);
-  color: var(--blue-700);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 600;
-  background: var(--surface);
-  transition: background var(--t-fast) var(--ease-out), border-color var(--t-fast) var(--ease-out),
-    color var(--t-fast) var(--ease-out);
-}
-
-.contact-links a:hover {
-  background: var(--surface-2);
-  border-color: var(--blue-400);
-  color: var(--blue-700);
-}
-
-.contact-links .is-placeholder {
-  color: var(--text-faint);
-  background: var(--surface-2);
-  border-color: transparent;
-  font-weight: 500;
 }
 
 /* Sheet (post / project detail) ------------------------------------------- */
@@ -1322,20 +968,6 @@ body.is-locked {
     gap: 0.5rem;
   }
 
-  .project {
-    grid-template-columns: 1fr;
-  }
-
-  .project-media {
-    border-inline-end: 0;
-    border-block-end: 1px solid var(--line);
-  }
-
-  .project-media .cover {
-    min-block-size: 0;
-    aspect-ratio: 16 / 9;
-  }
-
   .sheet {
     width: 100%;
     max-height: 100dvh;
@@ -1347,32 +979,7 @@ body.is-locked {
 
 }
 
-@media (max-width: 900px) {
-  .id-card {
-    margin-block-start: 10px;
-  }
-
-  .id-card::before {
-    inset-inline: -6px;
-    inset-block-start: -10px;
-    block-size: clamp(8rem, 28vw, 9.2rem);
-    border-radius: var(--r-xl);
-  }
-
-  .id-card::after {
-    inset-block-start: -3.4rem;
-    inset-inline-end: -2rem;
-    inline-size: 8rem;
-    block-size: 8rem;
-  }
-}
-
 @media (max-width: 620px) {
-  .id-avatar {
-    inline-size: 100px;
-    block-size: 100px;
-  }
-
   .icon-btn {
     inline-size: 44px;
     block-size: 44px;
@@ -1385,10 +992,6 @@ body.is-locked {
   .pull {
     font-size: 1.08rem;
     padding-inline-start: 0.9rem;
-  }
-
-  .link-btn {
-    min-block-size: 44px;
   }
 
   .pillars-grid {

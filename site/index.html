@@ -5,23 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>عبد القادر عماري — معلّم أطفال، مؤسّس أكاديمية تعليمية، وكاتب</title>
-  <meta name="description" content="بروفايل شخصي: نبذة، مسار، مشاريع، منشورات ونصوص عن التعليم والطفل والكتابة، مع روابط التواصل." />
-  <meta name="theme-color" content="#0A5CC8" />
+  <meta name="description" content="بروفايل شخصي لعبد القادر عماري: التعليم، المسار، المشاريع، الكتابة ووسائل التواصل." />
+  <meta name="theme-color" content="#004C99" />
   <meta name="color-scheme" content="light" />
 
   <meta property="og:type" content="profile" />
   <meta property="og:title" content="عبد القادر عماري — بروفايل شخصي" />
-  <meta property="og:description" content="معلّم أطفال، مؤسّس أكاديمية تعليمية، وكاتب. نبذة ومسار ومشاريع ومنشورات." />
+  <meta property="og:description" content="معلّم أطفال، مؤسّس أكاديمية تعليمية، وكاتب. نبذة ومسار ومشاريع وكتابة." />
   <meta property="og:locale" content="ar_DZ" />
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230A5CC8'/%3E%3Ctext x='32' y='42' font-family='sans-serif' font-size='24' font-weight='700' fill='white' text-anchor='middle'%3E%D8%B9%3C/text%3E%3C/svg%3E" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap"
-    rel="stylesheet"
-  />
 
   <link rel="stylesheet" href="assets/css/tokens.css" />
   <link rel="stylesheet" href="assets/css/base.css" />
@@ -31,215 +24,167 @@
 
 <body>
   <a class="skip-link" href="#main">تجاوز إلى المحتوى</a>
-  <div class="topline" aria-hidden="true"></div>
 
-  <!-- خلفية الصورة: شريط يملأ أعلى الشاشة بعرضها (سطح المكتب) -->
-  <div class="hero-band" aria-hidden="true"></div>
+  <div class="hero" id="top">
+    <div class="hero-art" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <header class="site-header">
+        <div class="header-row">
+          <a class="brand" href="#top" aria-label="عبد القادر عماري — أعلى الصفحة">
+            <span class="brand-text"><strong data-bind="name">عبد القادر عماري</strong></span>
+          </a>
 
-  <header class="site-header" id="top">
-    <div class="header-inner">
-      <a class="brand" href="#top" aria-label="عبد القادر عماري — أعلى الصفحة">
-        <span class="brand-avatar" aria-hidden="true" data-bind="monogramShort">ع</span>
-        <span class="brand-text">
-          <strong data-bind="name">عبد القادر عماري</strong>
-          <span data-bind="brandSub">معلّم · كاتب</span>
-        </span>
-      </a>
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="فتح القائمة">
+            <span class="sr-only">فتح القائمة</span>
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+              <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
 
-      <p class="nav-heading">استكشف</p>
-      <nav class="nav" aria-label="أقسام البروفايل">
-        <a href="#intro" title="نبذة">
-          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <circle cx="12" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7" />
-            <path d="M5.5 19c.8-3.2 3.05-4.8 6.5-4.8s5.7 1.6 6.5 4.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-          </svg>
-          <span>نبذة</span>
-        </a>
-        <a href="#path" title="المسار">
-          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M6 18V9m6 9V5m6 13v-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-            <path d="M4.5 18.5h15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-          </svg>
-          <span>المسار</span>
-        </a>
-        <a href="#projects" title="المشاريع">
-          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <rect x="5" y="5" width="5.5" height="5.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.7" />
-            <rect x="13.5" y="5" width="5.5" height="5.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.7" />
-            <rect x="5" y="13.5" width="5.5" height="5.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.7" />
-            <rect x="13.5" y="13.5" width="5.5" height="5.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.7" />
-          </svg>
-          <span>المشاريع</span>
-        </a>
-        <a href="#feed" title="المحتوى">
-          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <rect x="5" y="4.5" width="14" height="15" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7" />
-            <path d="M8.5 9h7m-7 3h7m-7 3h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-          </svg>
-          <span>المحتوى</span>
-        </a>
-        <a href="#writing" title="الكتابة">
-          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="m7 17-1 1 1 1 1-1m1.4-8.7 6.3-6.3a1.65 1.65 0 0 1 2.3 0l.7.7a1.65 1.65 0 0 1 0 2.3l-6.3 6.3-4.2 1.2 1.2-4.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M13.7 5.3 17.7 9.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
-          </svg>
-          <span>الكتابة</span>
-        </a>
-        <a href="#contact" title="تواصل">
-          <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <rect x="4.5" y="6.5" width="15" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.7" />
-            <path d="m6 8 6 4.7L18 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          <span>تواصل</span>
-        </a>
-      </nav>
+        <nav class="site-menu" id="site-menu" aria-label="أقسام البروفايل" hidden>
+          <a href="#intro">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7" />
+              <path d="M5.5 19c.8-3.2 3.05-4.8 6.5-4.8s5.7 1.6 6.5 4.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            </svg>
+            <span>نبذة</span>
+          </a>
+          <a href="#now">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.7" />
+              <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            </svg>
+            <span>الآن</span>
+          </a>
+          <a href="#path">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M6 18V9m6 9V5m6 13v-6M4.5 18.5h15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            <span>المسار</span>
+          </a>
+          <a href="#projects">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="5" y="5" width="5.5" height="5.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.7" />
+              <rect x="13.5" y="5" width="5.5" height="5.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.7" />
+              <rect x="5" y="13.5" width="5.5" height="5.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.7" />
+              <rect x="13.5" y="13.5" width="5.5" height="5.5" rx="1" fill="none" stroke="currentColor" stroke-width="1.7" />
+            </svg>
+            <span>المشاريع</span>
+          </a>
+          <a href="#feed">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="5" y="4.5" width="14" height="15" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7" />
+              <path d="M8.5 9h7m-7 3h7m-7 3h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            </svg>
+            <span>المحتوى</span>
+          </a>
+          <a href="#writing">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="m7 17-1 1 1 1 1-1m1.4-8.7 6.3-6.3a1.65 1.65 0 0 1 2.3 0l.7.7a1.65 1.65 0 0 1 0 2.3l-6.3 6.3-4.2 1.2 1.2-4.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M13.7 5.3 17.7 9.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            </svg>
+            <span>الكتابة</span>
+          </a>
+          <a href="#philosophy">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+            </svg>
+            <span>ما أعود إليه</span>
+          </a>
+          <a href="#contact">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="4.5" y="6.5" width="15" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.7" />
+              <path d="m6 8 6 4.7L18 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>تواصل</span>
+          </a>
+        </nav>
+      </header>
 
-      <div class="sidebar-foot">
-        <span class="sidebar-caption"><span aria-hidden="true"></span>بروفايل شخصي</span>
-        <a class="sidebar-top" href="#top">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="m7 11 5-5 5 5M12 6v12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          <span>أعلى الصفحة</span>
-        </a>
-      </div>
-
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
-        <span class="sr-only">فتح القائمة</span>
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
-          <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-        </svg>
-      </button>
+      <section class="hero-copy" aria-labelledby="hero-title">
+        <p class="hero-kicker" data-bind="rolesLine">معلّم أطفال · مؤسّس أكاديمية تعليمية · كاتب</p>
+        <h1 class="hero-title" id="hero-title" data-bind="headline">أعلّم، وأكتب، وأبني مساحاتٍ يتعلّم فيها الطفل بأمان.</h1>
+      </section>
     </div>
-
-    <nav class="mobile-nav" id="mobile-nav" aria-label="أقسام البروفايل على الهاتف" hidden>
-      <a href="#intro">نبذة</a>
-      <a href="#path">المسار</a>
-      <a href="#projects">المشاريع</a>
-      <a href="#feed">المحتوى</a>
-      <a href="#writing">الكتابة</a>
-      <a href="#contact">تواصل</a>
-    </nav>
-  </header>
+  </div>
 
   <main id="main" tabindex="-1" class="wrap profile-layout">
-    <!-- بطاقة التعريف — تُلازم الصفحة يمينًا -->
-    <aside class="rail" aria-label="بطاقة التعريف">
+    <aside class="rail" aria-label="معلومات عن صاحب البروفايل">
       <div class="id-card">
         <div class="id-avatar" data-photo-slot>
           <span class="id-monogram" data-bind="monogram">ع . ع</span>
-          <span class="id-ring" aria-hidden="true"></span>
         </div>
-
-        <h1 class="id-name" data-bind="name">عبد القادر عماري</h1>
-        <p class="id-roles" data-bind="rolesLine"></p>
-
-        <dl class="id-meta" id="id-meta"></dl>
-
         <p class="id-bio" data-bind="shortBio"></p>
-
-        <ul class="id-links" id="profile-links" aria-label="روابط"></ul>
-
-        <p class="id-note" data-bind="note"></p>
+        <dl class="id-meta" id="id-meta"></dl>
       </div>
     </aside>
 
     <div class="stream">
-      <!-- نبذة -->
       <section class="stream-section" id="intro" aria-labelledby="intro-title">
         <header class="stream-head">
-          <h2 id="intro-title" data-bind="introTitle">نبذة</h2>
+          <h2 id="intro-title">نبذة</h2>
         </header>
-
-        <p class="lead" data-bind="headline"></p>
         <p class="lead-bio" data-bind="bio"></p>
       </section>
 
-      <!-- الآن -->
       <section class="stream-section" id="now" aria-labelledby="now-title">
         <header class="stream-head">
           <h2 id="now-title" data-bind="nowTitle">الآن</h2>
         </header>
-
         <ul class="now-list" id="now-list"></ul>
       </section>
 
-      <!-- المسار -->
       <section class="stream-section" id="path" aria-labelledby="path-title">
         <header class="stream-head">
           <h2 id="path-title" data-bind="pathTitle">المسار</h2>
           <p class="stream-intro" data-bind="pathIntro"></p>
         </header>
-
         <ol class="timeline" id="timeline"></ol>
-
-        <p class="stream-note">
-          هذا بروفايلي الشخصي. مشروع <strong>NG Academy</strong> مذكور هنا كأحد أعمالي،
-          وله هويته وقنواته المستقلة تمامًا؛ لم يُستخدم أي شعار أو مادة ترويجية للأكاديمية في هذه المساحة.
-        </p>
       </section>
 
-      <!-- المشاريع -->
       <section class="stream-section" id="projects" aria-labelledby="projects-title">
         <header class="stream-head">
           <h2 id="projects-title" data-bind="projectsTitle">المشاريع</h2>
           <p class="stream-intro" data-bind="projectsIntro"></p>
         </header>
-
         <div class="project-list" id="project-list"></div>
       </section>
 
-      <!-- المحتوى -->
       <section class="stream-section" id="feed" aria-labelledby="feed-title">
         <header class="stream-head">
           <h2 id="feed-title" data-bind="feedTitle">المحتوى</h2>
           <p class="stream-intro" data-bind="feedIntro"></p>
         </header>
-
         <div class="hl-row" id="filters" role="group" aria-label="تصفية المحتوى"></div>
-
-        <p class="sample-note">
-          <span class="sample-dot" aria-hidden="true"></span>
-          محتوى تجريبي قابل للاستبدال من ملف البيانات — لا توجد أرقام أداء أو شهادات.
-        </p>
-
         <div class="feed-grid" id="feed-grid"></div>
-
         <p class="empty-state" id="empty-state" hidden data-bind="emptyState"></p>
       </section>
 
-      <!-- الكتابة -->
       <section class="stream-section" id="writing" aria-labelledby="writing-title">
         <header class="stream-head">
           <h2 id="writing-title" data-bind="writingTitle">من الكتابة</h2>
         </header>
-
         <div class="writing-list" id="writing-list"></div>
       </section>
 
-      <!-- ما أعود إليه -->
       <section class="stream-section" id="philosophy" aria-labelledby="philosophy-title">
         <header class="stream-head">
           <h2 id="philosophy-title" data-bind="philosophyTitle">ما أعود إليه</h2>
           <p class="stream-intro" data-bind="philosophyIntro"></p>
         </header>
-
         <ol class="principles" id="principles"></ol>
-
         <div class="pillars">
           <h3 class="pillars-title">ثلاث ركائز أعمل بها</h3>
           <div class="pillars-grid" id="pillars"></div>
         </div>
       </section>
 
-      <!-- تواصل -->
       <section class="stream-section contact" id="contact" aria-labelledby="contact-title">
         <header class="stream-head">
           <h2 id="contact-title" data-bind="contactTitle">تواصل</h2>
         </header>
-
         <p class="contact-lead" data-bind="contactLead"></p>
-
         <ul class="contact-links" id="contact-links"></ul>
       </section>
     </div>
@@ -247,15 +192,11 @@
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
-      <p class="footer-mark"><span data-bind="monogram">ع . ع</span> — <span data-bind="name"></span></p>
-      <p class="footer-note">
-        © <span id="year"></span> · بروفايل شخصي مستقل · تصميم وتنفيذ على أساس دليل الهوية البصرية
-      </p>
+      <p class="footer-note">© <span id="year"></span> · بروفايل شخصي مستقل</p>
       <a class="to-top" href="#top">إلى الأعلى</a>
     </div>
   </footer>
 
-  <!-- منشور / مشروع -->
   <dialog class="sheet" id="sheet" aria-labelledby="sheet-title">
     <div class="sheet-bar">
       <p class="sheet-crumb" id="sheet-crumb"></p>

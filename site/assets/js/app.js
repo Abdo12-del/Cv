@@ -59,21 +59,10 @@ function bindText(data) {
   const map = {
     name: data.profile.name,
     monogram: data.profile.monogram,
-    monogramShort: data.profile.monogram.trim().split(/\s+/)[0],
     headline: data.profile.headline,
     bio: data.profile.bio,
     shortBio: data.profile.shortBio,
     rolesLine: data.profile.rolesLine,
-    note: data.profile.note,
-    brandSub: (() => {
-      const roles = data.profile.rolesLine
-        .split("·")
-        .map((r) => r.trim())
-        .filter((r) => r && !/NG/i.test(r));
-      if (roles.length <= 2) return roles.join(" · ");
-      return `${roles[0]} · ${roles[roles.length - 1]}`;
-    })(),
-    introTitle: data.ui.introTitle,
     nowTitle: data.ui.nowTitle,
     pathTitle: data.ui.pathTitle,
     pathIntro: data.ui.pathIntro,
@@ -123,28 +112,6 @@ function renderNow(data) {
         <p>${esc(item.text)}</p>
       </li>`
     )
-    .join("");
-}
-
-function renderProfileLinks(data) {
-  const wrap = byId("profile-links");
-  if (!wrap) return;
-
-  wrap.innerHTML = data.profile.links
-    .map((link) => {
-      if (link.href) {
-        return `<li>
-          <a class="link-chip" href="${esc(link.href)}" rel="me noopener" target="_blank">
-            <span class="placeholder-dot" aria-hidden="true"></span>${esc(link.label)}
-          </a>
-        </li>`;
-      }
-      return `<li>
-        <span class="link-chip is-placeholder" title="رابط تجريبي — يُضاف من ملف البيانات">
-          <span class="placeholder-dot" aria-hidden="true"></span>${esc(link.label)}
-        </span>
-      </li>`;
-    })
     .join("");
 }
 
@@ -231,49 +198,63 @@ function renderFeed(data) {
   });
 }
 
+function publishedProjects(data) {
+  return (data.projects || []).filter((project) => project.published !== false);
+}
+
+function projectMedia(project) {
+  if (!project.image) return "";
+  const alt = project.imageAlt || `معاينة ${project.title}`;
+  return `<figure class="project-media"><img src="${esc(project.image)}" alt="${esc(alt)}" loading="lazy" /></figure>`;
+}
+
+function linkTarget(href) {
+  return /^https?:\/\//i.test(String(href)) ? ' target="_blank" rel="noopener noreferrer"' : "";
+}
+
 function renderProjects(data) {
   const wrap = byId("project-list");
+  const projects = publishedProjects(data);
 
-  wrap.innerHTML = data.projects
+  if (!projects.length) {
+    wrap.innerHTML = '<p class="empty-state">لا توجد مشاريع منشورة حاليًا.</p>';
+    return;
+  }
+
+  wrap.innerHTML = projects
     .map((project, i) => {
-      const number = String(i + 1).padStart(2, "0");
-      const tones = ["navy", "paper", "royal"];
-      const motifs = ["frame", "dots", "lines"];
-      const layouts = ["corner", "split", "center"];
+      const meta = [
+        ["الفترة", project.period],
+        ["الحالة", project.status],
+        ["النطاق", project.scope],
+      ].filter((item) => item[1]);
+      const visitLink = project.href
+        ? `<a class="project-link" href="${esc(project.href)}"${linkTarget(project.href)}>
+             زيارة المشروع
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+               <path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" />
+             </svg>
+           </a>`
+        : "";
 
       return `
       <article class="project reveal" style="--d:${i * 70}ms">
-        <div class="project-media">
-          ${coverHTML({
-            title: "",
-            label: project.role,
-            note: project.scope,
-            tone: tones[i % tones.length],
-            motif: motifs[i % motifs.length],
-            layout: layouts[i % layouts.length],
-            index: number,
-          })}
-        </div>
-
+        ${projectMedia(project)}
         <div class="project-body">
-          <p class="project-index">مشروع ${number}</p>
+          <p class="project-role">${esc(project.role)}</p>
           <h3>${esc(project.title)}</h3>
           <p class="project-summary">${esc(project.summary)}</p>
-
           <dl class="project-meta">
-            <div><dt>الدور</dt><dd>${esc(project.role)}</dd></div>
-            <div><dt>المدى</dt><dd>${esc(project.period)}</dd></div>
-            <div><dt>الحالة</dt><dd>${esc(project.status)}</dd></div>
+            ${meta.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join("")}
           </dl>
-
           <div class="project-foot">
             <button class="link-btn" type="button" data-open="project" data-slug="${esc(project.slug)}">
-              عرض المشروع
-              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+              تفاصيل المشروع
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                 <path d="M19 12H5m6-6-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </button>
-            <span class="tag tag--ghost">${esc(project.scope.split("·")[0].trim())}</span>
+            ${visitLink}
           </div>
         </div>
       </article>`;
@@ -281,7 +262,7 @@ function renderProjects(data) {
     .join("");
 
   wrap.addEventListener("click", (event) => {
-    const btn = event.target.closest("[data-open]");
+    const btn = event.target.closest('[data-open="project"]');
     if (!btn) return;
     openItem("project", btn.dataset.slug, btn);
   });
@@ -342,18 +323,40 @@ function renderTimeline(data) {
     .join("");
 }
 
+function contactIcon(label) {
+  const value = String(label).toLowerCase();
+  let shape = '<path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" />';
+
+  if (value.includes("بريد") || value.includes("email")) {
+    shape = '<rect x="3.5" y="5.5" width="17" height="13" rx="2" /><path d="m5 7 7 5.5L19 7" stroke-linecap="round" stroke-linejoin="round" />';
+  } else if (value.includes("إنستغرام") || value.includes("instagram")) {
+    shape = '<rect x="4" y="4" width="16" height="16" rx="4" /><circle cx="12" cy="12" r="3.5" /><circle cx="17.5" cy="6.8" r=".75" fill="currentColor" stroke="none" />';
+  } else if (value.includes("يوتيوب") || value.includes("youtube")) {
+    shape = '<rect x="3.5" y="6" width="17" height="12" rx="3" /><path d="m10 9 5 3-5 3Z" fill="currentColor" stroke="none" />';
+  } else if (value.includes("تيك") || value.includes("tiktok")) {
+    shape = '<path d="M14 4v10.1a4.1 4.1 0 1 1-3-3.95M14 4c.6 2.6 2.3 4.2 5 4.6" stroke-linecap="round" stroke-linejoin="round" />';
+  }
+
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">${shape}</svg>`;
+}
+
 function renderContact(data) {
   const wrap = byId("contact-links");
-  wrap.innerHTML = data.profile.links
-    .map((link) => {
-      const icon = `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-        <path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" /></svg>`;
+  const links = (data.profile.links || []).filter((link) => String(link.href || "").trim());
 
-      if (link.href) {
-        return `<li><a href="${esc(link.href)}" target="_blank" rel="me noopener">${esc(link.label)} ${icon}</a></li>`;
-      }
-      return `<li><span class="is-placeholder" title="يُضاف من ملف البيانات">${esc(link.label)} · قريبًا</span></li>`;
-    })
+  if (!links.length) {
+    wrap.innerHTML = '<li class="contact-empty">لا توجد روابط تواصل منشورة حاليًا.</li>';
+    return;
+  }
+
+  wrap.innerHTML = links
+    .map((link) => `
+      <li>
+        <a href="${esc(link.href)}"${linkTarget(link.href)}>
+          ${contactIcon(link.label)}
+          <span>${esc(link.label)}</span>
+        </a>
+      </li>`)
     .join("");
 }
 
@@ -426,11 +429,6 @@ function postMarkup(data, post) {
 
     ${post.quote ? `<blockquote class="pull">${esc(post.quote)}</blockquote>` : ""}
 
-    <p class="sheet-note">
-      <strong>ملاحظة:</strong> هذا نصّ تجريبي مكتوب لاختبار النظام البصري، وليس منشورًا حقيقيًا منشورًا على حساب.
-      يمكن استبداله بالكامل من <span dir="ltr">data/content.json</span> دون تعديل الكود.
-    </p>
-
     <div class="sheet-foot">
       ${relatedButton(data, post)}
       <span class="sheet-hint">${esc(data.ui.dialogHint)}</span>
@@ -441,72 +439,58 @@ function relatedButton(data, post) {
   if (!post.relatedProject) {
     return `<span>${esc(post.id)} · ${esc(post.axis)}</span>`;
   }
-  const project = data.projects.find((p) => p.slug === post.relatedProject);
+  const project = publishedProjects(data).find((item) => item.slug === post.relatedProject);
   if (!project) return `<span>${esc(post.id)} · ${esc(post.axis)}</span>`;
 
   return `<button class="link-btn" type="button" data-open-project="${esc(project.slug)}">
       المشروع المرتبط: ${esc(project.shortTitle || project.title)}
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
         <path d="M19 12H5m6-6-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     </button>`;
 }
 
 function projectMarkup(data, project) {
-  const idx = data.projects.findIndex((p) => p.slug === project.slug);
-  const num = String(idx + 1).padStart(2, "0");
-  const tones = ["navy", "paper", "royal"];
-  const motifs = ["frame", "dots", "lines"];
-  const layouts = ["corner", "split", "center"];
+  const projects = publishedProjects(data);
+  const idx = projects.findIndex((item) => item.slug === project.slug);
+  const number = String(idx + 1).padStart(2, "0");
+  const meta = [
+    ["الفترة", project.period],
+    ["الحالة", project.status],
+    ["النطاق", project.scope],
+  ].filter((item) => item[1]);
+  const approach = Array.isArray(project.approach) ? project.approach : [];
+  const detail = [
+    project.challenge ? `<h3>التحدّي</h3><p>${esc(project.challenge)}</p>` : "",
+    approach.length
+      ? `<h3>المقاربة</h3><ul class="approach">${approach.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>`
+      : "",
+    project.outcome ? `<h3>النتيجة</h3><p>${esc(project.outcome)}</p>` : "",
+  ].filter(Boolean).join("");
+  const note = project.note
+    ? `<p class="sheet-note">${project.separation ? "<strong>فصل الهويات:</strong> " : ""}${esc(project.note)}</p>`
+    : "";
+  const visitLink = project.href
+    ? `<a class="project-link" href="${esc(project.href)}"${linkTarget(project.href)}>زيارة المشروع</a>`
+    : "";
 
   return `
-    <div class="sheet-cover">
-      ${coverHTML({
-        title: "",
-        label: project.role,
-        note: project.scope,
-        tone: tones[idx % tones.length],
-        motif: motifs[idx % motifs.length],
-        layout: layouts[idx % layouts.length],
-        index: num,
-        wide: true,
-      })}
-    </div>
-
+    ${projectMedia(project)}
     <div class="sheet-head">
       <div class="tag-row">
         <span class="tag">${esc(project.role)}</span>
-        <span class="tag tag--ghost">${esc(project.period)}</span>
-        <span class="tag tag--pending">${esc(project.status)}</span>
       </div>
       <h2 id="sheet-title">${esc(project.title)}</h2>
       <p class="sheet-dek">${esc(project.summary)}</p>
     </div>
 
-    <dl class="sheet-meta">
-      <div><dt>الدور</dt><dd>${esc(project.role)}</dd></div>
-      <div><dt>الفترة</dt><dd>${esc(project.period)}</dd></div>
-      <div><dt>الحالة</dt><dd>${esc(project.status)}</dd></div>
-      <div><dt>النطاق</dt><dd>${esc(project.scope)}</dd></div>
-    </dl>
-
-    <div class="prose">
-      <h3>التحدّي</h3>
-      <p>${esc(project.challenge)}</p>
-      <h3>المقاربة</h3>
-      <ul class="approach">
-        ${project.approach.map((a) => `<li>${esc(a)}</li>`).join("")}
-      </ul>
-      <h3>النتيجة</h3>
-      <p>${esc(project.outcome)}</p>
-    </div>
-
-    <p class="sheet-note">
-      ${project.separation ? "<strong>فصل الهويات:</strong> " : ""}${esc(project.note)}
-    </p>
+    ${meta.length ? `<dl class="sheet-meta">${meta.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join("")}</dl>` : ""}
+    ${detail ? `<div class="prose">${detail}</div>` : ""}
+    ${note}
 
     <div class="sheet-foot">
-      <span>مشروع ${num} من ${data.projects.length}</span>
+      <span>مشروع ${number} من ${projects.length}</span>
+      ${visitLink}
       <span class="sheet-hint">Esc للإغلاق</span>
     </div>`;
 }
@@ -560,9 +544,10 @@ function openItem(type, slug, opener) {
     const cat = data.categories.find((c) => c.id === post.category);
     crumb.textContent = `المحتوى / ${cat ? cat.label : ""}`;
   } else {
-    const project = data.projects.find((p) => p.slug === slug);
+    const projects = publishedProjects(data);
+    const project = projects.find((item) => item.slug === slug);
     if (!project) return;
-    state.order = data.projects.map((p) => p.slug);
+    state.order = projects.map((item) => item.slug);
     state.index = state.order.indexOf(slug);
     markup = projectMarkup(data, project);
     crumb.textContent = "المشاريع";
@@ -685,111 +670,42 @@ function initReveal() {
   items.forEach((item) => io.observe(item));
 }
 
-/* ------------------------------------------------------------ hero band -- */
-/* ارتفاع شريط الخلفية العلوي = ارتفاع العنوان الكبير + فراغ، فيتّسع النص
-   دائمًا ولا يُقطع. القيم تُقرأ من CSS لتبقى المصادر واحدة. */
-function cssLength(name) {
-  const probe = document.createElement("span");
-  probe.style.cssText = `position:absolute;visibility:hidden;pointer-events:none;inline-size:var(${name});block-size:0`;
-  document.body.appendChild(probe);
-  const px = probe.getBoundingClientRect().width;
-  probe.remove();
-  return px;
-}
-
-function initHeroBand() {
-  const lead = el("#intro .lead");
-  const band = el(".hero-band");
-  if (!lead || !band) return;
-
-  const root = document.documentElement;
-  let frame = 0;
-
-  const card = el(".id-card");
-  const rail = el(".rail");
-
-  const measure = () => {
-    frame = 0;
-
-    if (!window.matchMedia("(min-width: 1100px)").matches) {
-      root.style.removeProperty("--hero-h");
-      if (rail) rail.classList.remove("rail--flow");
-      return;
-    }
-
-    // ارتفاع الشريط = نهاية العنوان الكبير + فراغ، محسوبًا من أعلى الصفحة
-    const gap = cssLength("--hero-gap") || 40;
-    const leadBottom = lead.getBoundingClientRect().bottom + window.scrollY;
-    root.style.setProperty("--hero-h", `${Math.round(leadBottom + gap)}px`);
-
-    // بطاقة أطول من الشاشة لا تُثبَّت، حتى يبقى أسفلها في المتناول
-    if (rail && card) {
-      const stickOffset = cssLength("--hero-top") || 24;
-      const tooTall = card.getBoundingClientRect().height + stickOffset * 2 > window.innerHeight;
-      rail.classList.toggle("rail--flow", tooTall);
-    }
-  };
-
-  const schedule = () => {
-    if (frame) return;
-    frame = requestAnimationFrame(measure);
-  };
-
-  measure();
-  window.addEventListener("resize", schedule, { passive: true });
-
-  if ("ResizeObserver" in window) {
-    const ro = new ResizeObserver(schedule);
-    ro.observe(lead);
-  }
-
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(schedule).catch(() => {});
-  }
-}
-
+/* ------------------------------------------------------------------ menu -- */
 function initHeader() {
-  const header = el(".site-header");
-  const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
-
   const toggle = el(".nav-toggle");
-  const panel = byId("mobile-nav");
+  const panel = byId("site-menu");
 
   if (toggle && panel) {
+    const setMenuOpen = (open) => {
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "إغلاق القائمة" : "فتح القائمة");
+      const label = el(".sr-only", toggle);
+      if (label) label.textContent = open ? "إغلاق القائمة" : "فتح القائمة";
+      panel.hidden = !open;
+    };
+
     toggle.addEventListener("click", () => {
-      const open = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!open));
-      panel.hidden = open;
+      setMenuOpen(toggle.getAttribute("aria-expanded") !== "true");
     });
 
     panel.addEventListener("click", (event) => {
-      if (event.target.closest("a")) {
-        toggle.setAttribute("aria-expanded", "false");
-        panel.hidden = true;
-      }
+      if (event.target.closest("a")) setMenuOpen(false);
+    });
+
+    document.addEventListener("pointerdown", (event) => {
+      if (!panel.hidden && !event.target.closest(".site-header")) setMenuOpen(false);
     });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && !panel.hidden) {
-        toggle.setAttribute("aria-expanded", "false");
-        panel.hidden = true;
+        setMenuOpen(false);
         toggle.focus();
-      }
-    });
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth >= 1100 && !panel.hidden) {
-        toggle.setAttribute("aria-expanded", "false");
-        panel.hidden = true;
       }
     });
   }
 
-  // تمييز القسم الحالي في الشريط الجانبي وقائمة الهاتف معًا
-  const links = els(".nav a, .mobile-nav a");
-  const sectionIds = [...new Set(links.map((a) => a.getAttribute("href").slice(1)))];
+  const links = els(".site-menu a");
+  const sectionIds = [...new Set(links.map((link) => link.getAttribute("href").slice(1)))];
   const sections = sectionIds.map((id) => byId(id)).filter(Boolean);
 
   if ("IntersectionObserver" in window && sections.length) {
@@ -797,17 +713,17 @@ function initHeader() {
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          links.forEach((a) => {
-            const active = a.getAttribute("href") === `#${entry.target.id}`;
-            a.classList.toggle("is-active", active);
-            if (active) a.setAttribute("aria-current", "location");
-            else a.removeAttribute("aria-current");
+          links.forEach((link) => {
+            const active = link.getAttribute("href") === `#${entry.target.id}`;
+            link.classList.toggle("is-active", active);
+            if (active) link.setAttribute("aria-current", "location");
+            else link.removeAttribute("aria-current");
           });
         });
       },
-      { rootMargin: "-45% 0px -50% 0px" }
+      { rootMargin: "-30% 0px -55% 0px" }
     );
-    sections.forEach((s) => io.observe(s));
+    sections.forEach((section) => io.observe(section));
   }
 }
 
@@ -827,7 +743,6 @@ async function boot() {
     bindText(data);
     renderIdentity(data);
     renderNow(data);
-    renderProfileLinks(data);
     renderFilters(data);
     renderFeed(data);
     renderProjects(data);
@@ -839,7 +754,6 @@ async function boot() {
 
     initReveal();
     initSheet();
-    initHeroBand();
   } catch (error) {
     console.error("[content] failed to load:", error);
     const grid = byId("feed-grid");
