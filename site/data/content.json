@@ -31,18 +31,6 @@
         "label": "تيك توك",
         "handle": "@abdelkader_500",
         "href": "https://www.tiktok.com/@abdelkader_500"
-      },
-      {
-        "label": "يوتيوب",
-        "handle": "@",
-        "href": "",
-        "placeholder": true
-      },
-      {
-        "label": "البريد",
-        "handle": "—",
-        "href": "",
-        "placeholder": true
       }
     ],
     "meta": [
