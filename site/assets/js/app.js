@@ -26,6 +26,7 @@ const byId = (id) => document.getElementById(id);
 function platformIcon(platform = "") {
   const icons = {
     instagram: '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.8" r=".8" fill="currentColor" stroke="none"/>',
+    facebook: '<path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.6V3.9c-.8-.1-1.6-.2-2.5-.2-2.5 0-4.2 1.5-4.2 4.3V10H7.2v3h2.8v8z" fill="currentColor" stroke="none"/>',
     tiktok: '<path d="M14 4v10.2a3.3 3.3 0 1 1-2.8-3.25M14 4c.6 2.7 2.3 4.2 5 4.5" stroke-linecap="round" stroke-linejoin="round"/>',
     youtube: '<rect x="3" y="5.5" width="18" height="13" rx="4"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/>',
     email: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6" stroke-linecap="round" stroke-linejoin="round"/>',
