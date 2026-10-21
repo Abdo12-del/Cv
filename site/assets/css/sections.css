@@ -1,21 +1,63 @@
 /* ==========================================================================
-   Sections — تخطيط البروفايل: بطاقة تعريف ثابتة + تيار أقسام شخصي
-   (لا هيرو تسويقي، لا أشرطة CTA، لا أقسام مرقّمة — صفحة شخص واحد)
+   Sections — تخطيط البروفايل المتجاوب:
+   - الهاتف (< 960px): عمود واحد، البطاقة تتوسّط أعلى الصفحة بتداخل نظيف مع الغلاف.
+   - الحاسوب (>= 960px): تخطيط مكتبي من عمودين غير متناظرين (RTL):
+     بطاقة تعريف جانبية ثابتة على اليمين + مساحة عمل عريضة لتيار الأقسام على اليسار.
    ========================================================================== */
 
-/* Layout: rail + stream --------------------------------------------------- */
+body {
+  position: relative;
+}
+
+/* الغلاف العلوي الأزرق بعرض الشاشة الكامل --------------------------------- */
+.hero-band {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 226px;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(65% 120% at 88% 8%, rgba(42, 141, 240, 0.26), transparent 62%),
+    var(--blue-700);
+}
+
+.hero-band::before,
+.hero-band::after {
+  content: "";
+  position: absolute;
+  inline-size: 320px;
+  block-size: 320px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 50%;
+  inset-block-start: -170px;
+  inset-inline-end: -60px;
+}
+
+.hero-band::after {
+  inline-size: 430px;
+  block-size: 430px;
+  inset-block-start: -225px;
+  inset-inline-end: -115px;
+}
+
+/* Layout: rail + stream (Mobile default: 1 column) ------------------------ */
 .profile-layout {
   position: relative;
+  z-index: 1;
   display: grid;
   gap: clamp(2rem, 4vw, 3rem);
-  padding-block: 112px clamp(2.4rem, 6vw, 5rem);
+  padding-block: 108px clamp(2.4rem, 6vw, 5rem);
 }
-.rail { min-inline-size: 0; }
-.stream { min-inline-size: 0; }
+
+.rail,
+.stream {
+  min-inline-size: 0;
+}
 
 /* Stream sections --------------------------------------------------------- */
 .stream-section {
-  padding-block: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
+  padding-block: clamp(2rem, 1.4rem + 2.6vw, 3.2rem);
   border-block-start: 1px solid var(--line);
 }
 
@@ -25,14 +67,14 @@
 }
 
 .stream-head {
-  margin-block-end: clamp(1.1rem, 2.4vw, 1.7rem);
+  margin-block-end: clamp(1.05rem, 2.2vw, 1.55rem);
 }
 
 .stream-head h2 {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: clamp(1.28rem, 1.05rem + 0.9vw, 1.7rem);
+  font-size: clamp(1.28rem, 1.05rem + 0.85vw, 1.65rem);
 }
 
 /* شرطة قصيرة بدل الترقيم المؤسّسي (01 / 02 / 03) */
@@ -45,7 +87,7 @@
 }
 
 .stream-intro {
-  margin-block-start: 0.6rem;
+  margin-block-start: 0.55rem;
   max-width: 58ch;
   color: var(--text-soft);
   font-size: var(--fs-sm);
@@ -53,13 +95,13 @@
 }
 
 .stream-note {
-  margin-block-start: clamp(1.6rem, 3vw, 2.4rem);
+  margin-block-start: clamp(1.4rem, 2.6vw, 2rem);
   padding-inline-start: 0.9rem;
   border-inline-start: 2px solid var(--line-strong);
   font-size: 0.82rem;
   line-height: 1.85;
   color: var(--text-faint);
-  max-width: 56ch;
+  max-width: 60ch;
 }
 
 .stream-note strong {
@@ -69,9 +111,9 @@
 /* Intro ------------------------------------------------------------------- */
 .lead {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.45rem, 1.05rem + 2vw, 2.35rem);
-  line-height: 1.5;
+  font-weight: 800;
+  font-size: clamp(1.45rem, 1.05rem + 1.85vw, 2.25rem);
+  line-height: 1.44;
   max-width: 28ch;
 }
 
@@ -80,17 +122,17 @@
   display: block;
   inline-size: 64px;
   block-size: 3px;
-  margin-block-start: 1.1rem;
+  margin-block-start: 1.05rem;
   border-radius: 2px;
   background: var(--blue-600);
 }
 
 .lead-bio {
-  margin-block-start: 1.2rem;
-  max-width: 62ch;
+  margin-block-start: 1.15rem;
+  max-width: 64ch;
   color: var(--text-soft);
   font-size: var(--fs-md);
-  line-height: 1.95;
+  line-height: 1.92;
 }
 
 /* الآن -------------------------------------------------------------------- */
@@ -117,48 +159,14 @@
 
 .now-item p {
   color: var(--text-soft);
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   line-height: 1.85;
 }
 
-/* Feed -------------------------------------------------------------------- */
-.hl-row {
-  margin-block-end: 1.3rem;
-}
-
-.feed-grid {
-  grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
-}
-
-/* Projects ---------------------------------------------------------------- */
-.project {
-  grid-template-columns: 1fr;
-}
-
-.project-media {
-  border-inline-end: 0;
-  border-block-end: 1px solid var(--line);
-}
-
-.project-media .cover {
-  min-block-size: 168px;
-  block-size: auto;
-  aspect-ratio: 16 / 9;
-}
-
-.project-body {
-  gap: 0.55rem;
-}
-
-/* Pillars ----------------------------------------------------------------- */
-.pillars-grid {
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-}
-
-/* Contact — bloc هادئ داخل التيار، لا شريط دعائي -------------------------- */
+/* Contact ----------------------------------------------------------------- */
 .contact {
   background: transparent;
-  padding-block: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
+  padding-block: clamp(2rem, 1.4rem + 2.6vw, 3.2rem);
 }
 
 /* Motion stagger ---------------------------------------------------------- */
@@ -170,44 +178,238 @@
   transition-delay: var(--d, 0ms);
 }
 
-/* The cover reaches both edges on every viewport. Its bottom sits 28px
-   below the card's top; the avatar crosses this boundary without JS measuring. */
-body { position: relative; }
-.hero-band {
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline: 0;
-  block-size: 226px;
-  overflow: hidden;
-  pointer-events: none;
-  background: var(--blue-700);
+/* ==========================================================================
+   نسخة الحاسوب (>= 960px):
+   - تخطيط مكتبي أصيل من عمودين: بطاقة التعريف مثبتة على يمين الشاشة (RTL)،
+     وتيار المحتوى يمتد بعرض مريح على اليسار متقاطعًا بانسجام مع الغلاف العلوي.
+   - تحويل القوائم الطولية الضيقة إلى شبكات مكتبية متوازنة (الآن 3 أعمدة،
+     المسار 2×2، المشاريع بطاقات أفقية مقسومة، المبادئ 2×2، التواصل شريط مزدوج).
+   ========================================================================== */
+@media (min-width: 860px) {
+  .hero-band {
+    block-size: 236px;
+  }
+
+  .profile-layout {
+    --rail-avatar-half: 54px;
+    grid-template-columns: minmax(292px, 366px) minmax(0, 1fr);
+    gap: clamp(1.6rem, 2.8vw, 3.2rem);
+    align-items: start;
+    padding-block-start: 74px;
+  }
+
+  /* العمود الجانبي الأيمن: يثبّت البطاقة عند التمرير دون قصّ النصف العلوي للصورة */
+  .rail {
+    position: sticky;
+    inset-block-start: 88px;
+    padding-block-start: var(--rail-avatar-half);
+    margin-block-start: calc(var(--rail-avatar-half) * -1);
+  }
+
+  /* في النوافذ المكتبية القصيرة جدًا عموديًا تتحرّك البطاقة مع الصفحة بدل أن يُحجب أسفلها */
+  @media (max-height: 690px) {
+    .rail {
+      position: static;
+    }
+  }
+
+  /* بطاقة النبذة الافتتاحية: تبدأ على نفس خط الأفق العلوي لبطاقة التعريف تمامًا */
+  #intro {
+    padding: clamp(1.75rem, 2.6vw, 2.5rem);
+    border: 1px solid var(--line);
+    border-radius: var(--r-xl);
+    background: var(--surface);
+    box-shadow: 0 10px 30px -20px rgba(6, 43, 82, 0.24);
+  }
+
+  #intro + .stream-section {
+    border-block-start: 0;
+    padding-block-start: clamp(2rem, 2.8vw, 2.8rem);
+  }
+
+  #intro .lead {
+    max-width: 30ch;
+  }
+
+  /* «الآن»: 3 بطاقات أفقية متوازنة بدل القائمة المكدّسة */
+  .now-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .now-item {
+    position: relative;
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: 0.48rem;
+    padding: 1.2rem 1.3rem;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: var(--surface-2);
+    transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
+  }
+
+  .now-item:hover {
+    border-color: var(--line-strong);
+    background: var(--surface);
+  }
+
+  .now-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .now-label::before {
+    content: "";
+    inline-size: 18px;
+    block-size: 2.5px;
+    border-radius: 2px;
+    background: var(--blue-600);
+    flex: none;
+  }
+
+  .now-item p {
+    font-size: 0.9rem;
+    line-height: 1.82;
+  }
+
+  /* «المسار»: شبكة مكتبية 2×2 بدل السرد الطولي المفرد */
+  .timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    padding-inline-start: 0;
+  }
+
+  .timeline::before,
+  .timeline-item::before {
+    display: none;
+  }
+
+  .timeline-item {
+    padding: 1.25rem 1.35rem;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: var(--surface);
+    transition: border-color var(--t-fast) var(--ease-out), box-shadow var(--t-fast) var(--ease-out);
+  }
+
+  .timeline-item:hover {
+    border-color: var(--line-strong);
+    box-shadow: var(--shadow-1);
+  }
+
+  /* «ما أعود إليه»: مصفوفة 2×2 محكمة للمبادئ الأربعة */
+  .principles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+
+  .principle {
+    border-block-start: 0;
+    background: var(--surface);
+    padding: clamp(1.25rem, 2vw, 1.65rem);
+    gap: 0.95rem;
+    align-content: start;
+  }
+
+  /* «تواصل»: كتلة أفقية متزنة تجمع النص والروابط جنبًا إلى جنب */
+  .contact {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1.5rem 2.25rem;
+    padding: clamp(1.6rem, 2.4vw, 2.15rem);
+    border: 1px solid var(--line);
+    border-radius: var(--r-xl);
+    background: var(--surface-2);
+  }
+
+  .contact .stream-head {
+    margin-block-end: 0.5rem;
+  }
+
+  .contact-links {
+    margin-block-start: 0;
+    justify-content: flex-end;
+  }
 }
-.hero-band::before, .hero-band::after {
-  content: "";
-  position: absolute;
-  inline-size: 320px;
-  block-size: 320px;
-  border: 1px solid #ffffff14;
-  border-radius: 50%;
-  inset-block-start: -170px;
-  inset-inline-end: -60px;
-}
-.hero-band::after { inline-size: 430px; block-size: 430px; inset-block-start: -225px; inset-inline-end: -115px; }
+
+/* الهاتف الصغير (<= 620px): نحافظ على نفس التجربة الهاتفية النظيفة -------- */
 @media (max-width: 620px) {
-  .header-inner { padding-block: 1rem; }
-  .profile-layout { padding-block-start: 80px; gap: 2rem; }
-  .hero-band { block-size: 178px; }
-  .id-card { --avatar-size: 84px; border-radius: 22px; padding-block-end: 1.1rem; }
-  .id-avatar { margin-block-end: .7rem; }
-  .id-monogram { font-size: 2rem; }
-  .id-roles { font-size: .9rem; }
-  .id-bio { font-size: .95rem; margin-block-start: .65rem; }
-  .id-meta { grid-template-columns: 1fr; gap: .45rem; padding: .8rem; margin-block-start: 1rem; }
-  .id-meta > div { display: flex; justify-content: center; align-items: baseline; flex-wrap: wrap; gap: .5rem; }
-  .now-item, .pillars-grid { grid-template-columns: 1fr; }
-  .now-item { gap: .1rem; }
+  .header-inner {
+    padding-block: 0.95rem;
+  }
+
+  .profile-layout {
+    padding-block-start: 76px;
+    gap: 2rem;
+  }
+
+  .hero-band {
+    block-size: 178px;
+  }
+
+  .id-card {
+    --avatar-size: 86px;
+    border-radius: 22px;
+    padding-block-end: 1.15rem;
+  }
+
+  .id-avatar {
+    margin-block-end: 0.7rem;
+  }
+
+  .id-monogram {
+    font-size: 2rem;
+  }
+
+  .id-roles {
+    font-size: 0.9rem;
+  }
+
+  .id-bio {
+    font-size: 0.94rem;
+    margin-block-start: 0.65rem;
+  }
+
+  .id-meta {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+    padding: 0.8rem;
+    margin-block-start: 1rem;
+  }
+
+  .id-meta > div {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .now-item,
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .now-item {
+    gap: 0.1rem;
+  }
 }
+
 @media (max-width: 420px) {
-  .feed-grid { grid-template-columns: 1fr; }
-  .project-media .cover { aspect-ratio: 4 / 3; }
+  .feed-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-media .cover {
+    aspect-ratio: 4 / 3;
+  }
 }

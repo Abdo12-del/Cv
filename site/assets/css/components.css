@@ -45,23 +45,22 @@
   border-color: var(--blue-400);
 }
 
-@media (max-width: 900px) {
-  .btn.header-cta {
-    display: none;
-  }
-}
-
-/* Identity card — بطاقة التعريف الشخصية ----------------------------------- */
+/* Identity card — بطاقة التعريف الشخصية -----------------------------------
+   - الهاتف واللوحي (< 960px): بطاقة موسّطة وصورة دائرية تتوسّط حدّ الغلاف.
+   - الحاسوب (>= 960px): بطاقة جانبية ثابتة على يمين الشاشة (بداية السطر في RTL)،
+     والصورة والمحتوى محاذيان لليمين بلا توسيط هاتفي.
+   ------------------------------------------------------------------------- */
 .id-card {
   --avatar-size: 104px;
   text-align: center;
   position: relative;
-  padding: 0 clamp(1.25rem, 3.5vw, 2.75rem) 1.5rem;
+  padding: 0 clamp(1.25rem, 3.5vw, 2.25rem) 1.5rem;
   border: 1px solid var(--line);
   border-radius: var(--r-xl);
   background: var(--surface);
-  box-shadow: 0 6px 24px -18px rgba(6, 43, 82, .2);
+  box-shadow: 0 10px 30px -20px rgba(6, 43, 82, 0.24);
 }
+
 .id-avatar {
   display: grid;
   place-items: center;
@@ -73,37 +72,231 @@
   border-radius: 50%;
   background: var(--surface-3);
   color: var(--blue-700);
+  box-shadow: 0 0 0 1px rgba(10, 92, 200, 0.12), 0 12px 26px -18px rgba(0, 59, 120, 0.55);
   position: relative;
 }
-.id-avatar > img { inline-size: 100%; block-size: 100%; border-radius: inherit; object-fit: cover; }
-.id-monogram { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; }
-.id-name { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); line-height: 1.5; }
-.id-roles { margin-block-start: .25rem; color: var(--blue-700); font-size: 1rem; font-weight: 600; }
-.id-bio { margin-inline: auto; max-inline-size: 62ch; margin-block-start: .85rem; color: var(--text-soft); line-height: 1.9; }
+
+.id-avatar > img {
+  inline-size: 100%;
+  block-size: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.id-monogram {
+  font-family: var(--font-display);
+  font-size: 2.35rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.id-name {
+  font-size: clamp(1.45rem, 1.2rem + 0.9vw, 1.85rem);
+  line-height: 1.4;
+}
+
+.id-roles {
+  margin-block-start: 0.28rem;
+  color: var(--blue-700);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.65;
+}
+
+.id-bio {
+  margin-inline: auto;
+  max-inline-size: 56ch;
+  margin-block-start: 0.8rem;
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  line-height: 1.85;
+}
+
 .id-meta {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   max-inline-size: 820px;
-  padding: 1.1rem 1.25rem;
-  margin: 1.25rem auto 0;
+  padding: 1rem 1.15rem;
+  margin: 1.15rem auto 0;
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   background: var(--surface-2);
 }
-.id-meta > div { display: grid; align-content: start; justify-items: center; gap: .25rem; min-inline-size: 0; }
-.id-meta dt { font-size: .82rem; color: var(--text-faint); }
-.id-meta dd { margin: 0; font-size: .9rem; font-weight: 600; }
-.id-links { justify-content: center; display: flex; flex-wrap: wrap; gap: .4rem; margin-block: 1rem .5rem; }
-.id-note { font-size: .78rem; color: var(--text-faint); }
+
+.id-meta > div {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: 0.2rem;
+  min-inline-size: 0;
+}
+
+.id-meta dt {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+
+.id-meta dd {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.id-links {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-block: 1.05rem 0.85rem;
+}
+
+.link-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  min-block-size: 34px;
+  padding: 0.3rem 0.72rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-full);
+  background: var(--surface);
+  color: var(--blue-700);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background var(--t-fast) var(--ease-out), border-color var(--t-fast) var(--ease-out),
+    color var(--t-fast) var(--ease-out);
+}
+
+a.link-chip:hover {
+  background: var(--surface-2);
+  border-color: var(--blue-400);
+}
+
+.link-chip.is-placeholder {
+  background: var(--surface-2);
+  border-color: var(--line);
+  color: var(--text-soft);
+  font-weight: 500;
+}
+
+.placeholder-dot {
+  inline-size: 6px;
+  block-size: 6px;
+  border-radius: 50%;
+  background: var(--blue-400);
+  flex: none;
+}
+
+.link-chip.is-placeholder .placeholder-dot {
+  background: var(--line-strong);
+}
+
+.id-note {
+  font-size: 0.75rem;
+  line-height: 1.7;
+  color: var(--text-faint);
+  border-block-start: 1px solid var(--line);
+  padding-block-start: 0.75rem;
+}
+
+/* الحاسوب: محاذاة البطاقة والصورة لليمين داخل العمود الجانبي الثابت -------- */
+@media (min-width: 860px) {
+  .id-card {
+    --avatar-size: 108px;
+    text-align: start;
+    padding: 0 1.65rem 1.45rem;
+  }
+
+  .id-avatar {
+    margin-inline: 0;
+    margin-block: calc(var(--avatar-size) / -2) 0.95rem;
+  }
+
+  .id-name {
+    font-size: clamp(1.38rem, 1.12rem + 0.55vw, 1.68rem);
+    line-height: 1.35;
+  }
+
+  .id-roles {
+    font-size: 0.86rem;
+    color: var(--blue-600);
+  }
+
+  .id-bio {
+    margin-inline: 0;
+    max-inline-size: none;
+    margin-block-start: 0.7rem;
+    font-size: 0.91rem;
+    line-height: 1.8;
+  }
+
+  .id-meta {
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-inline-size: none;
+    margin: 1.05rem 0 0;
+    padding: 0.25rem 1rem;
+  }
+
+  .id-meta > div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-block: 0.58rem;
+    border-block-start: 1px solid var(--line);
+  }
+
+  .id-meta > div:first-child {
+    border-block-start: 0;
+  }
+
+  .id-meta dt {
+    font-size: 0.78rem;
+    flex: none;
+  }
+
+  .id-meta dd {
+    font-size: 0.85rem;
+    text-align: end;
+  }
+
+  .id-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
+    margin-block: 1rem 0.85rem;
+  }
+
+  .id-links li {
+    min-inline-size: 0;
+  }
+
+  .id-links .link-chip {
+    inline-size: 100%;
+    justify-content: flex-start;
+    padding-inline: 0.78rem;
+  }
+}
 
 /* Highlights (filters) ---------------------------------------------------- */
+.feed-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem 1.5rem;
+  margin-block-end: 1.5rem;
+}
+
 .hl-row {
   display: flex;
   align-items: flex-start;
-  gap: clamp(0.9rem, 2.4vw, 2rem);
+  gap: clamp(0.9rem, 2vw, 1.6rem);
   overflow-x: auto;
-  padding-block: 0.4rem 1.1rem;
+  padding-block: 0.25rem;
   scrollbar-width: thin;
   scroll-snap-type: x proximity;
 }
@@ -112,7 +305,7 @@
   flex: 0 0 auto;
   display: grid;
   justify-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
   padding: 0;
   background: none;
   border: 0;
@@ -122,7 +315,7 @@
 
 .hl-circle {
   position: relative;
-  inline-size: clamp(62px, 7vw, 78px);
+  inline-size: clamp(60px, 5.2vw, 72px);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -132,7 +325,7 @@
   color: var(--blue-700);
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   transition: background var(--t-base) var(--ease-out), color var(--t-base) var(--ease-out),
     border-color var(--t-base) var(--ease-out), transform var(--t-base) var(--ease-out),
     box-shadow var(--t-base) var(--ease-out);
@@ -171,9 +364,8 @@
   color: var(--text-faint);
   background: var(--surface-2);
   border: 1px solid var(--line);
-  padding: 0.42rem 0.8rem;
+  padding: 0.44rem 0.85rem;
   border-radius: var(--r-full);
-  margin-block-end: 1.5rem;
 }
 
 .sample-dot {
@@ -196,10 +388,10 @@
 .feed-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(0.85rem, 2vw, 1.5rem);
+  gap: clamp(0.85rem, 1.8vw, 1.35rem);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 860px) {
   .feed-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -248,7 +440,7 @@ body.is-locked {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  padding: 0.68rem 0.8rem;
+  padding: 0.68rem 0.85rem;
   border-block-start: 1px solid var(--line);
   font-size: 0.74rem;
   color: var(--text-faint);
@@ -493,12 +685,10 @@ body.is-locked {
 
 /* أربعة تكوينات، لغة واحدة ------------------------------------------------ */
 
-/* 1 · العنوان في الأسفل، فراغ طباعي فوقه */
 .cover--stack .cover-title {
   align-self: end;
 }
 
-/* 2 · توسيط كامل */
 .cover--center .cover-inner {
   justify-items: center;
   text-align: center;
@@ -523,13 +713,11 @@ body.is-locked {
   align-self: start;
 }
 
-/* 3 · العنوان يبدأ من الأعلى تحت السطر */
 .cover--split .cover-title {
   align-self: start;
   max-width: 16ch;
 }
 
-/* 4 · رقم كبير في الزاوية + عنوان في الأسفل */
 .cover--corner .cover-index {
   grid-row: 1 / -1;
   align-self: start;
@@ -559,18 +747,17 @@ body.is-locked {
   padding: 6cqw;
 }
 
-/* أغلفة المشاريع: عنوان قصير فقط */
 .project-media .cover-note {
-  max-width: 26ch;
-  font-size: 0.86rem;
-  line-height: 2;
+  align-self: end;
+  max-width: 24ch;
+  font-size: 0.84rem;
+  line-height: 1.9;
 }
 
 .project-media .cover-label {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
 }
 
-/* غلاف نافذة التفاصيل: شريط أفقي بلا عنوان مكرّر */
 .sheet-cover .cover-inner {
   padding: 4.4cqw 5cqw;
 }
@@ -597,7 +784,6 @@ body.is-locked {
   font-size: clamp(0.7rem, 1.5cqw, 0.88rem);
 }
 
-/* الحاوية الضيّقة (عمودان على الهاتف): نُبقي العنوان فقط */
 @container (max-width: 210px) {
   .cover-label {
     display: none;
@@ -612,20 +798,20 @@ body.is-locked {
   }
 }
 
-/* Projects ---------------------------------------------------------------- */
+/* Projects — بطاقات أفقية مزدوجة على الحاسوب، ومكدّسة على الهاتف ---------- */
 .project-list {
   display: grid;
-  gap: clamp(1rem, 2vw, 1.6rem);
+  gap: clamp(1rem, 2vw, 1.45rem);
 }
 
 .project {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+  grid-template-columns: minmax(232px, 0.7fr) minmax(0, 1.3fr);
   border: 1px solid var(--line);
   border-radius: var(--r-xl);
   overflow: hidden;
   background: var(--surface);
-  transition: border-color var(--t-base), box-shadow var(--t-base);
+  transition: border-color var(--t-base) var(--ease-out), box-shadow var(--t-base) var(--ease-out);
 }
 
 .project:hover {
@@ -641,63 +827,63 @@ body.is-locked {
 
 .project-media .cover {
   block-size: 100%;
-  min-block-size: 340px;
+  min-block-size: 248px;
   aspect-ratio: auto;
 }
 
 .project-body {
-  padding: clamp(1.3rem, 3vw, 2.4rem);
+  padding: clamp(1.25rem, 2.2vw, 1.85rem);
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 0.6rem;
 }
 
 .project-index {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.76rem;
-  letter-spacing: 0.18em;
-  color: var(--blue-400);
+  letter-spacing: 0.14em;
+  color: var(--blue-600);
 }
 
 .project h3 {
-  font-size: var(--fs-h3);
+  font-size: clamp(1.18rem, 1.05rem + 0.65vw, 1.48rem);
 }
 
 .project-summary {
   color: var(--text-soft);
-  font-size: 0.95rem;
-  line-height: 1.8;
+  font-size: 0.94rem;
+  line-height: 1.82;
 }
 
 .project-meta {
-  display: grid;
-  gap: 0.3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.4rem;
   font-size: 0.8rem;
-  margin-block: 0.3rem;
+  margin-block: 0.35rem;
 }
 
 .project-meta > div {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.42rem;
   align-items: baseline;
 }
 
 .project-meta dt {
   color: var(--text-faint);
-  min-inline-size: 4.6rem;
   flex: none;
 }
 
 .project-meta dd {
   margin: 0;
   color: var(--text);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .project-foot {
   margin-block-start: auto;
-  padding-block-start: 1rem;
+  padding-block-start: 0.9rem;
   border-block-start: 1px solid var(--line);
   display: flex;
   align-items: center;
@@ -766,34 +952,35 @@ body.is-locked {
 .principle {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: clamp(1rem, 3vw, 2.6rem);
-  padding-block: clamp(1.4rem, 3.4vw, 2.4rem);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  padding-block: clamp(1.3rem, 2.8vw, 1.9rem);
   border-block-start: 1px solid var(--line);
 }
 
 .principle-n {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
   line-height: 1;
   color: var(--blue-400);
-  opacity: 0.5;
+  opacity: 0.55;
   padding-block-start: 0.15rem;
 }
 
 .principle h3 {
-  font-size: clamp(1.15rem, 1.1rem + 0.8vw, 1.6rem);
-  margin-block-end: 0.4rem;
+  font-size: clamp(1.1rem, 1.02rem + 0.5vw, 1.35rem);
+  margin-block-end: 0.35rem;
 }
 
 .principle p {
   color: var(--text-soft);
-  max-width: 64ch;
-  line-height: 1.9;
+  font-size: 0.92rem;
+  max-width: 60ch;
+  line-height: 1.85;
 }
 
 .pillars {
-  margin-block-start: clamp(2rem, 4vw, 3.4rem);
+  margin-block-start: clamp(1.8rem, 3.5vw, 2.6rem);
 }
 
 .pillars-title {
@@ -816,7 +1003,7 @@ body.is-locked {
 
 .pillar {
   background: var(--surface);
-  padding: clamp(1.1rem, 2.4vw, 1.7rem);
+  padding: clamp(1.1rem, 2vw, 1.55rem);
 }
 
 .pillar h4 {
@@ -828,7 +1015,7 @@ body.is-locked {
 .pillar p {
   font-size: 0.86rem;
   color: var(--text-soft);
-  line-height: 1.75;
+  line-height: 1.78;
 }
 
 /* Writing ----------------------------------------------------------------- */
@@ -838,19 +1025,19 @@ body.is-locked {
 
 .writing-item {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.35fr);
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.38fr);
   grid-template-areas:
     "title excerpt"
     "type excerpt";
-  gap: 0.45rem 2.4rem;
+  gap: 0.45rem 2.2rem;
   align-items: start;
-  padding-block: clamp(1.2rem, 2.6vw, 1.9rem);
+  padding-block: clamp(1.2rem, 2.4vw, 1.75rem);
   border-block-end: 1px solid var(--line);
 }
 
 .writing-item h3 {
   grid-area: title;
-  font-size: clamp(1.05rem, 1rem + 0.5vw, 1.3rem);
+  font-size: clamp(1.05rem, 1rem + 0.45vw, 1.26rem);
 }
 
 .writing-excerpt {
@@ -863,11 +1050,11 @@ body.is-locked {
 .writing-type {
   grid-area: type;
   justify-self: start;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: var(--blue-700);
   background: var(--surface-2);
-  padding: 0.25rem 0.6rem;
+  padding: 0.24rem 0.62rem;
   border-radius: var(--r-full);
   white-space: nowrap;
 }
@@ -876,7 +1063,7 @@ body.is-locked {
 .timeline {
   position: relative;
   display: grid;
-  gap: clamp(1.2rem, 2.6vw, 2rem);
+  gap: clamp(1.2rem, 2.4vw, 1.75rem);
   padding-inline-start: 1.6rem;
 }
 
@@ -906,11 +1093,10 @@ body.is-locked {
 }
 
 .timeline-phase {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   color: var(--blue-600);
-  text-transform: none;
 }
 
 .timeline-item h3 {
@@ -926,7 +1112,7 @@ body.is-locked {
 
 /* Contact — bloc هادئ داخل تيار البروفايل --------------------------------- */
 .contact .stream-head {
-  margin-block-end: 0.9rem;
+  margin-block-end: 0.75rem;
 }
 
 .contact-lead {
@@ -948,8 +1134,8 @@ body.is-locked {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  min-block-size: 44px;
-  padding: 0.5rem 0.95rem;
+  min-block-size: 42px;
+  padding: 0.48rem 0.95rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--r-full);
   color: var(--blue-700);
@@ -969,8 +1155,8 @@ body.is-locked {
 
 .contact-links .is-placeholder {
   color: var(--text-faint);
-  background: var(--surface-2);
-  border-color: transparent;
+  background: var(--surface);
+  border-color: var(--line);
   font-weight: 500;
 }
 
@@ -1205,7 +1391,7 @@ body.is-locked {
   color: var(--text-faint);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 859px) {
   .writing-item {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -1229,6 +1415,11 @@ body.is-locked {
     aspect-ratio: 16 / 9;
   }
 
+  .project-meta {
+    display: grid;
+    gap: 0.3rem;
+  }
+
   .sheet {
     width: 100%;
     max-height: 100dvh;
@@ -1237,10 +1428,6 @@ body.is-locked {
     margin: 0;
   }
 
-
-}
-
-@media (max-width: 900px) {
   .icon-btn {
     inline-size: 44px;
     block-size: 44px;

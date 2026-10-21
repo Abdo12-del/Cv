@@ -6,7 +6,7 @@
 
   <title>عبد القادر عماري — معلّم أطفال، مؤسّس أكاديمية تعليمية، وكاتب</title>
   <meta name="description" content="بروفايل شخصي: نبذة، مسار، مشاريع، منشورات ونصوص عن التعليم والطفل والكتابة، مع روابط التواصل." />
-  <meta name="theme-color" content="#0A5CC8" />
+  <meta name="theme-color" content="#004C99" />
   <meta name="color-scheme" content="light" />
 
   <meta property="og:type" content="profile" />
@@ -16,12 +16,8 @@
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230A5CC8'/%3E%3Ctext x='32' y='42' font-family='sans-serif' font-size='24' font-weight='700' fill='white' text-anchor='middle'%3E%D8%B9%3C/text%3E%3C/svg%3E" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap"
-    rel="stylesheet"
-  />
+  <link rel="preload" href="assets/fonts/cairo-arabic-800-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/tajawal-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin />
 
   <link rel="stylesheet" href="assets/css/tokens.css" />
   <link rel="stylesheet" href="assets/css/base.css" />
@@ -45,7 +41,6 @@
         </span>
       </a>
 
-      <p class="nav-heading">استكشف</p>
       <nav class="nav" aria-label="أقسام البروفايل">
         <a href="#intro" title="نبذة">
           <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -93,16 +88,6 @@
         </a>
       </nav>
 
-      <div class="sidebar-foot">
-        <span class="sidebar-caption"><span aria-hidden="true"></span>بروفايل شخصي</span>
-        <a class="sidebar-top" href="#top">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="m7 11 5-5 5 5M12 6v12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          <span>أعلى الصفحة</span>
-        </a>
-      </div>
-
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
         <span class="sr-only">فتح القائمة</span>
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
@@ -122,8 +107,8 @@
   </header>
 
   <main id="main" tabindex="-1" class="wrap profile-layout">
-    <!-- بطاقة التعريف بعرض المحتوى، بلا ارتفاع ثابت -->
-    <section class="rail" aria-labelledby="profile-name">
+    <!-- بطاقة التعريف: ثابتة على يمين الشاشة في الحاسوب، وموسّطة على الهاتف -->
+    <aside class="rail" aria-labelledby="profile-name">
       <div class="id-card">
         <div class="id-avatar" data-photo-slot>
           <span class="id-monogram" data-bind="monogram" aria-hidden="true">ع</span>
@@ -140,7 +125,7 @@
 
         <p class="id-note" data-bind="note"></p>
       </div>
-    </section>
+    </aside>
 
     <div class="stream">
       <!-- نبذة -->
@@ -194,12 +179,14 @@
           <p class="stream-intro" data-bind="feedIntro"></p>
         </header>
 
-        <div class="hl-row" id="filters" role="group" aria-label="تصفية المحتوى"></div>
+        <div class="feed-toolbar">
+          <div class="hl-row" id="filters" role="group" aria-label="تصفية المحتوى"></div>
 
-        <p class="sample-note">
-          <span class="sample-dot" aria-hidden="true"></span>
-          محتوى تجريبي قابل للاستبدال من ملف البيانات — لا توجد أرقام أداء أو شهادات.
-        </p>
+          <p class="sample-note">
+            <span class="sample-dot" aria-hidden="true"></span>
+            محتوى تجريبي قابل للاستبدال من ملف البيانات — لا توجد أرقام أداء أو شهادات.
+          </p>
+        </div>
 
         <div class="feed-grid" id="feed-grid"></div>
 
@@ -232,11 +219,13 @@
 
       <!-- تواصل -->
       <section class="stream-section contact" id="contact" aria-labelledby="contact-title">
-        <header class="stream-head">
-          <h2 id="contact-title" data-bind="contactTitle">تواصل</h2>
-        </header>
+        <div class="contact-copy">
+          <header class="stream-head">
+            <h2 id="contact-title" data-bind="contactTitle">تواصل</h2>
+          </header>
 
-        <p class="contact-lead" data-bind="contactLead"></p>
+          <p class="contact-lead" data-bind="contactLead"></p>
+        </div>
 
         <ul class="contact-links" id="contact-links"></ul>
       </section>
@@ -245,7 +234,7 @@
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
-      <p class="footer-mark"><span data-bind="monogram">ع . ع</span> — <span data-bind="name"></span></p>
+      <p class="footer-mark"><span data-bind="monogram">ع</span> — <span data-bind="name"></span></p>
       <p class="footer-note">
         © <span id="year"></span> · بروفايل شخصي مستقل · تصميم وتنفيذ على أساس دليل الهوية البصرية
       </p>
@@ -265,7 +254,7 @@
         </button>
         <button class="icon-btn" type="button" data-nav="next" aria-label="العنصر التالي">
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-            <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
           </svg>
         </button>
         <button class="icon-btn icon-btn--close" type="button" data-close aria-label="إغلاق">

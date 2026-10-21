@@ -687,7 +687,7 @@ function initReveal() {
 
 function initHeader() {
   const header = el(".site-header");
-  const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+  const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 24);
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -717,34 +717,51 @@ function initHeader() {
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth >= 1100 && !panel.hidden) {
+      if (window.innerWidth >= 860 && !panel.hidden) {
         toggle.setAttribute("aria-expanded", "false");
         panel.hidden = true;
       }
     });
   }
 
-  // تمييز القسم الحالي في الشريط الجانبي وقائمة الهاتف معًا
+  // تمييز القسم الحالي بدقة في الشريط العلوي وقائمة الهاتف (بما يشمل آخر الصفحة)
   const links = els(".nav a, .mobile-nav a");
   const sectionIds = [...new Set(links.map((a) => a.getAttribute("href").slice(1)))];
   const sections = sectionIds.map((id) => byId(id)).filter(Boolean);
 
-  if ("IntersectionObserver" in window && sections.length) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          links.forEach((a) => {
-            const active = a.getAttribute("href") === `#${entry.target.id}`;
-            a.classList.toggle("is-active", active);
-            if (active) a.setAttribute("aria-current", "location");
-            else a.removeAttribute("aria-current");
-          });
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-    sections.forEach((s) => io.observe(s));
+  if (sections.length) {
+    let spyFrame = 0;
+    const updateActiveNav = () => {
+      spyFrame = 0;
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 48;
+      let currentId = sections[0].id;
+
+      if (atBottom) {
+        currentId = sections[sections.length - 1].id;
+      } else {
+        const probe = window.scrollY + Math.min(220, window.innerHeight * 0.32);
+        for (const s of sections) {
+          const top = s.getBoundingClientRect().top + window.scrollY;
+          if (top <= probe) currentId = s.id;
+        }
+      }
+
+      links.forEach((a) => {
+        const active = a.getAttribute("href") === `#${currentId}`;
+        a.classList.toggle("is-active", active);
+        if (active) a.setAttribute("aria-current", "location");
+        else a.removeAttribute("aria-current");
+      });
+    };
+
+    const scheduleSpy = () => {
+      if (!spyFrame) spyFrame = requestAnimationFrame(updateActiveNav);
+    };
+
+    updateActiveNav();
+    window.addEventListener("scroll", scheduleSpy, { passive: true });
+    window.addEventListener("resize", scheduleSpy, { passive: true });
   }
 }
 
