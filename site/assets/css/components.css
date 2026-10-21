@@ -189,6 +189,17 @@ a.link-chip:hover {
   flex: none;
 }
 
+.platform-icon {
+  inline-size: 1rem;
+  block-size: 1rem;
+  flex: none;
+}
+
+.contact-links .platform-icon {
+  inline-size: 1.1rem;
+  block-size: 1.1rem;
+}
+
 .link-chip.is-placeholder .placeholder-dot {
   background: var(--line-strong);
 }

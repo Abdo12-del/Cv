@@ -23,6 +23,19 @@ const esc = (value = "") =>
 
 const byId = (id) => document.getElementById(id);
 
+function platformIcon(platform = "") {
+  const icons = {
+    instagram: '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.8" r=".8" fill="currentColor" stroke="none"/>',
+    tiktok: '<path d="M14 4v10.2a3.3 3.3 0 1 1-2.8-3.25M14 4c.6 2.7 2.3 4.2 5 4.5" stroke-linecap="round" stroke-linejoin="round"/>',
+    youtube: '<rect x="3" y="5.5" width="18" height="13" rx="4"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/>',
+    email: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6" stroke-linecap="round" stroke-linejoin="round"/>',
+  };
+  const shape = icons[platform];
+  return shape
+    ? `<svg class="platform-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">${shape}</svg>`
+    : '<span class="placeholder-dot" aria-hidden="true"></span>';
+}
+
 /* ---------------------------------------------------------------- covers -- */
 function titleBucket(text) {
   const n = String(text).replace(/\s+/g, " ").trim().length;
@@ -134,8 +147,8 @@ function renderProfileLinks(data) {
     .map((link) => {
       if (link.href) {
         return `<li>
-          <a class="link-chip" href="${esc(link.href)}" rel="me noopener" target="_blank">
-            <span class="placeholder-dot" aria-hidden="true"></span>${esc(link.label)}
+          <a class="link-chip" href="${esc(link.href)}" aria-label="${esc(`${link.label}: ${link.handle || link.href}`)}" rel="me noopener" target="_blank">
+            ${platformIcon(link.platform)}<span>${esc(link.handle || link.label)}</span>
           </a>
         </li>`;
       }
@@ -346,11 +359,8 @@ function renderContact(data) {
   const wrap = byId("contact-links");
   wrap.innerHTML = data.profile.links
     .map((link) => {
-      const icon = `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-        <path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" /></svg>`;
-
       if (link.href) {
-        return `<li><a href="${esc(link.href)}" target="_blank" rel="me noopener">${esc(link.label)} ${icon}</a></li>`;
+        return `<li><a href="${esc(link.href)}" aria-label="${esc(`${link.label}: ${link.handle || link.href}`)}" target="_blank" rel="me noopener">${platformIcon(link.platform)}<span>${esc(link.label)}${link.handle ? ` · ${esc(link.handle)}` : ""}</span></a></li>`;
       }
       return `<li><span class="is-placeholder" title="يُضاف من ملف البيانات">${esc(link.label)} · قريبًا</span></li>`;
     })
