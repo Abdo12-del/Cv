@@ -53,6 +53,9 @@
 
   --wrap: 1220px;
   --gutter: clamp(1.15rem, 0.6rem + 2.4vw, 3rem);
+  --sidebar-compact: 84px;
+  --sidebar-wide: clamp(252px, 19vw, 286px);
+  --sidebar-size: 0px;
 
   --r-sm: 10px;
   --r-md: 16px;

@@ -118,18 +118,18 @@ dl {
   transform: translateY(0);
 }
 
-/* السطر العلوي: التدرّج الوحيد المسموح به بين اللونين */
+/* الشريط الجانبي: خط لوني دقيق يحافظ على توقيع الهوية --------------------- */
 .topline {
   height: 3px;
   background: linear-gradient(90deg, var(--blue-600), var(--blue-400));
 }
 
-/* Header ------------------------------------------------------------------ */
+/* Header / sidebar -------------------------------------------------------- */
 .site-header {
   position: sticky;
   inset-block-start: 0;
   z-index: var(--z-header);
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.88);
   -webkit-backdrop-filter: saturate(140%) blur(14px);
   backdrop-filter: saturate(140%) blur(14px);
   border-block-end: 1px solid transparent;
@@ -145,29 +145,35 @@ dl {
   display: flex;
   align-items: center;
   gap: clamp(0.75rem, 2vw, 2rem);
+  width: 100%;
+  max-width: var(--wrap);
   min-height: 72px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
+  color: var(--text);
   text-decoration: none;
   flex: none;
 }
 
 .brand-avatar {
+  position: relative;
   inline-size: 40px;
   block-size: 40px;
   display: grid;
   place-items: center;
+  border: 1px solid var(--line-strong);
   border-radius: 50%;
   background: var(--surface-3);
-  border: 1px solid var(--line-strong);
   color: var(--blue-700);
   font-family: var(--font-display);
-  font-weight: 800;
   font-size: 0.95rem;
+  font-weight: 800;
   letter-spacing: 0;
   white-space: nowrap;
   flex: none;
@@ -190,6 +196,11 @@ dl {
   color: var(--text-faint);
 }
 
+.nav-heading,
+.sidebar-foot {
+  display: none;
+}
+
 .nav {
   display: flex;
   align-items: center;
@@ -199,12 +210,22 @@ dl {
 
 .nav a {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.52rem;
+  padding-block: 0.35rem;
+  color: var(--text-soft);
   font-size: 0.94rem;
   font-weight: 500;
-  color: var(--text-soft);
   text-decoration: none;
-  padding-block: 0.35rem;
-  transition: color var(--t-fast) var(--ease-out);
+  transition: color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out), transform var(--t-fast) var(--ease-out);
+}
+
+.nav-icon {
+  inline-size: 18px;
+  block-size: 18px;
+  flex: none;
 }
 
 .nav a::after {
@@ -213,6 +234,7 @@ dl {
   inset-inline: 0;
   inset-block-end: 0;
   block-size: 1.5px;
+  border-radius: 2px;
   background: var(--blue-600);
   transform: scaleX(0);
   transform-origin: right;
@@ -231,34 +253,353 @@ dl {
 
 .nav-toggle {
   display: none;
-  inline-size: 42px;
-  block-size: 42px;
-  border-radius: 12px;
+  inline-size: 44px;
+  block-size: 44px;
   border: 1px solid var(--line);
+  border-radius: 13px;
   background: var(--surface);
   color: var(--blue-700);
   cursor: pointer;
   place-items: center;
+  transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out),
+    color var(--t-fast) var(--ease-out), transform var(--t-fast) var(--ease-out);
+}
+
+.nav-toggle svg {
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+.nav-toggle:hover,
+.nav-toggle[aria-expanded="true"] {
+  border-color: var(--blue-400);
+  background: var(--surface-2);
+}
+
+.nav-toggle[aria-expanded="true"] svg {
+  transform: rotate(90deg);
 }
 
 .mobile-nav {
   display: none;
-  padding: 0.5rem var(--gutter) 1.1rem;
-  border-block-start: 1px solid var(--line);
-  background: var(--surface);
 }
 
-.mobile-nav a {
-  display: block;
-  padding: 0.85rem 0.25rem;
-  text-decoration: none;
-  font-weight: 500;
-  color: var(--text-soft);
-  border-block-end: 1px solid var(--line);
+/* الهاتف واللوحي: شريط بسيط مع قائمة جانبية عائمة ------------------------- */
+@media (max-width: 1099px) {
+  .nav,
+  .nav-heading,
+  .sidebar-foot {
+    display: none;
+  }
+
+  .brand {
+    margin-inline-end: auto;
+  }
+
+  .nav-toggle {
+    display: grid;
+  }
+
+  .header-inner {
+    min-height: 66px;
+  }
+
+  .mobile-nav {
+    position: fixed;
+    inset-block-start: 78px;
+    inset-inline-start: var(--gutter);
+    z-index: calc(var(--z-header) + 1);
+    inline-size: min(342px, calc(100vw - var(--gutter) - var(--gutter)));
+    max-block-size: calc(100dvh - 94px);
+    overflow-y: auto;
+    padding: 0.55rem;
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: var(--shadow-3);
+    -webkit-backdrop-filter: saturate(140%) blur(16px);
+    backdrop-filter: saturate(140%) blur(16px);
+  }
+
+  .mobile-nav:not([hidden]) {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .mobile-nav a {
+    display: flex;
+    align-items: center;
+    min-block-size: 46px;
+    padding-inline: 0.85rem;
+    border-radius: var(--r-sm);
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
+  }
+
+  .mobile-nav a:hover,
+  .mobile-nav a.is-active {
+    background: var(--surface-2);
+    color: var(--blue-700);
+  }
 }
 
-.mobile-nav a:last-child {
-  border-block-end: 0;
+/* سطح المكتب: يتحوّل الشريط إلى تنقّل جانبي ثابت على اليمين (RTL) -------- */
+@media (min-width: 1100px) {
+  :root {
+    --sidebar-size: var(--sidebar-compact);
+  }
+
+  html {
+    scroll-padding-block-start: 2rem;
+  }
+
+  body {
+    padding-inline-start: var(--sidebar-size);
+  }
+
+  .topline {
+    display: none;
+  }
+
+  .skip-link {
+    inset-inline-start: calc(var(--sidebar-size) + 1rem);
+  }
+
+  .site-header {
+    position: fixed;
+    inset-block: 0;
+    inset-inline-start: 0;
+    inline-size: var(--sidebar-size);
+    border: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-inline-end: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.91);
+    box-shadow: -14px 0 36px -26px rgba(6, 43, 82, 0.46);
+    scrollbar-width: thin;
+    transition: inline-size var(--t-slow) var(--ease-out), box-shadow var(--t-base) var(--ease-out);
+  }
+
+  .site-header::before {
+    content: "";
+    position: absolute;
+    inset-block: 1.5rem;
+    inset-inline-end: -1px;
+    inline-size: 3px;
+    border-radius: var(--r-full);
+    background: linear-gradient(to bottom, var(--blue-400), var(--blue-600));
+    pointer-events: none;
+  }
+
+  .site-header.is-scrolled {
+    border-block-end-color: transparent;
+    box-shadow: -14px 0 36px -26px rgba(6, 43, 82, 0.46);
+  }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-width: none;
+    min-height: 100%;
+    margin: 0;
+    padding: 1.5rem 1rem 1.15rem;
+  }
+
+  .brand {
+    min-block-size: 52px;
+    padding: 0.4rem;
+    border: 1px solid transparent;
+    border-radius: var(--r-md);
+    transition: background var(--t-fast) var(--ease-out), border-color var(--t-fast) var(--ease-out);
+  }
+
+  .brand:hover {
+    border-color: var(--line);
+    background: var(--surface-2);
+  }
+
+  .brand-avatar {
+    inline-size: 44px;
+    block-size: 44px;
+    border-color: var(--blue-700);
+    background: var(--blue-700);
+    color: #fff;
+    box-shadow: 0 8px 18px -14px rgba(0, 76, 153, 0.95);
+  }
+
+  .nav-heading {
+    display: block;
+    margin: 2.35rem 0.8rem 0.62rem;
+    color: var(--text-faint);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .nav {
+    display: grid;
+    gap: 0.28rem;
+    margin: 0;
+  }
+
+  .nav a {
+    min-block-size: 50px;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    color: var(--text-soft);
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .nav-icon {
+    inline-size: 19px;
+    block-size: 19px;
+  }
+
+  .nav a::after {
+    inset-inline-start: 0.28rem;
+    inset-inline-end: auto;
+    inset-block: 0.78rem;
+    inline-size: 3px;
+    block-size: auto;
+    background: var(--blue-400);
+    transform: scaleY(0);
+    transform-origin: center;
+  }
+
+  .nav a:hover {
+    border-color: var(--line);
+    background: var(--surface-2);
+    color: var(--blue-700);
+    transform: translateX(-2px);
+  }
+
+  .nav a.is-active {
+    border-color: var(--blue-700);
+    background: var(--blue-700);
+    color: #fff;
+    box-shadow: 0 12px 22px -20px rgba(0, 76, 153, 1);
+  }
+
+  .nav a:hover::after,
+  .nav a.is-active::after {
+    transform: scaleY(1);
+  }
+
+  .sidebar-foot {
+    display: grid;
+    gap: 0.58rem;
+    margin-block-start: auto;
+    padding-block-start: 1rem;
+    border-block-start: 1px solid var(--line);
+  }
+
+  .sidebar-caption {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding-inline: 0.75rem;
+    color: var(--text-faint);
+    font-size: 0.73rem;
+    font-weight: 600;
+  }
+
+  .sidebar-caption > span {
+    inline-size: 7px;
+    block-size: 7px;
+    border-radius: 50%;
+    background: var(--blue-400);
+    box-shadow: 0 0 0 4px var(--surface-3);
+  }
+
+  .sidebar-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.52rem;
+    min-block-size: 42px;
+    padding-inline: 0.75rem;
+    border-radius: 12px;
+    color: var(--text-soft);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+  }
+
+  .sidebar-top svg {
+    inline-size: 17px;
+    block-size: 17px;
+  }
+
+  .sidebar-top:hover {
+    background: var(--surface-2);
+    color: var(--blue-700);
+  }
+
+  .nav-toggle,
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
+/* شريط رموز مضغوط للشاشات المكتبية المتوسطة ------------------------------ */
+@media (min-width: 1100px) and (max-width: 1359px) {
+  .header-inner {
+    align-items: center;
+    padding-inline: 0.75rem;
+  }
+
+  .brand {
+    justify-content: center;
+    padding: 0.22rem;
+  }
+
+  .brand-text,
+  .nav-heading,
+  .sidebar-caption {
+    display: none;
+  }
+
+  .nav {
+    justify-items: center;
+    width: 100%;
+    margin-block-start: 2rem;
+  }
+
+  .nav a,
+  .sidebar-top {
+    justify-content: center;
+    inline-size: 52px;
+    padding-inline: 0;
+  }
+
+  .nav a > span,
+  .sidebar-top > span {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .sidebar-foot {
+    justify-items: center;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1360px) {
+  :root {
+    --sidebar-size: var(--sidebar-wide);
+  }
 }
 
 /* Footer ------------------------------------------------------------------ */
@@ -362,28 +703,5 @@ dl {
 @media (max-width: 900px) {
   .btn {
     min-block-size: 44px;
-  }
-}
-
-/* Header responsive ------------------------------------------------------- */
-@media (max-width: 900px) {
-  .nav {
-    display: none;
-  }
-
-  .brand {
-    margin-inline-end: auto;
-  }
-
-  .nav-toggle {
-    display: grid;
-  }
-
-  .mobile-nav:not([hidden]) {
-    display: block;
-  }
-
-  .header-inner {
-    min-height: 64px;
   }
 }

@@ -27,6 +27,14 @@
   }
 }
 
+/* لا يوجد شريط علوي على سطح المكتب: البطاقة تصطف مع بداية المساحة */
+@media (min-width: 1100px) {
+  .rail {
+    inset-block-start: clamp(1.5rem, 3.5vh, 2.5rem);
+    max-block-size: calc(100vh - 4rem);
+  }
+}
+
 .stream {
   min-inline-size: 0;
 }
