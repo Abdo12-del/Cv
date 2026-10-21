@@ -685,6 +685,69 @@ function initReveal() {
   items.forEach((item) => io.observe(item));
 }
 
+/* ------------------------------------------------------------ hero band -- */
+/* ارتفاع شريط الخلفية العلوي = ارتفاع العنوان الكبير + فراغ، فيتّسع النص
+   دائمًا ولا يُقطع. القيم تُقرأ من CSS لتبقى المصادر واحدة. */
+function cssLength(name) {
+  const probe = document.createElement("span");
+  probe.style.cssText = `position:absolute;visibility:hidden;pointer-events:none;inline-size:var(${name});block-size:0`;
+  document.body.appendChild(probe);
+  const px = probe.getBoundingClientRect().width;
+  probe.remove();
+  return px;
+}
+
+function initHeroBand() {
+  const lead = el("#intro .lead");
+  const band = el(".hero-band");
+  if (!lead || !band) return;
+
+  const root = document.documentElement;
+  let frame = 0;
+
+  const card = el(".id-card");
+  const rail = el(".rail");
+
+  const measure = () => {
+    frame = 0;
+
+    if (!window.matchMedia("(min-width: 1100px)").matches) {
+      root.style.removeProperty("--hero-h");
+      if (rail) rail.classList.remove("rail--flow");
+      return;
+    }
+
+    // ارتفاع الشريط = نهاية العنوان الكبير + فراغ، محسوبًا من أعلى الصفحة
+    const gap = cssLength("--hero-gap") || 40;
+    const leadBottom = lead.getBoundingClientRect().bottom + window.scrollY;
+    root.style.setProperty("--hero-h", `${Math.round(leadBottom + gap)}px`);
+
+    // بطاقة أطول من الشاشة لا تُثبَّت، حتى يبقى أسفلها في المتناول
+    if (rail && card) {
+      const stickOffset = cssLength("--hero-top") || 24;
+      const tooTall = card.getBoundingClientRect().height + stickOffset * 2 > window.innerHeight;
+      rail.classList.toggle("rail--flow", tooTall);
+    }
+  };
+
+  const schedule = () => {
+    if (frame) return;
+    frame = requestAnimationFrame(measure);
+  };
+
+  measure();
+  window.addEventListener("resize", schedule, { passive: true });
+
+  if ("ResizeObserver" in window) {
+    const ro = new ResizeObserver(schedule);
+    ro.observe(lead);
+  }
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(schedule).catch(() => {});
+  }
+}
+
 function initHeader() {
   const header = el(".site-header");
   const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
@@ -776,6 +839,7 @@ async function boot() {
 
     initReveal();
     initSheet();
+    initHeroBand();
   } catch (error) {
     console.error("[content] failed to load:", error);
     const grid = byId("feed-grid");
