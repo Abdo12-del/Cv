@@ -717,25 +717,29 @@ function initHeader() {
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 900 && !panel.hidden) {
+      if (window.innerWidth >= 1100 && !panel.hidden) {
         toggle.setAttribute("aria-expanded", "false");
         panel.hidden = true;
       }
     });
   }
 
-  // تمييز القسم الحالي في التنقّل
-  const links = els(".nav a");
-  const sections = links
-    .map((a) => byId(a.getAttribute("href").slice(1)))
-    .filter(Boolean);
+  // تمييز القسم الحالي في الشريط الجانبي وقائمة الهاتف معًا
+  const links = els(".nav a, .mobile-nav a");
+  const sectionIds = [...new Set(links.map((a) => a.getAttribute("href").slice(1)))];
+  const sections = sectionIds.map((id) => byId(id)).filter(Boolean);
 
   if ("IntersectionObserver" in window && sections.length) {
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          links.forEach((a) => a.classList.toggle("is-active", a.getAttribute("href") === `#${entry.target.id}`));
+          links.forEach((a) => {
+            const active = a.getAttribute("href") === `#${entry.target.id}`;
+            a.classList.toggle("is-active", active);
+            if (active) a.setAttribute("aria-current", "location");
+            else a.removeAttribute("aria-current");
+          });
         });
       },
       { rootMargin: "-45% 0px -50% 0px" }
